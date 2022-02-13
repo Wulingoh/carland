@@ -1,0 +1,86 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* header and navbar */
+.navbar-brand {
+    letter-spacing: 3px;
+    color: #2B6777;
+}
+
+.navbar-brand:hover {
+    color: #2B6777;
+}
+
+.navbar-scroll .nav-link,
+.navbar-scroll .fa-bars {
+    color: #000;
+}
+
+.navbar-scrolled .nav-link,
+.navbar-scrolled .fa-bars {
+    color: #52ab98;
+}
+
+.navbar-scrolled {
+    background-color: #ffffff;
+}
+.sign-up {
+    height: 16px;
+    width: 16px;
+}
+.navbar .nav-item .dropdown-menu{ display: none; }
+.navbar .nav-item:hover .nav-link{   }
+.navbar .nav-item:hover .dropdown-menu{ display: block; }
+.navbar .nav-item .dropdown-menu{ margin-top:0; }
+.dropdown-toggle::after {
+    content: none;
+}
+
+/* footer */
+.vector {
+    width: 100%
+}
+.shade {
+    width: 100%;
+    position: absolute;
+    bottom: 240px;
+}
+.footer-container {
+    background-color: #2B6777;
+}
+li.borderless { 
+    border: 0 none;
+    padding: 5px 2px 5px 2px;
+    background-color: #2B6777;
+ }
+ .footer-icons {
+     padding-right: 0 !important;
+ }
+.footer-nav a {
+    color: #ffffff;
+}
+.footer-text, .footer-text i {
+    color: #ffffff;
+}
+.footer-text a {
+    color:#52ab98;
+}
+.footer-btn, 
+.footer-btn:hover, 
+.footer-btn:active, 
+.footer-btn:visited {
+    background-color: #52ab98 !important;
+    border-color: #52ab98;
+}
+.footer-logo {
+    z-index: 2;
+}
+.footer-icons i {
+    color: #ffffff;
+}
