@@ -262,3 +262,27 @@ p {
       transition-timing-function: ease;
       transition-delay: 0s;
   }
+
+  /* breadcrumbs */
+  .pull-left {
+      float: left !important;
+      font-size:smaller;
+  }
+  .sort-style-page {
+      margin-left: 13px;
+  }
+.result-count {
+    font-size: 14px;
+}
+.row-main-sort {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+
+}
+.sort-style-text {
+    padding-right: 10px;
+}
