@@ -15,7 +15,7 @@
 
 <body>
     <!-- navbar -->
-    <div class="container-fluid">
+    <div class="">
         <nav class="navbar navbar-expand-lg navbar-fixed-top navbar-scroll shadow-0" style="background-color: #ffffff;">
             <div class="container">
                 <!-- begin left side elements -->
@@ -105,222 +105,332 @@
     </div>
     <!-- end of header nav -->
     <!-- sidebar filter -->
-    <section class="container-fluid">
+    <section class="">
         <div class="row">
-            <div class="col-2">
+            <div class="col-3">
                 <!-- Sidebar -->
                 <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
                     <div class="position-sticky">
+                        <nav class="navbar sidebar-header"><h4>Filters</h4></nav>
                         <div class="list-group list-group-flush mx-3 mt-4">
                             <!-- Collapse 1 -->
                             <a class="list-group-item list-group-item-action py-2 ripple collapsed" aria-current="true" data-toggle="collapse"
+                                href="#make" aria-expanded="true" aria-controls="collapseExample2" role="button">
+                                <span>Make & Model</span>
+                                <i class="bi bi-chevron-compact-down rotate-icon"></i>
+                            </a>
+                            <ul id="make" class="collapse list-group list-group-flush">
+                                <li class="list-group-item py-1">
+                                    <div class="sidebar-inner-content">
+                                        <label class="sidebar-style-label">
+                                            <span class="sidebar-text"> Make</span>
+                                            <div class="sidebar-select-option">
+                                                <select class="selectpicker sidebar-selectpicker">
+                                                    <option value="">Any</option>
+                                                    <option value="abarth">Abarth</option>
+                                                    <option value="alfa-romeo">Alfa Romeo</option>
+                                                    <option value="bmw">BMW</option>
+                                                    <option value="citroen">Citroen</option>
+                                                    <option value="cupra">Cupra</option>
+                                                    <option value="dacia">Dacia</option>
+                                                </select>     
+                                            </div>
+                                        </label>
+                                    </div>
+                                </li>
+                                <li class="list-group-item py-1">
+                                    <div class="sidebar-inner-content">
+                                        <label class="sidebar-style-label">
+                                            <span class="sidebar-text"> Model</span>
+                                            <div class="sidebar-select-option">
+                                                <select class="selectpicker sidebar-selectpicker">
+                                                    <option value="">Any</option>
+                                                    <option value="abarth">Abarth</option>
+                                                    <option value="alfa-romeo">Alfa Romeo</option>
+                                                    <option value="bmw">BMW</option>
+                                                    <option value="citroen">Citroen</option>
+                                                    <option value="cupra">Cupra</option>
+                                                    <option value="dacia">Dacia</option>
+                                                </select>     
+                                            </div>
+                                        </label>
+                                    </div>
+                                </li>
+                            </ul>
+                            <a class="list-group-item list-group-item-action py-2 ripple collapsed" aria-current="true" data-toggle="collapse"
                                 href="#collapseExample2" aria-expanded="true" aria-controls="collapseExample2" role="button">
-                                <i class="fas fa-chart-area fa-fw me-3"></i><span>Make & Model</span>
+                                <span>Location</span>
                                 <i class="bi bi-chevron-compact-down rotate-icon"></i>
                             </a>
                             <ul id="collapseExample2" class="collapse list-group list-group-flush">
                                 <li class="list-group-item py-1">
-                                    <a href="" class="text-reset">Link</a>
-                                </li>
-                                <li class="list-group-item py-1">
-                                    <a href="" class="text-reset">Link</a>
-                                </li>
-                                <li class="list-group-item py-1">
-                                    <a href="" class="text-reset">Link</a>
-                                </li>
-                                <li class="list-group-item py-1">
-                                    <a href="" class="text-reset">Link</a>
+                                    <div class="sidebar-inner-content">
+                                        <label class="sidebar-style-label">
+                                            <span class="sidebar-text"> City</span>
+                                            <div class="sidebar-select-option">
+                                                <select class="selectpicker sidebar-selectpicker">
+                                                    <option value="">Any</option>
+                                                    <option value="abarth">Auckland</option>
+                                                    <option value="alfa-romeo">Christchuch</option>
+                                                    <option value="bmw">Dunedin</option>
+                                                    <option value="citroen">Queenstown</option>
+                                                    <option value="cupra">Nelson</option>
+                                                    <option value="dacia">Napiers</option>
+                                                </select>     
+                                            </div>
+                                        </label>
+                                    </div>
                                 </li>
                             </ul>
-                            <a class="list-group-item list-group-item-action py-2 ripple" aria-current="true" data-toggle="collapse"
+                            <a class="list-group-item list-group-item-action py-2 ripple collapsed" aria-current="true" data-toggle="collapse"
                                 href="#collapseExample2" aria-expanded="true" aria-controls="collapseExample2" role="button">
-                                <i class="fas fa-chart-area fa-fw me-3"></i><span>Make & Model</span>
-                                <i class="bi bi-chevron-compact-down rotate-icon" style="transform: rotate(180deg);"></i>
+                                <span>Price</span>
+                                <i class="bi bi-chevron-compact-down rotate-icon"></i>
                             </a>
                             <ul id="collapseExample2" class="collapse list-group list-group-flush">
                                 <li class="list-group-item py-1">
-                                    <a href="" class="text-reset">Link</a>
-                                </li>
-                                <li class="list-group-item py-1">
-                                    <a href="" class="text-reset">Link</a>
-                                </li>
-                                <li class="list-group-item py-1">
-                                    <a href="" class="text-reset">Link</a>
-                                </li>
-                                <li class="list-group-item py-1">
-                                    <a href="" class="text-reset">Link</a>
+                                    <div class="sidebar-inner-content">
+                                        <label class="sidebar-style-label">
+                                            <span class="sidebar-text"> City</span>
+                                            <div class="sidebar-select-option">
+                                                <select class="selectpicker sidebar-selectpicker">
+                                                    <option value="">Any</option>
+                                                    <option value="abarth">Auckland</option>
+                                                    <option value="alfa-romeo">Christchuch</option>
+                                                    <option value="bmw">Dunedin</option>
+                                                    <option value="citroen">Queenstown</option>
+                                                    <option value="cupra">Nelson</option>
+                                                    <option value="dacia">Napiers</option>
+                                                </select>     
+                                            </div>
+                                        </label>
+                                    </div>
                                 </li>
                             </ul>
-                            <a class="list-group-item list-group-item-action py-2 ripple" aria-current="true" data-toggle="collapse"
+                            <a class="list-group-item list-group-item-action py-2 ripple collapsed" aria-current="true" data-toggle="collapse"
                                 href="#collapseExample2" aria-expanded="true" aria-controls="collapseExample2" role="button">
-                                <i class="fas fa-chart-area fa-fw me-3"></i><span>Make & Model</span>
-                                <i class="bi bi-chevron-compact-down rotate-icon" style="transform: rotate(180deg);"></i>
+                                <span>Fuel & Efficiency</span>
+                                <i class="bi bi-chevron-compact-down rotate-icon"></i>
                             </a>
                             <ul id="collapseExample2" class="collapse list-group list-group-flush">
                                 <li class="list-group-item py-1">
-                                    <a href="" class="text-reset">Link</a>
-                                </li>
-                                <li class="list-group-item py-1">
-                                    <a href="" class="text-reset">Link</a>
-                                </li>
-                                <li class="list-group-item py-1">
-                                    <a href="" class="text-reset">Link</a>
-                                </li>
-                                <li class="list-group-item py-1">
-                                    <a href="" class="text-reset">Link</a>
+                                    <div class="sidebar-inner-content">
+                                        <label class="sidebar-style-label">
+                                            <span class="sidebar-text"> City</span>
+                                            <div class="sidebar-select-option">
+                                                <select class="selectpicker sidebar-selectpicker">
+                                                    <option value="">Any</option>
+                                                    <option value="abarth">Auckland</option>
+                                                    <option value="alfa-romeo">Christchuch</option>
+                                                    <option value="bmw">Dunedin</option>
+                                                    <option value="citroen">Queenstown</option>
+                                                    <option value="cupra">Nelson</option>
+                                                    <option value="dacia">Napiers</option>
+                                                </select>     
+                                            </div>
+                                        </label>
+                                    </div>
                                 </li>
                             </ul>
-                            <a class="list-group-item list-group-item-action py-2 ripple" aria-current="true" data-toggle="collapse"
+                            <a class="list-group-item list-group-item-action py-2 ripple collapsed" aria-current="true" data-toggle="collapse"
                                 href="#collapseExample2" aria-expanded="true" aria-controls="collapseExample2" role="button">
-                                <i class="fas fa-chart-area fa-fw me-3"></i><span>Make & Model</span>
-                                <i class="bi bi-chevron-compact-down rotate-icon" style="transform: rotate(180deg);"></i>
+                                <span>Year</span>
+                                <i class="bi bi-chevron-compact-down rotate-icon"></i>
                             </a>
                             <ul id="collapseExample2" class="collapse list-group list-group-flush">
                                 <li class="list-group-item py-1">
-                                    <a href="" class="text-reset">Link</a>
-                                </li>
-                                <li class="list-group-item py-1">
-                                    <a href="" class="text-reset">Link</a>
-                                </li>
-                                <li class="list-group-item py-1">
-                                    <a href="" class="text-reset">Link</a>
-                                </li>
-                                <li class="list-group-item py-1">
-                                    <a href="" class="text-reset">Link</a>
+                                    <div class="sidebar-inner-content">
+                                        <label class="sidebar-style-label">
+                                            <span class="sidebar-text"> City</span>
+                                            <div class="sidebar-select-option">
+                                                <select class="selectpicker sidebar-selectpicker">
+                                                    <option value="">Any</option>
+                                                    <option value="abarth">Auckland</option>
+                                                    <option value="alfa-romeo">Christchuch</option>
+                                                    <option value="bmw">Dunedin</option>
+                                                    <option value="citroen">Queenstown</option>
+                                                    <option value="cupra">Nelson</option>
+                                                    <option value="dacia">Napiers</option>
+                                                </select>     
+                                            </div>
+                                        </label>
+                                    </div>
                                 </li>
                             </ul>
-                            <a class="list-group-item list-group-item-action py-2 ripple" aria-current="true" data-toggle="collapse"
+                            <a class="list-group-item list-group-item-action py-2 ripple collapsed" aria-current="true" data-toggle="collapse"
                                 href="#collapseExample2" aria-expanded="true" aria-controls="collapseExample2" role="button">
-                                <i class="fas fa-chart-area fa-fw me-3"></i><span>Make & Model</span>
-                                <i class="bi bi-chevron-compact-down rotate-icon" style="transform: rotate(180deg);"></i>
+                                <span>Mileage</span>
+                                <i class="bi bi-chevron-compact-down rotate-icon"></i>
                             </a>
                             <ul id="collapseExample2" class="collapse list-group list-group-flush">
                                 <li class="list-group-item py-1">
-                                    <a href="" class="text-reset">Link</a>
-                                </li>
-                                <li class="list-group-item py-1">
-                                    <a href="" class="text-reset">Link</a>
-                                </li>
-                                <li class="list-group-item py-1">
-                                    <a href="" class="text-reset">Link</a>
-                                </li>
-                                <li class="list-group-item py-1">
-                                    <a href="" class="text-reset">Link</a>
+                                    <div class="sidebar-inner-content">
+                                        <label class="sidebar-style-label">
+                                            <span class="sidebar-text"> City</span>
+                                            <div class="sidebar-select-option">
+                                                <select class="selectpicker sidebar-selectpicker">
+                                                    <option value="">Any</option>
+                                                    <option value="abarth">Auckland</option>
+                                                    <option value="alfa-romeo">Christchuch</option>
+                                                    <option value="bmw">Dunedin</option>
+                                                    <option value="citroen">Queenstown</option>
+                                                    <option value="cupra">Nelson</option>
+                                                    <option value="dacia">Napiers</option>
+                                                </select>     
+                                            </div>
+                                        </label>
+                                    </div>
                                 </li>
                             </ul>
-                            <a class="list-group-item list-group-item-action py-2 ripple" aria-current="true" data-toggle="collapse"
+                            <a class="list-group-item list-group-item-action py-2 ripple collapsed" aria-current="true" data-toggle="collapse"
                                 href="#collapseExample2" aria-expanded="true" aria-controls="collapseExample2" role="button">
-                                <i class="fas fa-chart-area fa-fw me-3"></i><span>Make & Model</span>
-                                <i class="bi bi-chevron-compact-down rotate-icon" style="transform: rotate(180deg);"></i>
+                                <span>Gearbox & Engine</span>
+                                <i class="bi bi-chevron-compact-down rotate-icon"></i>
                             </a>
                             <ul id="collapseExample2" class="collapse list-group list-group-flush">
                                 <li class="list-group-item py-1">
-                                    <a href="" class="text-reset">Link</a>
-                                </li>
-                                <li class="list-group-item py-1">
-                                    <a href="" class="text-reset">Link</a>
-                                </li>
-                                <li class="list-group-item py-1">
-                                    <a href="" class="text-reset">Link</a>
-                                </li>
-                                <li class="list-group-item py-1">
-                                    <a href="" class="text-reset">Link</a>
+                                    <div class="sidebar-inner-content">
+                                        <label class="sidebar-style-label">
+                                            <span class="sidebar-text"> City</span>
+                                            <div class="sidebar-select-option">
+                                                <select class="selectpicker sidebar-selectpicker">
+                                                    <option value="">Any</option>
+                                                    <option value="abarth">Auckland</option>
+                                                    <option value="alfa-romeo">Christchuch</option>
+                                                    <option value="bmw">Dunedin</option>
+                                                    <option value="citroen">Queenstown</option>
+                                                    <option value="cupra">Nelson</option>
+                                                    <option value="dacia">Napiers</option>
+                                                </select>     
+                                            </div>
+                                        </label>
+                                    </div>
                                 </li>
                             </ul>
-                            <a class="list-group-item list-group-item-action py-2 ripple" aria-current="true" data-toggle="collapse"
+                            <a class="list-group-item list-group-item-action py-2 ripple collapsed" aria-current="true" data-toggle="collapse"
                                 href="#collapseExample2" aria-expanded="true" aria-controls="collapseExample2" role="button">
-                                <i class="fas fa-chart-area fa-fw me-3"></i><span>Make & Model</span>
-                                <i class="bi bi-chevron-compact-down rotate-icon" style="transform: rotate(180deg);"></i>
+                                <span>Color</span>
+                                <i class="bi bi-chevron-compact-down rotate-icon"></i>
                             </a>
                             <ul id="collapseExample2" class="collapse list-group list-group-flush">
                                 <li class="list-group-item py-1">
-                                    <a href="" class="text-reset">Link</a>
-                                </li>
-                                <li class="list-group-item py-1">
-                                    <a href="" class="text-reset">Link</a>
-                                </li>
-                                <li class="list-group-item py-1">
-                                    <a href="" class="text-reset">Link</a>
-                                </li>
-                                <li class="list-group-item py-1">
-                                    <a href="" class="text-reset">Link</a>
+                                    <div class="sidebar-inner-content">
+                                        <label class="sidebar-style-label">
+                                            <span class="sidebar-text"> City</span>
+                                            <div class="sidebar-select-option">
+                                                <select class="selectpicker sidebar-selectpicker">
+                                                    <option value="">Any</option>
+                                                    <option value="abarth">Auckland</option>
+                                                    <option value="alfa-romeo">Christchuch</option>
+                                                    <option value="bmw">Dunedin</option>
+                                                    <option value="citroen">Queenstown</option>
+                                                    <option value="cupra">Nelson</option>
+                                                    <option value="dacia">Napiers</option>
+                                                </select>     
+                                            </div>
+                                        </label>
+                                    </div>
                                 </li>
                             </ul>
-                            <a class="list-group-item list-group-item-action py-2 ripple" aria-current="true" data-toggle="collapse"
+                            <a class="list-group-item list-group-item-action py-2 ripple collapsed" aria-current="true" data-toggle="collapse"
                                 href="#collapseExample2" aria-expanded="true" aria-controls="collapseExample2" role="button">
-                                <i class="fas fa-chart-area fa-fw me-3"></i><span>Make & Model</span>
-                                <i class="bi bi-chevron-compact-down rotate-icon" style="transform: rotate(180deg);"></i>
+                                <span>Body Type</span>
+                                <i class="bi bi-chevron-compact-down rotate-icon"></i>
                             </a>
                             <ul id="collapseExample2" class="collapse list-group list-group-flush">
                                 <li class="list-group-item py-1">
-                                    <a href="" class="text-reset">Link</a>
-                                </li>
-                                <li class="list-group-item py-1">
-                                    <a href="" class="text-reset">Link</a>
-                                </li>
-                                <li class="list-group-item py-1">
-                                    <a href="" class="text-reset">Link</a>
-                                </li>
-                                <li class="list-group-item py-1">
-                                    <a href="" class="text-reset">Link</a>
+                                    <div class="sidebar-inner-content">
+                                        <label class="sidebar-style-label">
+                                            <span class="sidebar-text"> City</span>
+                                            <div class="sidebar-select-option">
+                                                <select class="selectpicker sidebar-selectpicker">
+                                                    <option value="">Any</option>
+                                                    <option value="abarth">Auckland</option>
+                                                    <option value="alfa-romeo">Christchuch</option>
+                                                    <option value="bmw">Dunedin</option>
+                                                    <option value="citroen">Queenstown</option>
+                                                    <option value="cupra">Nelson</option>
+                                                    <option value="dacia">Napiers</option>
+                                                </select>     
+                                            </div>
+                                        </label>
+                                    </div>
                                 </li>
                             </ul>
-                            <a class="list-group-item list-group-item-action py-2 ripple" aria-current="true" data-toggle="collapse"
+                            <a class="list-group-item list-group-item-action py-2 ripple collapsed" aria-current="true" data-toggle="collapse"
                                 href="#collapseExample2" aria-expanded="true" aria-controls="collapseExample2" role="button">
-                                <i class="fas fa-chart-area fa-fw me-3"></i><span>Make & Model</span>
-                                <i class="bi bi-chevron-compact-down rotate-icon" style="transform: rotate(180deg);"></i>
+                                <span>Drive Type</span>
+                                <i class="bi bi-chevron-compact-down rotate-icon"></i>
                             </a>
                             <ul id="collapseExample2" class="collapse list-group list-group-flush">
                                 <li class="list-group-item py-1">
-                                    <a href="" class="text-reset">Link</a>
-                                </li>
-                                <li class="list-group-item py-1">
-                                    <a href="" class="text-reset">Link</a>
-                                </li>
-                                <li class="list-group-item py-1">
-                                    <a href="" class="text-reset">Link</a>
-                                </li>
-                                <li class="list-group-item py-1">
-                                    <a href="" class="text-reset">Link</a>
+                                    <div class="sidebar-inner-content">
+                                        <label class="sidebar-style-label">
+                                            <span class="sidebar-text"> City</span>
+                                            <div class="sidebar-select-option">
+                                                <select class="selectpicker sidebar-selectpicker">
+                                                    <option value="">Any</option>
+                                                    <option value="abarth">Auckland</option>
+                                                    <option value="alfa-romeo">Christchuch</option>
+                                                    <option value="bmw">Dunedin</option>
+                                                    <option value="citroen">Queenstown</option>
+                                                    <option value="cupra">Nelson</option>
+                                                    <option value="dacia">Napiers</option>
+                                                </select>     
+                                            </div>
+                                        </label>
+                                    </div>
                                 </li>
                             </ul>
-                            <a class="list-group-item list-group-item-action py-2 ripple" aria-current="true" data-toggle="collapse"
+                            <a class="list-group-item list-group-item-action py-2 ripple collapsed" aria-current="true" data-toggle="collapse"
                                 href="#collapseExample2" aria-expanded="true" aria-controls="collapseExample2" role="button">
-                                <i class="fas fa-chart-area fa-fw me-3"></i><span>Make & Model</span>
-                                <i class="bi bi-chevron-compact-down rotate-icon" style="transform: rotate(180deg);"></i>
+                                <span>Features</span>
+                                <i class="bi bi-chevron-compact-down rotate-icon"></i>
                             </a>
                             <ul id="collapseExample2" class="collapse list-group list-group-flush">
                                 <li class="list-group-item py-1">
-                                    <a href="" class="text-reset">Link</a>
-                                </li>
-                                <li class="list-group-item py-1">
-                                    <a href="" class="text-reset">Link</a>
-                                </li>
-                                <li class="list-group-item py-1">
-                                    <a href="" class="text-reset">Link</a>
-                                </li>
-                                <li class="list-group-item py-1">
-                                    <a href="" class="text-reset">Link</a>
+                                    <div class="sidebar-inner-content">
+                                        <label class="sidebar-style-label">
+                                            <span class="sidebar-text"> City</span>
+                                            <div class="sidebar-select-option">
+                                                <select class="selectpicker sidebar-selectpicker">
+                                                    <option value="">Any</option>
+                                                    <option value="abarth">Auckland</option>
+                                                    <option value="alfa-romeo">Christchuch</option>
+                                                    <option value="bmw">Dunedin</option>
+                                                    <option value="citroen">Queenstown</option>
+                                                    <option value="cupra">Nelson</option>
+                                                    <option value="dacia">Napiers</option>
+                                                </select>     
+                                            </div>
+                                        </label>
+                                    </div>
                                 </li>
                             </ul>
-                            <a class="list-group-item list-group-item-action py-2 ripple" aria-current="true" data-toggle="collapse"
-                                href="#collapseExample2" aria-expanded="true" aria-controls="collapseExample2" role="button">
-                                <i class="fas fa-chart-area fa-fw me-3"></i><span>Make & Model</span>
-                                <i class="bi bi-chevron-compact-down rotate-icon" style="transform: rotate(180deg);"></i>
+                            <a class="list-group-item list-group-item-action py-2 ripple collapsed" aria-current="true" data-toggle="collapse"
+                            href="#collapseExample2" aria-expanded="true" aria-controls="collapseExample2" role="button">
+                            <span>Doors & Seats</span>
+                            <i class="bi bi-chevron-compact-down rotate-icon"></i>
                             </a>
                             <ul id="collapseExample2" class="collapse list-group list-group-flush">
-                                <li class="list-group-item py-1">
-                                    <a href="" class="text-reset">Link</a>
-                                </li>
-                                <li class="list-group-item py-1">
-                                    <a href="" class="text-reset">Link</a>
-                                </li>
-                                <li class="list-group-item py-1">
-                                    <a href="" class="text-reset">Link</a>
-                                </li>
-                                <li class="list-group-item py-1">
-                                    <a href="" class="text-reset">Link</a>
-                                </li>
+                            <li class="list-group-item py-1">
+                                <div class="sidebar-inner-content">
+                                    <label class="sidebar-style-label">
+                                        <span class="sidebar-text"> City</span>
+                                        <div class="sidebar-select-option">
+                                            <select class="selectpicker sidebar-selectpicker">
+                                                <option value="">Any</option>
+                                                <option value="abarth">Auckland</option>
+                                                <option value="alfa-romeo">Christchuch</option>
+                                                <option value="bmw">Dunedin</option>
+                                                <option value="citroen">Queenstown</option>
+                                                <option value="cupra">Nelson</option>
+                                                <option value="dacia">Napiers</option>
+                                            </select>     
+                                        </div>
+                                    </label>
+                                </div>
+                            </li>
                             </ul>
                         </div>
                     </div>
@@ -328,7 +438,7 @@
                 <!-- Sidebar -->    
             </div>
                 <!-- main content -->
-            <div class="col-sm-10">
+            <div class="col-sm-9">
                 <!-- breadcrumbs -->
                 <div class="row">
                     <div class="pull-left col">
