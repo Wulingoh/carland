@@ -318,8 +318,11 @@ p {
 .product-description {
     margin-bottom: 0 !important;
 }
-/* .btn-view {
-    display: flex !important;
-    flex-direction: row;
-    width: 280px;
-} */
+/* pagination */
+.page-link {
+    color: #52ab98 !important;
+}
+.page-link:hover {
+    background-color: #fff;
+    border-color: #52ab98;
+}
