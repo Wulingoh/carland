@@ -44,13 +44,16 @@ body {
 }
 
 /* footer */
+.page-footer {
+    position: relative;
+}
 .vector {
     width: 100%
 }
 .shade {
     width: 100%;
     position: absolute;
-    bottom: 240px;
+    bottom: 200px;
 }
 .footer-container {
     background-color: #2B6777;
@@ -258,9 +261,12 @@ p {
       margin-left: auto;
       margin-right: 0.8rem;
       transition-duration:  0.3s;
-      transform: rotate(0.5turn);
       transition-timing-function: ease;
       transition-delay: 0s;
+      transform: rotate(180deg);
+  }
+  .collapsed .rotate-icon {
+      transform: rotate(0);
   }
 
   /* breadcrumbs */
