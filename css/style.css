@@ -110,7 +110,7 @@ li.borderless {
 }
 
 /* products carousel */
-.carousel-title {
+/* .carousel-title {
     font-size: 26px;
     color: #000;
     font-weight: 300;
@@ -120,10 +120,10 @@ li.borderless {
     margin: 30px 0 60px;
 }
 .carousel {
-    margin: 50px auto;
-    padding: 0 70px;
-}
-.carousel-indicators {
+    /* margin: 50px auto; */
+    /* padding: 0 30px;
+} */
+/* .carousel-indicators {
     bottom: -50px;
 }
 .carousel-indicators li.active {
@@ -177,7 +177,7 @@ li.borderless {
 }
 .thumb-content {
     padding-top: 30px;
-} 
+}   */
 /* .carousel .item img {
     max-width: 100%;
     max-height: 100%;
@@ -188,7 +188,7 @@ li.borderless {
     left: 0;
     right: 0;
 } */
-.carousel .item h4 {
+/* .carousel .item h4 {
     font-size: 18px;
     margin-bottom: 5px;
 }
@@ -211,7 +211,7 @@ p {
 .carousel-control-prev {
     margin-left: -2px;
     bottom: 50%;
-}
+} */
 /*.carousel-control-prev .bi {
     font-size: 36px;
     position: absolute;
@@ -360,32 +360,52 @@ p {
     border-color: #52ab98;
 }
 /* product detail page */
-
-.carousel-thumbnail li{
-    display: flex !important;
-    flex-direction: row !important;
-    justify-content: center !important;
-    text-indent: -50px !important;
-    height: 150px !important;
-}
-.indicators-row {
-    display: flex;
-    flex-direction: row;
-    margin-top: 150px;
-    width: 100% !important;
-}
 .carousel {
-    margin-top: 20px;
-}
-.item .thumb {
-	width: 25%;
-	cursor: pointer;
-	float: left;
-}
-.item .thumb img {
-	width: 100%;
-	margin: 2px;
-}
-.item img {
-	width: 100%;	
-}
+    position: relative;
+    margin-right: 20px;
+    
+  }
+  .carousel-item img {
+    object-fit: cover;
+  }
+  #carousel-thumbs {
+    background: rgba(255,255,255,.3);
+    bottom: 0;
+    left: 0;
+    padding: 0 20px;
+    right: 0;
+    bottom: -145px;
+  }
+  #carousel-thumbs img {
+    border: 5px solid transparent;
+    cursor: pointer;
+  }
+  #carousel-thumbs img:hover {
+    border-color: rgba(255,255,255,.3);
+  }
+  #carousel-thumbs .selected img {
+    border-color: #fff;
+  }
+  .carousel-control-prev {
+    width: 50px;
+    padding-left: 20px;
+  }
+  .carousel-control-next {
+    width: 50px;
+    padding-right: 20px;
+  }
+  @media all and (max-width: 767px) {
+    .carousel-container #carousel-thumbs img {
+      border-width: 3px;
+    }
+  }
+  @media all and (min-width: 576px) {
+    .carousel-container #carousel-thumbs {
+      position: absolute;
+    }
+  }
+  @media all and (max-width: 576px) {
+    .carousel-container #carousel-thumbs {
+      background: #ccccce;
+    }
+  }
