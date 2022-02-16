@@ -359,3 +359,33 @@ p {
     background-color: #fff;
     border-color: #52ab98;
 }
+/* product detail page */
+
+.carousel-thumbnail li{
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    text-indent: -50px !important;
+    height: 150px !important;
+}
+.indicators-row {
+    display: flex;
+    flex-direction: row;
+    margin-top: 150px;
+    width: 100% !important;
+}
+.carousel {
+    margin-top: 20px;
+}
+.item .thumb {
+	width: 25%;
+	cursor: pointer;
+	float: left;
+}
+.item .thumb img {
+	width: 100%;
+	margin: 2px;
+}
+.item img {
+	width: 100%;	
+}
