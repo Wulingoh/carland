@@ -1,5 +1,5 @@
 $('#myCarousel').carousel({
-    interval: false
+    interval: 5000
   });
   $('#carousel-thumbs').carousel({
     interval: false
