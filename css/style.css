@@ -294,6 +294,9 @@ p {
   }
 
   /* breadcrumbs */
+  .breadcrumb {
+      background-color: transparent;
+  }
   .pull-left {
       float: left !important;
       font-size:smaller;
@@ -334,7 +337,7 @@ p {
 }
 .card-style {
     width: 320px !important;
-    margin: 20px 0 20px 25px !important;
+    margin: 20px 0 20px 15px !important;
 }
 .product-location {
     padding: 10px !important;
