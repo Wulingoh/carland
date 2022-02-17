@@ -428,8 +428,18 @@ p {
   }
 
   /* divider */
-  .divider {
-      padding-right: 0 !important;
+  .card-header-dividerIcon {
+     background-color: rgba(0, 0, 0, 0.0);
+  }
+  .card-header-dividerIcon img {
+      width: 100px;
+      height: 70px;
+  }
+  .card-title-dividerTitle {
+      font-size: 15px;
+  }
+  .card-text-dividerText {
+      font-size: 13px;
   }
 
   /* car-financing block */
