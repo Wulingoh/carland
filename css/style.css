@@ -426,3 +426,8 @@ p {
   .icon-text {
       font-size: 20px;
   }
+
+  /* divider */
+  .divider {
+      padding-right: 0 !important;
+  }
