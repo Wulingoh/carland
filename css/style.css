@@ -227,8 +227,7 @@ p {
 } */
 /* sidebar */
 .sidebar {
-    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
-    z-index: 600;
+    margin-left: -15px;
   }
   .sidebar-wrapper {
       width: auto !important;
@@ -360,10 +359,11 @@ p {
     border-color: #52ab98;
 }
 /* product detail page */
+.btn-bookTest {
+    background-color: #fff;
+}
 .carousel {
     position: relative;
-    margin-right: 20px;
-    
   }
   .container-carousel-wrapper {
       margin-bottom: 200px !important;
@@ -449,7 +449,6 @@ p {
   }
   .finance-row {
       background-color: #E6E6E6; 
-      margin-right: 0 !important;
       position: relative;
   }
   .borderless-card-row {
@@ -460,6 +459,16 @@ p {
   .card-header-icon {
     background-color: rgba(0, 0, 0, 0.0);
   }
+  .card-header-icon img {
+    width: 45px;
+    height: 46px;
+}
+.card-title-iconTitle {
+    font-size: 15px;
+}
+.card-text-iconText {
+    font-size: 13px;
+}
   .info-btn {
       right: 30px;
       bottom: 30px;
