@@ -536,3 +536,59 @@ p {
       margin: 25px 10px;
 
   }
+  /* login page */
+.loginForm-wrapper {
+    box-sizing: border-box;
+    position: relative;
+    background-color: #EDEFF1;
+    border: 1px solid;
+}
+.login-right-frame {
+  border: 1px solid #C8D8E4;
+  box-sizing: border-box;
+}
+.login-logo-square {
+  border: 4px solid #52AB98;
+  box-sizing: border-box;
+  border-radius: 3px;
+  width: 419px;
+  height: 367px;
+  top: 18px;
+  left: 46px;
+}
+.loginPageLogo {
+  position: absolute;
+  top: 30px;
+  left: 90px;
+}
+.loginTitle {
+    position: absolute;
+    left: 148px;
+    bottom: 159px;
+    font-size: 43px;
+}
+.loginTexts {
+    position: absolute;
+    left: 84px;
+    bottom: 121px;
+    font-size: 26px;
+}
+.loginPageIcons {
+    position: absolute;
+    left: 150px;
+    bottom: 20px;
+    font-size: 31px;
+}
+.navLoginIcon {
+    color: #52AB98;
+    margin-right: 15px;
+}
+.loginRowBox {
+    margin: 25px 10px;
+
+}
+.loginRow {
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+

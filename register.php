@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Password Hashing is used here. 
             $sql = "INSERT INTO `users` ( `user_email`, 
-                    `user_password_hash`, `user_fullname`, `user_role`) VALUES ('$user_email', 
+                    `password_hash`, `user_fullname`, `user_role`) VALUES ('$user_email', 
                     '$hash', '$fullname', 'customer')";
 
             $result = mysqli_query($link, $sql);
@@ -75,8 +75,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
     <!-- hmtl for register form below -->
+    <?php include "navigation.php" ?>
     <div class="container-fluid">
-        <?php include "navigation.php" ?>
         <!-- breadcrumbs -->
         <div class="row">
             <div class="pull-left col">
@@ -93,92 +93,79 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <?php
 
         if ($showAlert) {
-
-            echo ' <div class="alert alert-success 
-        alert-dismissible fade show" role="alert">
-
-        <strong>Success!</strong> Your account is 
-        now created and you can login. 
-        <button type="button" class="close"
-            data-dismiss="alert" aria-label="Close"> 
+            echo ' <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success!</strong> Your account is now created and you can login. 
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"> 
             <span aria-hidden="true">×</span> 
-        </button> 
-    </div> ';
+            </button> 
+            </div> ';
         }
 
         if ($showError) {
-
-            echo ' <div class="alert alert-danger 
-        alert-dismissible fade show" role="alert"> 
-    <strong>Error!</strong> ' . $showError . '
-
-   <button type="button" class="close" 
-        data-dismiss="alert aria-label="Close">
-        <span aria-hidden="true">×</span> 
-   </button> 
- </div> ';
+            echo ' <div class="alert alert-danger alert-dismissible fade show" role="alert"> 
+                        <strong>Error!</strong> ' . $showError . '
+                        <button type="button" class="close" data-dismiss="alert aria-label="Close">
+                        <span aria-hidden="true">×</span> 
+                        </button> 
+                    </div> ';
         }
 
         if ($exists) {
-            echo ' <div class="alert alert-danger 
-        alert-dismissible fade show" role="alert">
-
-    <strong>Error!</strong> ' . $exists . '
-    <button type="button" class="close" 
-        data-dismiss="alert" aria-label="Close"> 
-        <span aria-hidden="true">×</span> 
-    </button>
-   </div> ';
-        }
-
-?>
-    <!-- end of show error  -->
-    <div class="container">
-            <h1 class="text-center">Register Here</h1>
-        </div>
-        <div class="container registerForm-wrapper mt-3 mb-5">
-            <div class="row registerRowBox">
-                <div class="col-6 register-left-frame">
-                    <form action="register.php" method="post">
-                        <div class="form-group">
-                            <label for="user_fullname">Name</label>
-                            <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Fullname" aria-describedby="emailHelp">
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Email">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="cpassword">Confirm Password</label>
-                            <input type="password" class="form-control" id="cpassword" name="cpassword">
-
-                            <small id="emailHelp" class="form-text text-muted">
-                                Make sure to type the same password
-                            </small>
-                        </div>
-
-                        <button type="submit" class="btn btn-outline-success btn-block">
-                            Register
+            echo ' <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Error!</strong> ' . $exists . '
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"> 
+                        <span aria-hidden="true">×</span> 
                         </button>
-                    </form>
-                </div>
-                <div class="col-6 register-right-frame">
-                    <div class="row d-flex">
-                        <div class="col-10 register-logo-square">
-                            <img class="registerPageLogo" src="images/registerPageLogo.svg" alt="" />
-                            <h3 class="registerTitle">Register</h3>
-                            <h5 class="registerTexts">Welcome to Carland</h5>
-                            <ul class="nav justify-content-center registerPageIcons">
-                                <li class="nav-item navRegisterIcon"><i class="bi bi-facebook"></i></li>
-                                <li class="nav-item navRegisterIcon"><i class="bi bi-twitter"></i></li>
-                                <li class="nav-item navRegisterIcon"><i class="bi bi-linkedin"></i></li>
-                            </ul>
+                    </div> ';
+        }
+        ?>
+         <!-- end of show error  -->
+        <div class="container">
+                <h1 class="text-center">Register Here</h1>
+            <div class="container registerForm-wrapper mt-3 mb-5">
+                <div class="row registerRowBox">
+                    <div class="col-6 register-left-frame">
+                        <form action="register.php" method="post">
+                            <div class="form-group">
+                                <label for="user_fullname">Name</label>
+                                <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Fullname" aria-describedby="emailHelp">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="cpassword">Confirm Password</label>
+                                <input type="password" class="form-control" id="cpassword" name="cpassword">
+
+                                <small id="emailHelp" class="form-text text-muted">
+                                    Make sure to type the same password
+                                </small>
+                            </div>
+
+                            <button type="submit" class="btn btn-outline-success btn-block">
+                                Register
+                            </button>
+                        </form>
+                    </div>
+                    <div class="col-6 register-right-frame">
+                        <div class="row d-flex">
+                            <div class="col-10 register-logo-square">
+                                <img class="registerPageLogo" src="images/registerPageLogo.svg" alt="" />
+                                <h3 class="registerTitle">Register</h3>
+                                <h5 class="registerTexts">Welcome to Carland</h5>
+                                <ul class="nav justify-content-center registerPageIcons">
+                                    <li class="nav-item navRegisterIcon"><i class="bi bi-facebook"></i></li>
+                                    <li class="nav-item navRegisterIcon"><i class="bi bi-twitter"></i></li>
+                                    <li class="nav-item navRegisterIcon"><i class="bi bi-linkedin"></i></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -186,8 +173,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
     <?php include "footer.php" ?>
-    <script src="js/jquery-3.5.1.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/jquery-3.5.1.js"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
