@@ -106,7 +106,7 @@
         </section>
         <section class="container-fluid mt-5 pt-2">
             <div class="row">
-                <h4>Latest Vehicle News</h4>
+                <h4>Latest Vehicle </h4>
                 <div class="col-7 mt-5">
                     <img src="images/tesla.svg" alt="Tesla" />
                 </div>

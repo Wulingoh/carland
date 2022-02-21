@@ -484,3 +484,55 @@ p {
   .finance-block-wrapper {
       margin-top: 30px !important;
   }
+
+  /* register form page */
+  .registerForm-wrapper {
+      box-sizing: border-box;
+      position: relative;
+      background-color: #EDEFF1;
+      border: 1px solid;
+  }
+  .register-right-frame {
+    border: 1px solid #C8D8E4;
+    box-sizing: border-box;
+  }
+  .register-logo-square {
+    border: 4px solid #52AB98;
+    box-sizing: border-box;
+    border-radius: 3px;
+    width: 419px;
+    height: 367px;
+    top: 18px;
+    left: 46px;
+  }
+  .registerPageLogo {
+    position: absolute;
+    top: 30px;
+    left: 120px;
+  }
+  .registerTitle {
+      position: absolute;
+      left: 157px;
+      bottom: 159px;
+      font-size: 43px;
+  }
+  .registerTexts {
+      position: absolute;
+      left: 125px;
+      bottom: 121px;
+      font-size: 26px;
+  }
+  .registerPageIcons {
+      position: absolute;
+      left: 180px;
+      bottom: 20px;
+      font-size: 31px;
+  }
+  .navRegisterIcon {
+      color: #52AB98;
+      margin-right: 15px;
+  }
+  .registerRowBox {
+      margin: 25px 10px;
+
+  }
