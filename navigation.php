@@ -69,18 +69,18 @@
             <div class="navbar-nav d-flex flex-row ms-auto me-3">
                 <!-- Icon -->
                 <?php
-                if($_SESSION['loggedin'] == TRUE) {
-                    echo 'Welcome ' . $_SESSION['email'] . '!';
-                } else {        
+                if (isset($_SESSION['email'])) {
+                    include "checkLogin.php";
+                } else {    
                 ?>
                 <li class="nav-item me-3 me-lg-0">
-                    <a class="nav-link px-3" href="#">
+                    <a class="nav-link px-3" href="register.php">
                         Sign Up
                         <img class="sign-up" src="images/registered-solid.svg">
                     </a>
                 </li>
                 <li class="nav-item me-3 me-lg-0">
-                    <a class="nav-link px-3" href="#">
+                    <a class="nav-link px-3" href="login.php">
                         Login
                         <i class="bi bi-box-arrow-in-right"></i>
                     </a>

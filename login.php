@@ -4,7 +4,7 @@ $errorMessage = "";
 
 if (isset($_POST['btn_login'])) {
 
-    if ($stmt = $link->prepare('SELECT user_id, password_hash FROM users WHERE user_email = ?')) {
+    if ($stmt = $link->prepare('SELECT user_id, password_hash, user_role FROM users WHERE user_email = ?')) {
         // Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
         $stmt->bind_param('s', $_POST['email']);
         $stmt->execute();
@@ -12,7 +12,7 @@ if (isset($_POST['btn_login'])) {
         $stmt->store_result();
 
         if ($stmt->num_rows > 0) {
-            $stmt->bind_result($id, $password_hash);
+            $stmt->bind_result($id, $password_hash, $role);
             $stmt->fetch();
             // Account exists, now we verify the password.
             // Note: remember to use password_hash in your registration file to store the hashed passwords.
@@ -23,6 +23,18 @@ if (isset($_POST['btn_login'])) {
                 $_SESSION['loggedin'] = TRUE;
                 $_SESSION['email'] = $_POST['email'];
                 $_SESSION['id'] = $id;
+                $_SESSION['role'] = $role; 
+                
+                if ($role == 'admin' ) {
+                    header('Location: admin/index.php');
+                } else {
+                    if (isset($_SESSION['return_page'])) {
+                        header("Location: ".$_SESSION['return_page']);
+                    } // end of if
+                    else {
+                        header("Location: index.php");
+                    }
+                }
             } else {
                 // Incorrect password
                 $errorMessage = 'Incorrect email and/or password!';
@@ -31,8 +43,6 @@ if (isset($_POST['btn_login'])) {
             // Incorrect username
             $errorMessage = 'Incorrect email and/or password!';
         }
-
-
         $stmt->close();
     }
 }
@@ -68,7 +78,7 @@ if (isset($_POST['btn_login'])) {
         </div>
         <!-- end of breadcrumbs -->
         <div class="container">
-            <h1 class="text-center">Log In</h1>
+            <h1 class="text-center">Login</h1>
             <div class="container loginForm-wrapper mt-3 mb-5">
                 <div class="row loginRowBox">
                     <div class="col-6 login-left-frame">
