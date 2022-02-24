@@ -61,19 +61,19 @@ if (isset($_POST['contact_submit'])) {
 
 <body>
     <?php include "navigation.php" ?>
-    <div class="jumbotron jumbotron-wrapper px-1 py-1">
-        <div class="row">
+    <div class="container-fluid jumbotron-wrapper p-0">
+        <div class="row m-0">
             <div class="col-md-6 jumbotron-title">
-                <h3>CONTACT US</h3>
+                <h3 class="pl-4">CONTACT US</h3>
             </div>
             <div class="col-md-6 jumbotron-img-wrapper">
                 <img class="jumbotron-img" src="images/contact.svg" alt="" />
             </div>
         </div>
     </div>
-    <div class="container-fluid">
+    <div class="container-fluid p-0">
         <!-- breadcrumbs -->
-        <div class="row">
+        <div class="row m-0">
             <div class="pull-left col">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
@@ -98,9 +98,9 @@ if (isset($_POST['contact_submit'])) {
                 ?>
             </ul>
             <p id="success" class="<?php echo (isset($form_success) && !$form_errors) ? 'visible' : ''; ?>">Thanks for your message! We will get back to you ASAP!</p>
-            <div class="container contactForm-wrapper mt-3 mb-5">
+            <div class="container contactFormWrapper mt-3 mb-5">
                 <div class="row registerRowBox">
-                    <div class="col-6 register-left-frame">
+                    <div class="col-6 register-left-frame pr-3">
                         <form id='contact-form' action="contact.php" method="post">
                             <div class="form-group">
                                 <label class="col-form-label" for="fullname">Fullname <span class="required">*</span></label>
@@ -141,17 +141,39 @@ if (isset($_POST['contact_submit'])) {
                         <?php unset($_SESSION['contact)submit']); ?>
                     </div>
                     <!-- right frame of contact box -->
-                    <div class="col-6 register-right-frame">
-                        <div class="row d-flex">
-                            <div class="col-10 register-logo-square">
-                                <img class="registerPageLogo" src="images/registerPageLogo.svg" alt="" />
-                                <h3 class="registerTitle">Register</h3>
-                                <h5 class="registerTexts">Welcome to Carland</h5>
-                                <ul class="nav justify-content-center registerPageIcons">
-                                    <li class="nav-item navRegisterIcon"><i class="bi bi-facebook"></i></li>
-                                    <li class="nav-item navRegisterIcon"><i class="bi bi-twitter"></i></li>
-                                    <li class="nav-item navRegisterIcon"><i class="bi bi-linkedin"></i></li>
-                                </ul>
+                    <div class="col-6 contactRightFrame">
+                        <div class="row justify-content-center">
+                            <div class="mt-5 text-center">
+                                <i class="bi bi-telephone-fill contactIcon font-weight-bold"><span class="contactIconText font-weight-bold">Phone</span></i>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="text-center">
+                                <p class="contactTexts mb-0">0800 834 834</p>
+                                <p class="contactTexts mt-0 pb-0">(03) 377 8878</p>
+                            </div>
+                        </div>
+                        <hr class="contactDivider" />
+                        <div class="row justify-content-center">
+                            <div class="mt-5 text-center">
+                                <i class="bi bi-envelope-fill contactIcon font-weight-bold"><span class="contactIconText font-weight-bold">Email</span></i>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="text-center">
+                                <p class="contactTexts mb-0 pb-3">sales@carland.co.nz</p>
+                            </div>
+                        </div>
+                        <hr class="contactDivider" />
+                        <div class="row justify-content-center">
+                            <div class="mt-5 text-center">
+                                <i class="bi bi-geo-alt-fill contactIcon font-weight-bold"><span class="contactIconText font-weight-bold">Address</span></i>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="text-center">
+                                <p class="contactTexts mb-0">50 Hazeldean Road, Addington,</p>
+                                <p class="contactTexts mt-0 pb-0">Christchurch, 8024</p>
                             </div>
                         </div>
                     </div>

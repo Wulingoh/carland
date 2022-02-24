@@ -454,7 +454,8 @@ p {
   .borderless-card-row {
       display: flex;
       flex-wrap: nowrap !important;
-      justify-content: flex-end !important;
+      justify-content: space-between !important;
+      align-items: center !important;
   }
   .card-header-icon {
     background-color: rgba(0, 0, 0, 0.0);
@@ -620,7 +621,7 @@ p {
     background-color: #EBF2F4;
 }
 
-.contact-form-wrapper .required {
+.required {
     font-weight:bold;
     color:#F00;    
 }
@@ -669,6 +670,39 @@ p {
 #errors.visible, #success.visible {
     display:block;    
 }
+
+/* contact page */
+
+.contactFormWrapper {
+    box-sizing: border-box;
+    position: relative;
+
+}
+.contactRightFrame {
+  border: 1px solid #C8D8E4;
+  box-sizing: border-box;
+  border: 1px solid;
+  background: #52AB98;
+  border-radius: 3px;
+}
+.contactIcon {
+    color: #ffffff;
+    font-size: 20px;
+}
+.contactIconText {
+    margin: 10px;
+    font-size: 20px;
+}
+.contactTexts {
+    font-size: 20px;
+}
+.contactDivider {
+    width: 75%;
+    margin-left: 66px !important;
+    border-top: #004A77 2px solid !important;
+    margin-top: 0 !important;
+}
+
 
 
 
