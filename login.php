@@ -97,16 +97,18 @@ if (isset($_POST['btn_login'])) {
                             <small id="emailHelp" class="form-text text-muted text-center">
                                 Don't have an account? <a href="register.php">Register</a>
                             </small>
-
+                            <small id="passwordHelp" class="form-text text-muted text-center">
+                                Forgotten your password? <a href="forgotPassword.php">Password Reset</a>
+                            </small>
                         </form>
                     </div>
-                    <div class="col-6 login-right-frame">
-                        <div class="row d-flex justify-content-space-between loginRow">
-                            <div class="col-10 login-logo-square">
-                                <img class="loginPageLogo" src="images/registerPageLogo.svg" alt="" />
-                                <h3 class="loginTitle">Login</h3>
-                                <h5 class="loginTexts">Welcome to Carland</h5>
-                                <ul class="nav justify-content-center loginPageIcons">
+                    <div class="col-6 register-right-frame">
+                        <div class="row justify-content-center">
+                            <div class="mt-5 mb-5 text-center justify-content-center register-logo-square">
+                                <img class="mt-3 registerPageLogo" src="images/registerPageLogo.svg" alt="" />
+                                <div class="registerTitle mt-3">Login</div>
+                                <div class="registerTexts mt-5">Welcome to Carland</div>
+                                <ul class="nav justify-content-center mt-5 registerPageIcons">
                                     <li class="nav-item navRegisterIcon"><i class="bi bi-facebook"></i></li>
                                     <li class="nav-item navRegisterIcon"><i class="bi bi-twitter"></i></li>
                                     <li class="nav-item navRegisterIcon"><i class="bi bi-linkedin"></i></li>
