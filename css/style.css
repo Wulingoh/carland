@@ -502,35 +502,19 @@ p {
     border-radius: 3px;
     width: 419px;
     height: 367px;
-    top: 18px;
-    left: 46px;
-  }
-  .registerPageLogo {
-    position: absolute;
-    top: 30px;
-    left: 120px;
   }
   .registerTitle {
-      position: absolute;
-      left: 157px;
-      bottom: 159px;
-      font-size: 43px;
+      font-size: 40px;
   }
   .registerTexts {
-      position: absolute;
-      left: 125px;
-      bottom: 121px;
       font-size: 26px;
   }
   .registerPageIcons {
-      position: absolute;
-      left: 180px;
-      bottom: 20px;
-      font-size: 31px;
-  }
+    font-size: 31px;
+    justify-content: space-evenly !important;
+}
   .navRegisterIcon {
       color: #52AB98;
-      margin-right: 15px;
   }
   .registerRowBox {
       margin: 25px 10px;
@@ -543,52 +527,98 @@ p {
     background-color: #EDEFF1;
     border: 1px solid;
 }
-.login-right-frame {
-  border: 1px solid #C8D8E4;
-  box-sizing: border-box;
+.required {
+    font-weight:bold;
+    color:#F00;    
 }
-.login-logo-square {
-  border: 4px solid #52AB98;
-  box-sizing: border-box;
-  border-radius: 3px;
-  width: 419px;
-  height: 367px;
-  top: 18px;
-  left: 46px;
+#errors_forgot_password {
+    border:solid 1px #E58E8E;
+    padding:10px;
+    display:block;
+    -webkit-border-radius:8px;
+    -moz-border-radius:8px;
+    border-radius:8px;
+    background:#FFE6E6 url(../img/cancel_48.png) no-repeat 405px center;
+    display:none;
 }
-.loginPageLogo {
-  position: absolute;
-  top: 30px;
-  left: 90px;
-}
-.loginTitle {
-    position: absolute;
-    left: 148px;
-    bottom: 159px;
-    font-size: 43px;
-}
-.loginTexts {
-    position: absolute;
-    left: 84px;
-    bottom: 121px;
-    font-size: 26px;
-}
-.loginPageIcons {
-    position: absolute;
-    left: 150px;
-    bottom: 20px;
-    font-size: 31px;
-}
-.navLoginIcon {
-    color: #52AB98;
-    margin-right: 15px;
-}
-.loginRowBox {
-    margin: 25px 10px;
 
+#errors_forgot_password li {
+    padding:2px;
+    list-style:none;    
 }
-.loginRow {
-    margin-top: 20px;
-    margin-bottom: 50px;
+
+#errors_forgot_password li:before {
+    content: ' - ';    
+}
+
+#errors_forgot_password #info {
+    font-weight:bold;
+}
+
+#errors_forgot_password #info:before {
+    content: '';    
+}
+
+#success_forgot_password {
+    border:solid 1px #83D186;
+    padding:25px 10px;
+    margin:25px 0px;
+    display:block;
+    width:437px;
+    -webkit-border-radius:8px;
+    -moz-border-radius:8px;
+    border-radius:8px;
+    background:#D3EDD3 url(../img/accepted_48.png) no-repeat 405px center;
+    font-weight:bold;
+    display:none;
+}
+
+#errors_forgot_password.visible, #success_forgot_password.visible {
+    display:block;    
+}
+#errors {
+    border:solid 1px #E58E8E;
+    padding:10px;
+    display:block;
+    -webkit-border-radius:8px;
+    -moz-border-radius:8px;
+    border-radius:8px;
+    background:#FFE6E6 url(../img/cancel_48.png) no-repeat 405px center;
+    display:none;
+}
+
+#errors li {
+    padding:2px;
+    list-style:none;    
+}
+
+#errors li:before {
+    content: ' - ';    
+}
+
+#errors #info {
+    font-weight:bold;
+}
+
+#errors #info:before {
+    content: '';    
+}
+
+#success {
+    border:solid 1px #83D186;
+    padding:25px 10px;
+    margin:25px 0px;
+    display:block;
+    width:437px;
+    -webkit-border-radius:8px;
+    -moz-border-radius:8px;
+    border-radius:8px;
+    background:#D3EDD3 url(../img/accepted_48.png) no-repeat 405px center;
+    font-weight:bold;
+    display:none;
+}
+
+#errors.visible, #success.visible {
+    display:block;    
 }
 
