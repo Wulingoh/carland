@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Feb 23, 2022 at 02:14 AM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 7.4.23
+-- Host: localhost
+-- Generation Time: Feb 26, 2022 at 07:35 AM
+-- Server version: 8.0.26
+-- PHP Version: 8.0.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,26 +28,26 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `cars` (
-  `car_ID` int(90) NOT NULL,
+  `car_ID` int NOT NULL,
   `Img` varchar(100) NOT NULL,
-  `Price` int(90) NOT NULL,
-  `Year` int(90) NOT NULL,
-  `Mileage` int(90) NOT NULL,
+  `Price` int NOT NULL,
+  `Year` int NOT NULL,
+  `Mileage` int NOT NULL,
   `engineSize` varchar(90) NOT NULL,
-  `Stock` int(90) NOT NULL,
+  `Stock` int NOT NULL,
   `Detail` varchar(900) NOT NULL,
   `Rego` varchar(900) NOT NULL,
-  `category_ID` int(90) NOT NULL,
-  `bodyType_ID` int(90) NOT NULL,
-  `fuelType_ID` int(90) NOT NULL,
-  `make_ID` int(90) NOT NULL,
-  `model_ID` int(90) NOT NULL,
-  `transmission_ID` int(90) NOT NULL,
-  `color_ID` int(90) NOT NULL,
-  `seats_ID` int(90) NOT NULL,
-  `safety_ID` int(90) NOT NULL,
-  `location_ID` int(90) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `category_ID` int NOT NULL,
+  `bodyType_ID` int NOT NULL,
+  `fuelType_ID` int NOT NULL,
+  `make_ID` int NOT NULL,
+  `model_ID` int NOT NULL,
+  `transmission_ID` int NOT NULL,
+  `color_ID` int NOT NULL,
+  `seats_ID` int NOT NULL,
+  `safety_ID` int NOT NULL,
+  `location_ID` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -56,9 +56,9 @@ CREATE TABLE `cars` (
 --
 
 CREATE TABLE `car_bodytype` (
-  `bodyType_ID` int(90) NOT NULL,
+  `bodyType_ID` int NOT NULL,
   `bodyType` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `car_bodytype`
@@ -77,9 +77,9 @@ INSERT INTO `car_bodytype` (`bodyType_ID`, `bodyType`) VALUES
 --
 
 CREATE TABLE `car_category` (
-  `category_ID` int(90) NOT NULL,
+  `category_ID` int NOT NULL,
   `category` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `car_category`
@@ -96,9 +96,9 @@ INSERT INTO `car_category` (`category_ID`, `category`) VALUES
 --
 
 CREATE TABLE `car_color` (
-  `color_ID` int(90) NOT NULL,
+  `color_ID` int NOT NULL,
   `color` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `car_color`
@@ -115,9 +115,9 @@ INSERT INTO `car_color` (`color_ID`, `color`) VALUES
 --
 
 CREATE TABLE `car_fueltype` (
-  `fuelType_ID` int(90) NOT NULL,
+  `fuelType_ID` int NOT NULL,
   `fuelType` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `car_fueltype`
@@ -136,10 +136,10 @@ INSERT INTO `car_fueltype` (`fuelType_ID`, `fuelType`) VALUES
 --
 
 CREATE TABLE `car_gallery` (
-  `gallery_ID` int(90) NOT NULL,
-  `car_ID` int(90) NOT NULL,
+  `gallery_ID` int NOT NULL,
+  `car_ID` int NOT NULL,
   `gallery_Img` varchar(900) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -148,9 +148,9 @@ CREATE TABLE `car_gallery` (
 --
 
 CREATE TABLE `car_location` (
-  `location_ID` int(90) NOT NULL,
+  `location_ID` int NOT NULL,
   `location` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `car_location`
@@ -167,9 +167,9 @@ INSERT INTO `car_location` (`location_ID`, `location`) VALUES
 --
 
 CREATE TABLE `car_make` (
-  `make_ID` int(90) NOT NULL,
+  `make_ID` int NOT NULL,
   `make` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `car_make`
@@ -186,10 +186,10 @@ INSERT INTO `car_make` (`make_ID`, `make`) VALUES
 --
 
 CREATE TABLE `car_model` (
-  `model_ID` int(90) NOT NULL,
-  `make_ID` int(90) NOT NULL,
+  `model_ID` int NOT NULL,
+  `make_ID` int NOT NULL,
   `model` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `car_model`
@@ -205,9 +205,9 @@ INSERT INTO `car_model` (`model_ID`, `make_ID`, `model`) VALUES
 --
 
 CREATE TABLE `car_safety` (
-  `safety_ID` int(90) NOT NULL,
-  `safety` int(90) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `safety_ID` int NOT NULL,
+  `safety` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `car_safety`
@@ -228,9 +228,9 @@ INSERT INTO `car_safety` (`safety_ID`, `safety`) VALUES
 --
 
 CREATE TABLE `car_seats` (
-  `seats_ID` int(90) NOT NULL,
-  `seats` int(90) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `seats_ID` int NOT NULL,
+  `seats` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `car_seats`
@@ -248,9 +248,9 @@ INSERT INTO `car_seats` (`seats_ID`, `seats`) VALUES
 --
 
 CREATE TABLE `car_transmission` (
-  `transmission_ID` int(90) NOT NULL,
+  `transmission_ID` int NOT NULL,
   `transmission` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `car_transmission`
@@ -259,6 +259,55 @@ CREATE TABLE `car_transmission` (
 INSERT INTO `car_transmission` (`transmission_ID`, `transmission`) VALUES
 (1, 'Automatic'),
 (2, 'Manual');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contact`
+--
+
+CREATE TABLE `contact` (
+  `id` int NOT NULL,
+  `fullname` varchar(80) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `phone` varchar(80) NOT NULL,
+  `topic` varchar(300) NOT NULL,
+  `message` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `contact`
+--
+
+INSERT INTO `contact` (`id`, `fullname`, `email`, `phone`, `topic`, `message`) VALUES
+(27, 'Test Test', 'test@example.com', '', ' 0', 'helo tehresi  is fi this lnworlkongia onofgi pg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `user_id` int NOT NULL,
+  `user_email` varchar(320) NOT NULL,
+  `password_hash` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `user_fullname` varchar(80) NOT NULL,
+  `user_role` varchar(80) NOT NULL,
+  `password_reset_token` varchar(32) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `user_email`, `password_hash`, `user_fullname`, `user_role`, `password_reset_token`) VALUES
+(1, 'taifen_g@yahoo.com', '$2y$10$4XlZH2P0SL9akf8yKsmMxuPnr6WHGK46eScqi/Y1041Hj9DIn4vW2', 'Lin Tillman', 'admin', NULL),
+(2, 'jeff@gmail.com', '$2y$10$6yS4hhWEX37IxKVhaLpg3OAOdM9AoAKLaultpd3m9.tV7WO3lRzbe', 'Jeff Clyde', 'customer', NULL),
+(3, 'test@example.com', '$2y$10$thyLDjriaYwjYsBaM2f9sO8Mmh7mgL9MYXPMDPcBBJ6kQGLSrV7UW', 'test', 'customer', '1930833c5cac7fe2d0561713dc9079da'),
+(5, 'tim@test', '$2y$10$Oa5Z2E5C.69I6RYFHPlLduHnewdX2V2lsPAwTeE.T12Bq9Zqw5yPi', 'Tim Test', 'customer', NULL),
+(6, 'ban@example.com', '$2y$10$OhC1zJwpcXpeProhfQTy..SUYaUsIsIurS/UOdxV3EqOmhSy.iaeO', 'Ban Test', 'customer', NULL),
+(11, 'test7@example.com', '$2y$10$YSEEKcZin.dRkei1ClWCN.InoptmUIq4nljJjLRqL2lET4hhNuHP.', 'Test Fullname', 'customer', NULL);
 
 --
 -- Indexes for dumped tables
@@ -337,6 +386,18 @@ ALTER TABLE `car_transmission`
   ADD PRIMARY KEY (`transmission_ID`);
 
 --
+-- Indexes for table `contact`
+--
+ALTER TABLE `contact`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`user_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -344,73 +405,85 @@ ALTER TABLE `car_transmission`
 -- AUTO_INCREMENT for table `cars`
 --
 ALTER TABLE `cars`
-  MODIFY `car_ID` int(90) NOT NULL AUTO_INCREMENT;
+  MODIFY `car_ID` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `car_bodytype`
 --
 ALTER TABLE `car_bodytype`
-  MODIFY `bodyType_ID` int(90) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `bodyType_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `car_category`
 --
 ALTER TABLE `car_category`
-  MODIFY `category_ID` int(90) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `category_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `car_color`
 --
 ALTER TABLE `car_color`
-  MODIFY `color_ID` int(90) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `color_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `car_fueltype`
 --
 ALTER TABLE `car_fueltype`
-  MODIFY `fuelType_ID` int(90) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `fuelType_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `car_gallery`
 --
 ALTER TABLE `car_gallery`
-  MODIFY `gallery_ID` int(90) NOT NULL AUTO_INCREMENT;
+  MODIFY `gallery_ID` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `car_location`
 --
 ALTER TABLE `car_location`
-  MODIFY `location_ID` int(90) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `location_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `car_make`
 --
 ALTER TABLE `car_make`
-  MODIFY `make_ID` int(90) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `make_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `car_model`
 --
 ALTER TABLE `car_model`
-  MODIFY `model_ID` int(90) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `model_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `car_safety`
 --
 ALTER TABLE `car_safety`
-  MODIFY `safety_ID` int(90) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `safety_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `car_seats`
 --
 ALTER TABLE `car_seats`
-  MODIFY `seats_ID` int(90) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `seats_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `car_transmission`
 --
 ALTER TABLE `car_transmission`
-  MODIFY `transmission_ID` int(90) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `transmission_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `contact`
+--
+ALTER TABLE `contact`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
