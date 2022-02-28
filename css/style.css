@@ -454,7 +454,8 @@ p {
   .borderless-card-row {
       display: flex;
       flex-wrap: nowrap !important;
-      justify-content: flex-end !important;
+      justify-content: space-around !important;
+      align-items: center;
   }
   .card-header-icon {
     background-color: rgba(0, 0, 0, 0.0);

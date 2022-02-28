@@ -1,7 +1,39 @@
 <?php 
 include "config.php";
-
 include "returnPage.php";
+
+if(!isset($_GET['carID'])) {
+    header("Location: productsListing.php");
+    exit;
+}
+$id = $_GET['carID'];
+$query = 
+        "SELECT cars.car_ID, Year, Price, Detail, car_title, car_subtitle, Img, car_make.make_ID, car_model.model_ID, car_color.color, car_fuelType.fuelType, car_safety.safety_ID 
+        FROM cars 
+        INNER JOIN car_make ON cars.make_ID = car_make.make_ID 
+        INNER JOIN car_model ON cars.model_ID = car_model.model_ID 
+        INNER JOIN car_color ON cars.color_ID = car_color.color_ID 
+        INNER JOIN car_fueltype ON cars.fuelType_ID = car_fueltype.fuelType_ID 
+        INNER JOIN car_safety ON cars.safety_ID = car_safety.safety_ID WHERE car_ID = $id;";
+$result = mysqli_query($link, $query);
+
+if(mysqli_num_rows($result) == 0) {
+    header("Location: productsListing.php");
+    exit;
+}
+$row = mysqli_fetch_array($result);
+extract($row);
+
+$year = $row['Year'];
+$price = $row['Price'];
+$make = $row['make_ID'];
+$model = $row['model_ID'];
+$color = $row['color'];
+$fuel = $row['fuelType'];
+$safety = $row['safety_ID'];
+$main_title = $row['car_title'];
+$subtitle = $row['car_subtitle'];
+
 ?>
 
 
@@ -49,12 +81,12 @@ include "returnPage.php";
                 <!-- main-header -->
                 <div class="row">
                     <div class="col main-header ml-3">
-                        <h4 class="main-title">BMW 3 Series</h4>
-                        <h4 class="model-title">2L M Sport 320i</h6>
+                        <h4 class="main-title"><?php echo $main_title ?></h4>
+                        <h4 class="model-title"><?php echo $subtitle ?></h6>
                     </div>
-                    <div class="price-tag align-items-center  mr-5">
-                        <h4>$55,125</h4>
-                        <a href="#" class="btn btn-outline-success btn-bookTest" role="button">Book Test Drive Now</a>
+                    <div class="price-tag align-items-center  mb-2 mr-5">
+                        <h4>$<?php echo number_format($price) ?></h4>
+                        <a href="contact.php" class="btn btn-outline-success btn-bookTest" role="button">Book Test Drive Now</a>
                     </div>
                 </div>
                 <!-- end of main header -->
@@ -177,7 +209,7 @@ include "returnPage.php";
                             </svg>
                             <span class="icon-text-bi">Fuel type</span>
                         </div>
-                        <p class="icon-text">Petrol</p>
+                        <p class="icon-text"><?php echo $fuel ?></p>
                     </li>
                 </div>
                 <!-- end of first key features row -->
@@ -239,11 +271,11 @@ include "returnPage.php";
                             <span class="icon-text-bi">Safety Rating</span>
                         </div>
                         <p class="icon-text">
-                            <i class="bi bi-emoji-smile"></i>
-                            <i class="bi bi-emoji-smile"></i>
-                            <i class="bi bi-emoji-smile"></i>
-                            <i class="bi bi-emoji-smile"></i>
-                            <i class="bi bi-emoji-smile"></i>
+                            <?php
+                            for($i=0; $i<$safety; $i++) {
+                                echo "<i class='bi bi-emoji-smile'></i> ";
+                            }
+                            ?>
                         </p>
                     </li>
                 </div>
