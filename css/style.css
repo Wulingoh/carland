@@ -456,6 +456,7 @@ p {
       flex-wrap: nowrap !important;
       justify-content: space-between !important;
       align-items: center !important;
+
   }
   .card-header-icon {
     background-color: rgba(0, 0, 0, 0.0);
