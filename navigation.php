@@ -66,7 +66,7 @@
             </div>
             <!-- end of left side elements -->
             <!--begin of right side elements -->
-            <div class="navbar-nav d-flex flex-row ms-auto me-3">
+            <ul class="navbar-nav d-flex flex-row ms-auto me-3 ml-2">
                 <!-- Icon -->
                 <?php
                 if (isset($_SESSION['email'])) {
@@ -88,8 +88,9 @@
                 <?php 
                     } 
                 ?>
-            </div>
+            </ul>
             <!-- end of right side elements -->
         </div>
     </nav>
 </div>
+
