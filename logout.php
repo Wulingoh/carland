@@ -1,14 +1,11 @@
 <?php
 include "config.php";
-//unset($_SESSION['cart']);
+//unset($_SESSION['login']);
 session_start();
-// check if member is signin
+// check if member is login
 if (isset($_SESSION['email'])) {
   session_destroy();
-  //unset($_SESSION['memberID']);
-  //unset($_SESSION['email']);
-  //unset($_SESSION['name']);
-  //unset($_SESSION['role']);
+  
 }
 // redirect
 header("Location: index.php");

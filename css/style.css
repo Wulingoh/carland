@@ -454,7 +454,8 @@ p {
   .borderless-card-row {
       display: flex;
       flex-wrap: nowrap !important;
-      justify-content: space-between !important;
+      /* keep space evenly instead of space between for merging to main */
+      justify-content: space-evenly !important;
       align-items: center !important;
 
   }
@@ -788,4 +789,35 @@ p {
     margin-left: 66px !important;
     border-top: #004A77 2px solid !important;
     margin-top: 0 !important;
+}
+
+/* favourite page */
+.favourite-line-vector {
+    position: absolute;
+    top: 305px;
+    right: 0;
+}
+.favourite-image {
+    position: relative;
+}
+.container-favourite-row {
+    background-color: #F2F2F2 ;
+}
+.favourite-heart {
+    position: absolute;
+    top: 6px;
+    left: 24px;
+    font-size: 24px;
+    /* color:#DF4E3C; */
+    background-color: none;
+    padding: 0;
+    border: none;
+    z-index: 999;
+}
+
+.favourite-card-image {
+    position: relative;
+}
+.favourite-heart-icon {
+    font-size: 20px;
 }

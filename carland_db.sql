@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 26, 2022 at 07:35 AM
+-- Generation Time: Mar 06, 2022 at 02:21 AM
 -- Server version: 8.0.26
 -- PHP Version: 8.0.11
 
@@ -29,13 +29,13 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `cars` (
   `car_ID` int NOT NULL,
-  `Img` varchar(100) NOT NULL,
+  `Img` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `Price` int NOT NULL,
   `Year` int NOT NULL,
   `Mileage` int NOT NULL,
   `engineSize` varchar(90) NOT NULL,
-  `Stock` int NOT NULL,
-  `Detail` varchar(900) NOT NULL,
+  `Stock` int DEFAULT NULL,
+  `Detail` varchar(900) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `Rego` varchar(900) NOT NULL,
   `category_ID` int NOT NULL,
   `bodyType_ID` int NOT NULL,
@@ -46,8 +46,17 @@ CREATE TABLE `cars` (
   `color_ID` int NOT NULL,
   `seats_ID` int NOT NULL,
   `safety_ID` int NOT NULL,
-  `location_ID` int NOT NULL
+  `location_ID` int NOT NULL,
+  `car_title` varchar(80) NOT NULL,
+  `car_subtitle` varchar(80) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `cars`
+--
+
+INSERT INTO `cars` (`car_ID`, `Img`, `Price`, `Year`, `Mileage`, `engineSize`, `Stock`, `Detail`, `Rego`, `category_ID`, `bodyType_ID`, `fuelType_ID`, `make_ID`, `model_ID`, `transmission_ID`, `color_ID`, `seats_ID`, `safety_ID`, `location_ID`, `car_title`, `car_subtitle`) VALUES
+(1, NULL, 55125, 2017, 41187, '2L', NULL, NULL, 'April 2017', 2, 2, 1, 3, 2, 1, 2, 1, 5, 1, 'BMW 3 Series', '2L M Sport 320i');
 
 -- --------------------------------------------------------
 
@@ -177,7 +186,9 @@ CREATE TABLE `car_make` (
 
 INSERT INTO `car_make` (`make_ID`, `make`) VALUES
 (1, 'Toyota'),
-(2, 'BMW');
+(2, 'BMW'),
+(3, 'Honda'),
+(4, 'Nissan');
 
 -- --------------------------------------------------------
 
@@ -196,7 +207,8 @@ CREATE TABLE `car_model` (
 --
 
 INSERT INTO `car_model` (`model_ID`, `make_ID`, `model`) VALUES
-(1, 1, 'Corolla');
+(1, 1, 'Corolla'),
+(2, 2, '3 Series 2L Sport 320i');
 
 -- --------------------------------------------------------
 
@@ -281,6 +293,18 @@ CREATE TABLE `contact` (
 
 INSERT INTO `contact` (`id`, `fullname`, `email`, `phone`, `topic`, `message`) VALUES
 (27, 'Test Test', 'test@example.com', '', ' 0', 'helo tehresi  is fi this lnworlkongia onofgi pg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `favourite`
+--
+
+CREATE TABLE `favourite` (
+  `favourite_id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `car_id` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -392,6 +416,14 @@ ALTER TABLE `contact`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `favourite`
+--
+ALTER TABLE `favourite`
+  ADD PRIMARY KEY (`favourite_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `car_id` (`car_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -405,7 +437,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cars`
 --
 ALTER TABLE `cars`
-  MODIFY `car_ID` int NOT NULL AUTO_INCREMENT;
+  MODIFY `car_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `car_bodytype`
@@ -447,13 +479,13 @@ ALTER TABLE `car_location`
 -- AUTO_INCREMENT for table `car_make`
 --
 ALTER TABLE `car_make`
-  MODIFY `make_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `make_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `car_model`
 --
 ALTER TABLE `car_model`
-  MODIFY `model_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `model_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `car_safety`
@@ -480,10 +512,27 @@ ALTER TABLE `contact`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
+-- AUTO_INCREMENT for table `favourite`
+--
+ALTER TABLE `favourite`
+  MODIFY `favourite_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `favourite`
+--
+ALTER TABLE `favourite`
+  ADD CONSTRAINT `favourite_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `favourite_ibfk_2` FOREIGN KEY (`car_id`) REFERENCES `cars` (`car_ID`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

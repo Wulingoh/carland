@@ -7,15 +7,22 @@ if(!isset($_GET['carID'])) {
     exit;
 }
 $id = $_GET['carID'];
+if (isset($_SESSION['id'])) {
+    $userId = $_SESSION['id'];
+}else { 
+    $userId = 0;
+}
 $query = 
-        "SELECT cars.car_ID, Year, Price, Detail, car_title, car_subtitle, Img, car_make.make_ID, car_model.model_ID, car_color.color, car_fuelType.fuelType, car_safety.safety_ID 
+        "SELECT cars.car_ID, Year, Price, Detail, car_title, car_subtitle, Img, car_make.make_ID, car_model.model_ID, car_color.color, car_fuelType.fuelType, car_safety.safety_ID, favourite_id 
         FROM cars 
         INNER JOIN car_make ON cars.make_ID = car_make.make_ID 
         INNER JOIN car_model ON cars.model_ID = car_model.model_ID 
         INNER JOIN car_color ON cars.color_ID = car_color.color_ID 
         INNER JOIN car_fueltype ON cars.fuelType_ID = car_fueltype.fuelType_ID 
-        INNER JOIN car_safety ON cars.safety_ID = car_safety.safety_ID WHERE car_ID = $id;";
-$result = mysqli_query($link, $query);
+        INNER JOIN car_safety ON cars.safety_ID = car_safety.safety_ID
+        LEFT JOIN favourite ON favourite.car_id = cars.car_ID AND favourite.user_id = $userId 
+        WHERE cars.car_ID = $id;";
+$result = mysqli_query($link, $query) or die(mysqli_error($link));
 
 if(mysqli_num_rows($result) == 0) {
     header("Location: productsListing.php");
@@ -33,7 +40,7 @@ $fuel = $row['fuelType'];
 $safety = $row['safety_ID'];
 $main_title = $row['car_title'];
 $subtitle = $row['car_subtitle'];
-
+$favourite = $row['favourite_id'];
 ?>
 
 
@@ -86,14 +93,20 @@ $subtitle = $row['car_subtitle'];
                     </div>
                     <div class="price-tag align-items-center  mb-2 mr-5">
                         <h4>$<?php echo number_format($price) ?></h4>
-                        <a href="contact.php" class="btn btn-outline-success btn-bookTest" role="button">Book Test Drive Now</a>
+                        <input type="button" value="Book for test drive" class="btn btn-outline-success btn-block mt-3 mb-2" onclick="window.location.href='contact.php?>'">
                     </div>
                 </div>
                 <!-- end of main header -->
-                <!-- sort style page element -->
                 <!--Carousel Wrapper-->
                 <div class="container-carousel-wrapper">
                     <div class="carousel-container position-relative">
+                        <!-- favourite heart icon -->
+                        <div class="favourite-wrapper-container">
+                            <a href="javascript:;" class="favourite-heart btn btn-default" name="addToFavourite" id="favouriteBtn" data-carid="<?php echo $id ?>">
+                                <i class="bi bi-balloon-heart-fill" att="0" style="color: <?php echo $favourite ?"red":"white"?>; font-size: 40px"></i>
+                            </a>
+                        </div>
+                        <!-- end of favourite heart icon -->
                         <div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="carousel-item active" data-slide-number="0">
@@ -183,9 +196,8 @@ $subtitle = $row['car_subtitle'];
                             </a>
                         </div>
                     </div> <!-- /container -->
-                    <!--/.Carousel Wrapper-->
                 </div>
-                <!-- end of sort style page element -->
+                <!--/.Carousel Wrapper-->
                 <div class="row justify-content-between">
                     <li class="list-unstyled w-25">
                         <div class="icon-style">
@@ -551,6 +563,7 @@ $subtitle = $row['car_subtitle'];
     <?php include "footer.php" ?>
     <div class="clearfix"></div>
     <script src="js/carousel-slider.js" type="text/javascript"></script>
+    <script src="js/vehicle.js" type="text/javascript"></script>
 </body>
 
 </html>
