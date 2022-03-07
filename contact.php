@@ -53,7 +53,7 @@ if (isset($_POST['contact_submit'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact</title>
     <link href="css/bootstrap.css" rel="stylesheet">
-    <script src="js/jquery-1.10.1.min.js"></script>
+    <script src="js/jquery-3.5.1.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <link href="css/style.css" rel="stylesheet">
     <link href="icon/bootstrap-icons.css" rel="stylesheet">
@@ -122,7 +122,7 @@ if (isset($_POST['contact_submit'])) {
                                 <select class="form-control" id="enguiry" name="contact_enquiry">
                                     <option value="0">Select a Topic</option>
                                     <option value="1">General</option>
-                                    <option value="2">Vehicle </option>
+                                    <option <?php if(isset($_GET['carId']))echo 'selected'?> value="2">Vehicle </option>
                                     <option value="3">Service</option>
                                     <option value="4">Complaint</option>
                                     <option value="5">Other</option>

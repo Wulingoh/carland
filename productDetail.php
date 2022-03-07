@@ -54,7 +54,7 @@ $favourite = $row['favourite_id'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carland</title>
     <link href="css/bootstrap.css" rel="stylesheet">
-    <script src="js/jquery-1.10.1.min.js"></script>
+    <script src="js/jquery-3.5.1.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <link href="css/style.css" rel="stylesheet">
     <link href="icon/bootstrap-icons.css" rel="stylesheet">
