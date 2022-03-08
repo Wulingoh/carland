@@ -46,6 +46,12 @@ $(document).ready(function() {
     });
 });
 
+// sorting in product listing page 
+
+function submitSelectpicker() {
+    document.getElementById('orderBy').submit();
+}
+
 
 
 
