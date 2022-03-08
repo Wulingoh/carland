@@ -64,7 +64,7 @@ if (!isset($_SESSION['id'])) {
                 <div class="col mt-5 mb-3 ml-3">
                     <img class="favourite-card-image" src="images/bmwImage.png" alt="" />
                     <a href="javascript:" class="favourite-heart btn btn-default" name="addToFavourite" id="favouriteBtn" data-carid="<?php echo $row['car_ID'] ?>">
-                        <i class="bi bi-balloon-heart-fill" att="0" style="color: red; font-size: 20px"></i>
+                        <i class="bi bi-balloon-heart-fill" att="0" style="color: DF4E3C; font-size: 20px"></i>
                     </a>
                 </div>
                 <div class="col mt-5 mb-3 ml-3">

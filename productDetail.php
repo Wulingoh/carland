@@ -103,7 +103,7 @@ $favourite = $row['favourite_id'];
                         <!-- favourite heart icon -->
                         <div class="favourite-wrapper-container">
                             <a href="javascript:;" class="favourite-heart btn btn-default" name="addToFavourite" id="favouriteBtn" data-carid="<?php echo $id ?>">
-                                <i class="bi bi-balloon-heart-fill" att="0" style="color: <?php echo $favourite ?"red":"white"?>; font-size: 40px"></i>
+                                <i class="bi bi-balloon-heart-fill" att="0" style="color: <?php echo $favourite ?"DF4E3C":"white"?>; font-size: 40px"></i>
                             </a>
                         </div>
                         <!-- end of favourite heart icon -->

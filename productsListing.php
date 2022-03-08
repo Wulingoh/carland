@@ -1,6 +1,17 @@
 <?php 
 include "config.php";
 include "returnPage.php";
+
+$orderBy = "cars.Price ASC";
+if(isset($_GET["orderBy"])) {
+    $orderBy = $_GET['orderBy'];
+}
+
+$query = "SELECT * FROM `cars`INNER JOIN car_make ON cars.make_ID = car_make.make_ID INNER JOIN car_model ON cars.model_ID = car_model.model_ID INNER JOIN car_color ON cars.color_ID = car_color.color_ID INNER JOIN car_fueltype ON cars.fuelType_ID = car_fueltype.fuelType_ID INNER JOIN car_safety ON cars.safety_ID = car_safety.safety_ID ORDER BY $orderBy;";
+
+$result = mysqli_query($link, $query) or die(mysqli_error($link));
+
+
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +36,7 @@ include "returnPage.php";
     ?>
     <!-- sidebar filter -->
     <section class="">
-        <div class="row">
+        <div class="row p-0 ml-0 mr-0">
             <div class="col-3">
                 <!-- Sidebar -->
                 <?php include "sidebarFilter.php" ?>
@@ -84,28 +95,39 @@ include "returnPage.php";
                             Sort by
                         </span>
                         <label class="sort-style-label">
-                            <div class="sort-select-option">
-                                <select class="selectpicker" data-width="150px">
-                                    <option>Lowest Price</option>
-                                    <option>Highest Price</option>
-                                    <option>Recently Added</option>
-                                    <option>Highest Mileage</option>
-                                    <option>Lowest Mileage</option>
-                                </select>
-                            </div>
+                            <form method="GET" id="orderBy">
+                                <div class="sort-select-option">
+                                    <select name="orderBy" onchange='submitSelectpicker()'class="selectpicker" data-width="150px">
+                                        <option value="cars.Price ASC" 
+                                        window.location.productsListing <?php if($orderBy == 'cars.Price ASC'){ echo "selected"; } ?>
+                                        >Lowest Price</option>
+                                        <option value="cars.Price DESC"
+                                        window.location.productsListing <?php if($orderBy == 'cars.Price DESC'){ echo "selected"; } ?>
+                                        >Highest Price</option>
+                                        <option value="">Recently Added</option>
+                                        <option value="cars.Mileage DESC">Highest Mileage</option>
+                                        <option value="cars.Mileage ASC">Lowest Mileage</option>
+                                    </select>
+                                </div>
+                            </form>
+                            
                         </label>
                     </div>
                     <!-- end of sort style page -->
                 </div>
                 <!-- end of sort style page row -->
+                <?php
+                while ($row = mysqli_fetch_array($result)){
+                $carId = $row['car_ID'];
+                ?>
                 <div class="row product-list no-gutters">
                     <div class="col-lg-4 col-md-12">
                         <div class="card ml-3 card-style">
                             <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
                                 <img src="images/BMW3Series/image1.jpeg" class="card-img" />
                                 <div class="card-img-overlay d-flex justify-content-end h-25">
-                                    <a href="#" class="card-link text-danger like">
-                                        <i class="bi bi-heart"></i>
+                                    <a href="javascript:" class="favourite-heart btn btn-default" name="addToFavourite" id="favouriteBtn" data-carid="<?php echo $row['car_ID'] ?>">
+                                        <i class="bi bi-balloon-heart-fill" att="0" style="<?php echo $favourite ?"DF4E3C":"white"?> font-size: 20px"></i>
                                     </a>
                                 </div>
                                 <div class="mask">
@@ -122,232 +144,21 @@ include "returnPage.php";
                             </div>
                             <div class="card-body">
                                 <a href="" class="text-reset">
-                                    <h5 class="card-title mb-3">BMW 3 Series</h5>
+                                    <h5 class="card-title mb-3"><?php echo $row['car_title']; ?></h5>
                                 </a>
                                 <a href="" class="text-reset">
-                                    <p class="product-description">2L M Sport Shadow Edition 320d</p>
+                                    <p class="product-description"><?php echo $row['car_subtitle']; ?></p>
                                     <span class="product-text-mileage">28,650km</span>
                                     <span class="product-text-reg">2017 reg</span>
                                 </a>
                                 <h6 class="mt-3 mb-3"><b>$55,125</b></h6>
                             </div>
-                            <a href="#" class="btn btn-outline-success mb-3 w-90 ml-3 mr-3"><i class="bi bi-eye pr-2"></i> View This Car</a>
+                            <a href="#" class="btn btn-outline-success mb-3 w-90 ml-3 mr-3" onclick="window.location.href='productDetail.php?carID=<?php echo $row['car_ID']; ?>'"><i class="bi bi-eye pr-2"></i> View This Car</a>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-12">
-                        <div class="card ml-3 card-style">
-                            <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
-                                <img src="images/BMW3Series/image1.jpeg" class="card-img" />
-                                <div class="card-img-overlay d-flex justify-content-end h-25">
-                                    <a href="#" class="card-link text-danger like">
-                                        <i class="bi bi-heart"></i>
-                                    </a>
-                                </div>
-                                <div class="mask">
-                                    <div class="d-flex justify-content-end">
-                                        <a href="#">
-                                            <span class="product-location">Christchurch</span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="hover-overlay">
-                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <a href="" class="text-reset">
-                                    <h5 class="card-title mb-3">BMW 3 Series</h5>
-                                </a>
-                                <a href="" class="text-reset">
-                                    <p class="product-description">2L M Sport Shadow Edition 320d</p>
-                                    <span class="product-text-mileage">28,650km</span>
-                                    <span class="product-text-reg">2017 reg</span>
-                                </a>
-                                <h6 class="mt-3 mb-3"><b>$55,125</b></h6>
-                            </div>
-                            <a href="#" class="btn btn-outline-success mb-3 w-90 ml-3 mr-3"><i class="bi bi-eye pr-2"></i> View This Car</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12">
-                        <div class="card ml-3 card-style">
-                            <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
-                                <img src="images/BMW3Series/image1.jpeg" class="card-img" />
-                                <div class="card-img-overlay d-flex justify-content-end h-25">
-                                    <a href="#" class="card-link text-danger like">
-                                        <i class="bi bi-heart"></i>
-                                    </a>
-                                </div>
-                                <div class="mask">
-                                    <div class="d-flex justify-content-end">
-                                        <a href="#">
-                                            <span class="product-location">Christchurch</span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="hover-overlay">
-                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <a href="" class="text-reset">
-                                    <h5 class="card-title mb-3">BMW 3 Series</h5>
-                                </a>
-                                <a href="" class="text-reset">
-                                    <p class="product-description">2L M Sport Shadow Edition 320d</p>
-                                    <span class="product-text-mileage">28,650km</span>
-                                    <span class="product-text-reg">2017 reg</span>
-                                </a>
-                                <h6 class="mt-3 mb-3"><b>$55,125</b></h6>
-                            </div>
-                            <a href="#" class="btn btn-outline-success mb-3 w-90 ml-3 mr-3"><i class="bi bi-eye pr-2"></i> View This Car</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="row product-list no-gutters">
-                    <div class="col-lg-4 col-md-12">
-                        <div class="card ml-3 card-style">
-                            <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
-                                <img src="images/BMW3Series/image1.jpeg" class="card-img" />
-                                <div class="card-img-overlay d-flex justify-content-end h-25">
-                                    <a href="#" class="card-link text-danger like">
-                                        <i class="bi bi-heart"></i>
-                                    </a>
-                                </div>
-                                <div class="mask">
-                                    <div class="d-flex justify-content-end">
-                                        <a href="#">
-                                            <span class="product-location">Christchurch</span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="hover-overlay">
-                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <a href="" class="text-reset">
-                                    <h5 class="card-title mb-3">BMW 3 Series</h5>
-                                </a>
-                                <a href="" class="text-reset">
-                                    <p class="product-description">2L M Sport Shadow Edition 320d</p>
-                                    <span class="product-text-mileage">28,650km</span>
-                                    <span class="product-text-reg">2017 reg</span>
-                                </a>
-                                <h6 class="mt-3 mb-3"><b>$55,125</b></h6>
-                            </div>
-                            <a href="#" class="btn btn-outline-success mb-3 w-90 ml-3 mr-3"><i class="bi bi-eye pr-2"></i> View This Car</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12">
-                        <div class="card ml-3 card-style">
-                            <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
-                                <img src="images/BMW3Series/image1.jpeg" class="card-img" />
-                                <div class="card-img-overlay d-flex justify-content-end h-25">
-                                    <a href="#" class="card-link text-danger like">
-                                        <i class="bi bi-heart"></i>
-                                    </a>
-                                </div>
-                                <div class="mask">
-                                    <div class="d-flex justify-content-end">
-                                        <a href="#">
-                                            <span class="product-location">Christchurch</span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="hover-overlay">
-                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <a href="" class="text-reset">
-                                    <h5 class="card-title mb-3">BMW 3 Series</h5>
-                                </a>
-                                <a href="" class="text-reset">
-                                    <p class="product-description">2L M Sport Shadow Edition 320d</p>
-                                    <span class="product-text-mileage">28,650km</span>
-                                    <span class="product-text-reg">2017 reg</span>
-                                </a>
-                                <h6 class="mt-3 mb-3"><b>$55,125</b></h6>
-                            </div>
-                            <a href="#" class="btn btn-outline-success mb-3 w-90 ml-3 mr-3"><i class="bi bi-eye pr-2"></i> View This Car</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12">
-                        <div class="card ml-3 card-style">
-                            <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
-                                <img src="images/BMW3Series/image1.jpeg" class="card-img" />
-                                <div class="card-img-overlay d-flex justify-content-end h-25">
-                                    <a href="#" class="card-link text-danger like">
-                                        <i class="bi bi-heart"></i>
-                                    </a>
-                                </div>
-                                <div class="mask">
-                                    <div class="d-flex justify-content-end">
-                                        <a href="#">
-                                            <span class="product-location">Christchurch</span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="hover-overlay">
-                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <a href="" class="text-reset">
-                                    <h5 class="card-title mb-3">BMW 3 Series</h5>
-                                </a>
-                                <a href="" class="text-reset">
-                                    <p class="product-description">2L M Sport Shadow Edition 320d</p>
-                                    <span class="product-text-mileage">28,650km</span>
-                                    <span class="product-text-reg">2017 reg</span>
-                                </a>
-                                <h6 class="mt-3 mb-3"><b>$55,125</b></h6>
-                            </div>
-                            <a href="#" class="btn btn-outline-success mb-3 w-90 ml-3 mr-3"><i class="bi bi-eye pr-2"></i> View This Car</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="row product-list no-gutters">
-                    <div class="col-lg-4 col-md-12">
-                        <div class="card ml-3 card-style">
-                            <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
-                                <img src="images/BMW3Series/image1.jpeg" class="card-img" />
-                                <div class="card-img-overlay d-flex justify-content-end h-25">
-                                    <a href="#" class="card-link text-danger like">
-                                        <i class="bi bi-heart"></i>
-                                    </a>
-                                </div>
-                                <div class="mask">
-                                    <div class="d-flex justify-content-end">
-                                        <a href="#">
-                                            <span class="product-location">Christchurch</span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="hover-overlay">
-                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <a href="" class="text-reset">
-                                    <h5 class="card-title mb-3">BMW 3 Series</h5>
-                                </a>
-                                <a href="" class="text-reset">
-                                    <p class="product-description">2L M Sport Shadow Edition 320d</p>
-                                    <span class="product-text-mileage">28,650km</span>
-                                    <span class="product-text-reg">2017 reg</span>
-                                </a>
-                                <h6 class="mt-3 mb-3"><b>$55,125</b></h6>
-                            </div>
-                            <a href="#" class="btn btn-outline-success mb-3 w-90 ml-3 mr-3"><i class="bi bi-eye pr-2"></i> View This Car</a>
-                        </div>
-                    </div>
+                    <?php
+                    }
+                    ?>
                     <div class="col-lg-4 col-md-12">
                         <div class="card ml-3 card-style">
                             <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
@@ -467,6 +278,7 @@ include "returnPage.php";
 
     <div class="clearfix"></div>
     <script src="js/sideBar.js" type="text/javascript"></script>
+    <script src="js/vehicle.js" type="text/javascript"></script>
 </body>
 
 </html>
