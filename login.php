@@ -4,7 +4,7 @@ $errorMessage = "";
 
 if (isset($_POST['btn_login'])) {
 
-    if ($stmt = $link->prepare('SELECT user_id, password_hash, user_role FROM users WHERE user_email = ?')) {
+    if ($stmt = $link->prepare('SELECT user_id, password_hash, user_role, user_fullname FROM users WHERE user_email = ?')) {
         // Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
         $stmt->bind_param('s', $_POST['email']);
         $stmt->execute();
@@ -12,7 +12,7 @@ if (isset($_POST['btn_login'])) {
         $stmt->store_result();
 
         if ($stmt->num_rows > 0) {
-            $stmt->bind_result($id, $password_hash, $role);
+            $stmt->bind_result($id, $password_hash, $role, $fullname);
             $stmt->fetch();
             // Account exists, now we verify the password.
             // Note: remember to use password_hash in your registration file to store the hashed passwords.
@@ -24,9 +24,11 @@ if (isset($_POST['btn_login'])) {
                 $_SESSION['email'] = $_POST['email'];
                 $_SESSION['id'] = $id;
                 $_SESSION['role'] = $role; 
+                $_SESSION['fullname'] = $fullname; 
+                
                 
                 if ($role == 'admin' ) {
-                    header('Location: admin/index.php');
+                    header('Location: admin/users/index.php');
                 } else {
                     if (isset($_SESSION['return_page'])) {
                         header("Location: ".$_SESSION['return_page']);
@@ -56,8 +58,6 @@ if (isset($_POST['btn_login'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carland</title>
-    <script src="js/jquery-3.5.1.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link href="icon/bootstrap-icons.css" rel="stylesheet">
@@ -99,18 +99,16 @@ if (isset($_POST['btn_login'])) {
                             <small id="emailHelp" class="form-text text-muted text-center">
                                 Don't have an account? <a href="register.php">Register</a>
                             </small>
-                            <small id="passwordHelp" class="form-text text-muted text-center">
-                                Forgotten your password? <a href="forgotPassword.php">Password Reset</a>
-                            </small>
+
                         </form>
                     </div>
-                    <div class="col-6 register-right-frame">
-                        <div class="row justify-content-center">
-                            <div class="mt-5 mb-5 text-center justify-content-center register-logo-square">
-                                <img class="mt-3 registerPageLogo" src="images/registerPageLogo.svg" alt="" />
-                                <div class="registerTitle mt-3">Login</div>
-                                <div class="registerTexts mt-5">Welcome to Carland</div>
-                                <ul class="nav justify-content-center mt-5 registerPageIcons">
+                    <div class="col-6 login-right-frame">
+                        <div class="row d-flex justify-content-space-between loginRow">
+                            <div class="col-10 login-logo-square">
+                                <img class="loginPageLogo" src="images/registerPageLogo.svg" alt="" />
+                                <h3 class="loginTitle">Login</h3>
+                                <h5 class="loginTexts">Welcome to Carland</h5>
+                                <ul class="nav justify-content-center loginPageIcons">
                                     <li class="nav-item navRegisterIcon"><i class="bi bi-facebook"></i></li>
                                     <li class="nav-item navRegisterIcon"><i class="bi bi-twitter"></i></li>
                                     <li class="nav-item navRegisterIcon"><i class="bi bi-linkedin"></i></li>
