@@ -12,7 +12,7 @@ if (isset($_POST['btn_login'])) {
         $stmt->store_result();
 
         if ($stmt->num_rows > 0) {
-            $stmt->bind_result($id, $password_hash, $role);
+            $stmt->bind_result($userId, $password_hash, $userRole);
             $stmt->fetch();
             // Account exists, now we verify the password.
             // Note: remember to use password_hash in your registration file to store the hashed passwords.
@@ -22,10 +22,10 @@ if (isset($_POST['btn_login'])) {
                 session_regenerate_id();
                 $_SESSION['loggedin'] = TRUE;
                 $_SESSION['email'] = $_POST['email'];
-                $_SESSION['id'] = $id;
-                $_SESSION['role'] = $role; 
+                $_SESSION['user_id'] = $userId;
+                $_SESSION['user_role'] = $userRole; 
                 
-                if ($role == 'admin' ) {
+                if ($userRole == 'admin' ) {
                     header('Location: admin/index.php');
                 } else {
                     if (isset($_SESSION['return_page'])) {

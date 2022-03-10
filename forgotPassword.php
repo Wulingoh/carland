@@ -6,9 +6,9 @@ $showSuccess = false;
 if (isset($_POST['forgot_password'])) {
 
     // check if the user exist or not
-    $user_email = $_POST['user_email'];
+    $userEmail = $_POST['email'];
 
-    $query = "SELECT `user_id`, `user_email` FROM `users` WHERE `user_email` = '$user_email'";
+    $query = "SELECT `user_id`, `user_email` FROM `users` WHERE `user_email` = '$userEmail'";
     $result = mysqli_query($link, $query);
 
     $row_count = mysqli_num_rows($result);
@@ -20,9 +20,9 @@ if (isset($_POST['forgot_password'])) {
         $token = bin2hex($token);
         $url = "http://localhost:3000/resetPassword.php?token=$token";
         
-        mail($user_email, "Reset Password", "To Reset the Password, Please Visit: $url", "From: support@domain.com\r\n");
+        mail($userEmail, "Reset Password", "To Reset the Password, Please Visit: $url", "From: support@domain.com\r\n");
     
-        $query = "UPDATE `users` SET `password_reset_token`='$token' WHERE `user_email` = '$user_email'";
+        $query = "UPDATE `users` SET `password_reset_token`='$token' WHERE `user_email` = '$userEmail'";
         $result = mysqli_query($link, $query);
         $showSuccess = "Please check your email for your password reset.";
     }
@@ -76,7 +76,7 @@ if (isset($_POST['forgot_password'])) {
                         <form action="forgotPassword.php" method="post">
                             <div class="form-group mt-5">
                                 <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" name="user_email" placeholder="Email" required="required">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Email" required="required">
                                 <span class="error" aria-live="polite"></span>
                             </div>
                             <button id="forgot_password" type="submit" name="forgot_password"class="btn btn-outline-success btn-block">

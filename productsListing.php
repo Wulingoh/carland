@@ -1,15 +1,36 @@
-<?php 
+<?php
 include "config.php";
 include "returnPage.php";
 
-$orderBy = "cars.Price ASC";
-if(isset($_GET["orderBy"])) {
-    $orderBy = $_GET['orderBy'];
+$orderBy = "vehicles.price ASC";
+if (isset($_GET["orderBy"])) {
+    $orderByOption = array("vehicles.price ASC", "vehicles.price DESC", "vehicles.mileage DESC", "vehicles.mileage ASC");
+    $orderByKey = array_search($_GET["orderBy"], $orderByOption);
+    $orderBy = $orderByOption[$orderByKey];
 }
+if (isset($_SESSION['user_id'])) {
+    $userId = $_SESSION['user_id'];
+} else {
+    $userId = 0;
+}
+$query = "SELECT vehicles.vehicle_id, img, price, year, mileage, engine_size, detail, rego, category, bodytype, fuelType, vehicle_make.make_id, vehicle_model.model_id, vehicle_transmission.transmission, color, seats, vehicle_safety.safety_id, vehicle_location.location, title, subtitle,favourite_id 
+FROM vehicles 
+INNER JOIN vehicle_make ON vehicles.make_id = vehicle_make.make_id 
+INNER JOIN vehicle_model ON vehicles.model_id = vehicle_model.model_id 
+INNER JOIN vehicle_color ON vehicles.color_id = vehicle_color.color_id 
+INNER JOIN vehicle_fueltype ON vehicles.fuelType_id = vehicle_fueltype.fuelType_id 
+INNER JOIN vehicle_safety ON vehicles.safety_id = vehicle_safety.safety_id
+INNER JOIN vehicle_transmission ON vehicles.transmission_id = vehicle_transmission.transmission_id
+INNER JOIN vehicle_seats ON vehicles.seats_id = vehicle_seats.seats_id
+INNER JOIN vehicle_location ON vehicles.location_id = vehicle_location.location_id
+INNER JOIN vehicle_category ON vehicles.category_id = vehicle_category.category_id
+INNER JOIN vehicle_bodytype ON vehicles.bodytype_id = vehicle_bodytype.bodytype_id
+LEFT JOIN favourite ON favourite.vehicle_id = vehicles.vehicle_id AND favourite.user_id = $userId
+ORDER BY $orderBy;";
 
-$query = "SELECT * FROM `cars`INNER JOIN car_make ON cars.make_ID = car_make.make_ID INNER JOIN car_model ON cars.model_ID = car_model.model_ID INNER JOIN car_color ON cars.color_ID = car_color.color_ID INNER JOIN car_fueltype ON cars.fuelType_ID = car_fueltype.fuelType_ID INNER JOIN car_safety ON cars.safety_ID = car_safety.safety_ID ORDER BY $orderBy;";
-
-$result = mysqli_query($link, $query) or die(mysqli_error($link));
+$stmt = $link->prepare($query);
+$stmt->execute();
+$result = $stmt->get_result();
 
 
 ?>
@@ -59,9 +80,9 @@ $result = mysqli_query($link, $query) or die(mysqli_error($link));
                 <!-- main-header -->
                 <div class="row">
                     <div class="col main-header ml-3">
-                        <h4 class="main-title">Carland Cars</h4>
+                        <h4 class="main-title">Carland vehicles</h4>
                         <p class="main-content">
-                            Browse our wide range of high-quality new and <a href="#">used cars</a>. Whether you’re
+                            Browse our wide range of high-quality new and <a href="#">used vehicles</a>. Whether you’re
                             buying, financing or subscribing, you can complete your purchase entirely online and choose
                             home delivery or collection from a Carland Customer Centre. For total peace of mind, every
                             car comes with a 7-Day Money Back Guarantee.
@@ -79,7 +100,7 @@ $result = mysqli_query($link, $query) or die(mysqli_error($link));
                     </div>
                     <!-- end of result count -->
                     <!-- sort style page -->
-                    <div class="col-4 sort-style-page btn-group btn-group-toggle" data-toggle="buttons" >
+                    <div class="col-4 sort-style-page btn-group btn-group-toggle" data-toggle="buttons">
                         <label class="btn btn-secondary" for="option1">All
                             <input type="radio" class="btn-check" name="all" id="option1" autocomplete="off" checked />
                         </label>
@@ -97,138 +118,84 @@ $result = mysqli_query($link, $query) or die(mysqli_error($link));
                         <label class="sort-style-label">
                             <form method="GET" id="orderBy">
                                 <div class="sort-select-option">
-                                    <select name="orderBy" onchange='submitSelectpicker()'class="selectpicker" data-width="150px">
-                                        <option value="cars.Price ASC" 
-                                        window.location.productsListing <?php if($orderBy == 'cars.Price ASC'){ echo "selected"; } ?>
+                                    <select name="orderBy" onchange='submitSelectpicker()' class="selectpicker" data-width="150px">
+                                        <option value="vehicles.price ASC" window.location.productsListing 
+                                            <?php if ($orderBy == 'vehicles.price ASC') {
+                                                echo "selected";
+                                            } 
+                                            ?>
                                         >Lowest Price</option>
-                                        <option value="cars.Price DESC"
-                                        window.location.productsListing <?php if($orderBy == 'cars.Price DESC'){ echo "selected"; } ?>
+                                        <option value="vehicles.price DESC" window.location.productsListing 
+                                            <?php if ($orderBy == 'vehicles.price DESC') {
+                                                echo "selected";
+                                            } 
+                                            ?>
                                         >Highest Price</option>
                                         <option value="">Recently Added</option>
-                                        <option value="cars.Mileage DESC">Highest Mileage</option>
-                                        <option value="cars.Mileage ASC">Lowest Mileage</option>
+                                        <option value="vehicles.mileage DESC" window.location.productsListing
+                                            <?php if($orderBy == 'vehicles.mileage DESC'){
+                                                echo "selected";
+                                            } 
+                                            ?>
+                                        >Highest Mileage</option>
+                                        <option value="vehicles.mileage ASC" window.location.productsListing 
+                                            <?php if($orderBy == 'vehicles.mileage ASC'){
+                                                echo "selected";
+                                            } 
+                                            ?>
+                                        >Lowest Mileage</option>
                                     </select>
                                 </div>
                             </form>
-                            
+
                         </label>
                     </div>
                     <!-- end of sort style page -->
                 </div>
                 <!-- end of sort style page row -->
-                <?php
-                while ($row = mysqli_fetch_array($result)){
-                $carId = $row['car_ID'];
-                ?>
                 <div class="row product-list no-gutters">
-                    <div class="col-lg-4 col-md-12">
-                        <div class="card ml-3 card-style">
-                            <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
-                                <img src="images/BMW3Series/image1.jpeg" class="card-img" />
-                                <div class="card-img-overlay d-flex justify-content-end h-25">
-                                    <a href="javascript:" class="favourite-heart btn btn-default" name="addToFavourite" id="favouriteBtn" data-carid="<?php echo $row['car_ID'] ?>">
-                                        <i class="bi bi-balloon-heart-fill" att="0" style="<?php echo $favourite ?"DF4E3C":"white"?> font-size: 20px"></i>
-                                    </a>
-                                </div>
-                                <div class="mask">
-                                    <div class="d-flex justify-content-end">
-                                        <a href="#">
-                                            <span class="product-location">Christchurch</span>
+                    <?php
+                    while ($row = $result->fetch_assoc()) {
+                        $vehicleId = $row['vehicle_id'];
+                    ?>
+                        <div class="col-lg-4 col-md-12">
+                            <div class="card ml-3 card-style">
+                                <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
+                                    <img src="images/BMW3Series/image1.jpeg" class="card-img" />
+                                    <div class="card-img-overlay d-flex justify-content-end h-25">
+                                        <a href="javascript:" class="favourite-heart btn btn-default" name="addToFavourite" id="favouriteBtn" data-carid="<?php echo $row['vehicle_id'] ?>">
+                                            <i class="bi bi-balloon-heart-fill" att="0" style="color:<?php echo $row['favourite_id'] ? "#DF4E3C" : "white" ?>; font-size: 20px"></i>
                                         </a>
                                     </div>
-                                </div>
-                                <div class="hover-overlay">
-                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);">
+                                    <div class="mask">
+                                        <div class="d-flex justify-content-end">
+                                            <a href="#">
+                                                <span class="product-location"><?php echo $row['location'] ?></span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="hover-overlay">
+                                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);">
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="card-body">
+                                    <a href="" class="text-reset">
+                                        <h5 class="card-title mb-3"><?php echo htmlentities($row['title']); ?></h5>
+                                    </a>
+                                    <a href="" class="text-reset">
+                                        <p class="product-description"><?php echo htmlentities($row['subtitle']); ?></p>
+                                        <span class="product-text-mileage"><?php echo htmlentities($row['mileage']) ?>km</span>
+                                        <span class="product-text-reg"><?php echo htmlentities($row['rego']) ?> reg</span>
+                                    </a>
+                                    <h6 class="mt-3 mb-3"><b>$<?php echo number_format($row['price']) ?></b></h6>
+                                </div>
+                                <a href="#" class="btn btn-outline-success mb-3 w-90 ml-3 mr-3" onclick="window.location.href='productDetail.php?vehicleId=<?php echo htmlentities($row['vehicle_id']); ?>'"><i class="bi bi-eye pr-2"></i> View This Car</a>
                             </div>
-                            <div class="card-body">
-                                <a href="" class="text-reset">
-                                    <h5 class="card-title mb-3"><?php echo $row['car_title']; ?></h5>
-                                </a>
-                                <a href="" class="text-reset">
-                                    <p class="product-description"><?php echo $row['car_subtitle']; ?></p>
-                                    <span class="product-text-mileage">28,650km</span>
-                                    <span class="product-text-reg">2017 reg</span>
-                                </a>
-                                <h6 class="mt-3 mb-3"><b>$55,125</b></h6>
-                            </div>
-                            <a href="#" class="btn btn-outline-success mb-3 w-90 ml-3 mr-3" onclick="window.location.href='productDetail.php?carID=<?php echo $row['car_ID']; ?>'"><i class="bi bi-eye pr-2"></i> View This Car</a>
                         </div>
-                    </div>
                     <?php
                     }
                     ?>
-                    <div class="col-lg-4 col-md-12">
-                        <div class="card ml-3 card-style">
-                            <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
-                                <img src="images/BMW3Series/image1.jpeg" class="card-img" />
-                                <div class="card-img-overlay d-flex justify-content-end h-25">
-                                    <a href="#" class="card-link text-danger like">
-                                        <i class="bi bi-heart"></i>
-                                    </a>
-                                </div>
-                                <div class="mask">
-                                    <div class="d-flex justify-content-end">
-                                        <a href="#">
-                                            <span class="product-location">Christchurch</span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="hover-overlay">
-                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <a href="" class="text-reset">
-                                    <h5 class="card-title mb-3">BMW 3 Series</h5>
-                                </a>
-                                <a href="" class="text-reset">
-                                    <p class="product-description">2L M Sport Shadow Edition 320d</p>
-                                    <span class="product-text-mileage">28,650km</span>
-                                    <span class="product-text-reg">2017 reg</span>
-                                </a>
-                                <h6 class="mt-3 mb-3"><b>$55,125</b></h6>
-                            </div>
-                            <a href="#" class="btn btn-outline-success mb-3 w-90 ml-3 mr-3"><i class="bi bi-eye pr-2"></i> View This Car</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12">
-                        <div class="card ml-3 card-style">
-                            <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
-                                <img src="images/BMW3Series/image1.jpeg" class="card-img" />
-                                <div class="card-img-overlay d-flex justify-content-end h-25">
-                                    <a href="#" class="card-link text-danger like">
-                                        <i class="bi bi-heart"></i>
-                                    </a>
-                                </div>
-                                <div class="mask">
-                                    <div class="d-flex justify-content-end">
-                                        <a href="#">
-                                            <span class="product-location">Christchurch</span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="hover-overlay">
-                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <a href="" class="text-reset">
-                                    <h5 class="card-title mb-3">BMW 3 Series</h5>
-                                </a>
-                                <a href="" class="text-reset">
-                                    <p class="product-description">2L M Sport Shadow Edition 320d</p>
-                                    <span class="product-text-mileage">28,650km</span>
-                                    <span class="product-text-reg">2017 reg</span>
-                                </a>
-                                <h6 class="mt-3 mb-3"><b>$55,125</b></h6>
-                            </div>
-                            <a href="#" class="btn btn-outline-success mb-3 w-90 ml-3 mr-3"><i class="bi bi-eye pr-2"></i> View This Car</a>
-                        </div>
-                    </div>
                 </div>
             </div>
             <div class="clearfix"></div>

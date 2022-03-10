@@ -9,16 +9,16 @@ if (isset($_POST['register_submit'])) {
 
     // Include file which makes the
 
-    $user_fullname = $_POST["fullname"];
+    $userFullname = htmlspecialchars($_POST["fullname"]);
     $password = $_POST["password"];
     $cpassword = $_POST["cpassword"];
-    $user_email = $_POST["email"];
+    $userEmail = $_POST["email"];
 
     
 
     // validated users fields
 
-    if (empty($user_fullname)) {
+    if (empty($userFullname)) {
         $showErrors[] = "You have not entered a fullname";
     }
     if (empty($password)) {
@@ -27,13 +27,13 @@ if (isset($_POST['register_submit'])) {
         $showErrors[] = "Passwords do not match";
     } 
 
-    if (empty($user_email)) {
+    if (empty($userEmail)) {
        $showError = "You have not entered an email address";
-    } elseif (!filter_var($user_email, FILTER_VALIDATE_EMAIL)) {
+    } elseif (!filter_var($userEmail, FILTER_VALIDATE_EMAIL)) {
         $showErrors[] = "You have not entered a valid address";
     }
     if (empty($showErrors)) {
-        $query = "Select * from users where user_email='$user_email'";
+        $query = "Select * from users where user_email='$userEmail'";
 
         $result = mysqli_query($link, $query);
 
@@ -55,8 +55,8 @@ if (isset($_POST['register_submit'])) {
         // Password Hashing is used here. 
 
         $query = "INSERT INTO `users` ( `user_email`, 
-                    `password_hash`, `user_fullname`, `user_role`) VALUES ('$user_email', 
-                    '$hash', '$user_fullname', 'customer')";
+                    `password_hash`, `user_fullname`, `user_role`) VALUES ('$userEmail', 
+                    '$hash', '$userFullname', 'customer')";
 
         $result = mysqli_query($link, $query);
 

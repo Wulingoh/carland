@@ -2,26 +2,31 @@
 include "config.php";
 include "returnPage.php";
 
-if(!isset($_GET['carID'])) {
+if(!isset($_GET['vehicleId'])) {
     header("Location: productsListing.php");
     exit;
 }
-$id = $_GET['carID'];
-if (isset($_SESSION['id'])) {
-    $userId = $_SESSION['id'];
+$vehicleId = $_GET['vehicleId'];
+if (isset($_SESSION['user_id'])) {
+    $userId = $_SESSION['user_id'];
 }else { 
     $userId = 0;
 }
 $query = 
-        "SELECT cars.car_ID, Year, Price, Detail, car_title, car_subtitle, Img, car_make.make_ID, car_model.model_ID, car_color.color, car_fuelType.fuelType, car_safety.safety_ID, favourite_id 
-        FROM cars 
-        INNER JOIN car_make ON cars.make_ID = car_make.make_ID 
-        INNER JOIN car_model ON cars.model_ID = car_model.model_ID 
-        INNER JOIN car_color ON cars.color_ID = car_color.color_ID 
-        INNER JOIN car_fueltype ON cars.fuelType_ID = car_fueltype.fuelType_ID 
-        INNER JOIN car_safety ON cars.safety_ID = car_safety.safety_ID
-        LEFT JOIN favourite ON favourite.car_id = cars.car_ID AND favourite.user_id = $userId 
-        WHERE cars.car_ID = $id;";
+        "SELECT vehicles.vehicle_id, img, price, year, mileage, engine_size, detail, rego, category, bodytype, fuelType, vehicle_make.make_id, vehicle_model.model_id, vehicle_transmission.transmission, color, seats, vehicle_safety.safety_id, vehicle_location.location, title, subtitle,favourite_id 
+        FROM vehicles 
+        INNER JOIN vehicle_make ON vehicles.make_id = vehicle_make.make_id 
+        INNER JOIN vehicle_model ON vehicles.model_id = vehicle_model.model_id 
+        INNER JOIN vehicle_color ON vehicles.color_id = vehicle_color.color_id 
+        INNER JOIN vehicle_fueltype ON vehicles.fuelType_id = vehicle_fueltype.fuelType_id 
+        INNER JOIN vehicle_safety ON vehicles.safety_id = vehicle_safety.safety_id
+        INNER JOIN vehicle_transmission ON vehicles.transmission_id = vehicle_transmission.transmission_id
+        INNER JOIN vehicle_seats ON vehicles.seats_id = vehicle_seats.seats_id
+        INNER JOIN vehicle_location ON vehicles.location_id = vehicle_location.location_id
+        INNER JOIN vehicle_category ON vehicles.category_id = vehicle_category.category_id
+        INNER JOIN vehicle_bodytype ON vehicles.bodytype_id = vehicle_bodytype.bodytype_id
+        LEFT JOIN favourite ON favourite.vehicle_id = vehicles.vehicle_id AND favourite.user_id = $userId 
+        WHERE vehicles.vehicle_id = $vehicleId;";
 $result = mysqli_query($link, $query) or die(mysqli_error($link));
 
 if(mysqli_num_rows($result) == 0) {
@@ -31,15 +36,22 @@ if(mysqli_num_rows($result) == 0) {
 $row = mysqli_fetch_array($result);
 extract($row);
 
-$year = $row['Year'];
-$price = $row['Price'];
-$make = $row['make_ID'];
-$model = $row['model_ID'];
+$year = $row['year'];
+$price = $row['price'];
+$make = $row['make_id'];
+$model = $row['model_id'];
 $color = $row['color'];
 $fuel = $row['fuelType'];
-$safety = $row['safety_ID'];
-$main_title = $row['car_title'];
-$subtitle = $row['car_subtitle'];
+$engineSize = $row['engine_size'];
+$safety = $row['safety_id'];
+$main_title = $row['title'];
+$subtitle = $row['subtitle'];
+$mileage = $row['mileage'];
+$seats = $row['seats'];
+$rego = $row['rego'];
+$bodytype = $row['bodytype'];
+$category = $row['category'];
+$location = $row['location'];
 $favourite = $row['favourite_id'];
 ?>
 
@@ -88,12 +100,12 @@ $favourite = $row['favourite_id'];
                 <!-- main-header -->
                 <div class="row">
                     <div class="col main-header ml-3">
-                        <h4 class="main-title"><?php echo $main_title ?></h4>
+                        <h4 class="main-title"><?php echo $title ?></h4>
                         <h4 class="model-title"><?php echo $subtitle ?></h6>
                     </div>
                     <div class="price-tag align-items-center  mb-2 mr-5">
                         <h4>$<?php echo number_format($price) ?></h4>
-                        <input type="button" value="Book for test drive" class="btn btn-outline-success btn-block mt-3 mb-2" onclick="window.location.href='contact.php?>'">
+                        <input type="button" value="Book for test drive" class="btn btn-outline-success btn-block mt-3 mb-2" onclick="window.location.href='contact.php?vehicleId=<?php echo $vehicleId ?>'">
                     </div>
                 </div>
                 <!-- end of main header -->
@@ -102,7 +114,7 @@ $favourite = $row['favourite_id'];
                     <div class="carousel-container position-relative">
                         <!-- favourite heart icon -->
                         <div class="favourite-wrapper-container">
-                            <a href="javascript:;" class="favourite-heart btn btn-default" name="addToFavourite" id="favouriteBtn" data-carid="<?php echo $id ?>">
+                            <a href="javascript:;" class="favourite-heart btn btn-default" name="addToFavourite" id="favouriteBtn" data-carid="<?php echo $vehicleId ?>">
                                 <i class="bi bi-balloon-heart-fill" att="0" style="color: <?php echo $favourite ?"DF4E3C":"white"?>; font-size: 40px"></i>
                             </a>
                         </div>
@@ -204,14 +216,14 @@ $favourite = $row['favourite_id'];
                             <i class="bi bi-calendar4-event"></i>
                             <span class="icon-text-bi">Reg date</span>
                         </div>
-                        <p class="icon-text">Apr 2017</p>
+                        <p class="icon-text"><?php echo $rego ?></p>
                     </li>
                     <li class="list-unstyled w-25">
                         <div class="icon-style">
                             <i class="bi bi-speedometer"></i>
                             <span class="icon-text-bi">Mileage</span>
                         </div>
-                        <p class="icon-text">41,187 miles</p>
+                        <p class="icon-text"><?php echo $mileage ?> km</p>
                     </li>
                     <li class="list-unstyled w-25">
                         <div class="icon-style">
@@ -234,7 +246,7 @@ $favourite = $row['favourite_id'];
                             </svg>
                             <span class="icon-text-bi">Transmission</span>
                         </div>
-                        <p class="icon-text">Automatic </p>
+                        <p class="icon-text"><?php echo $transmission ?></p>
                         <p class="icon-text">Rear Wheels</p>
                     </li>
                     <li class="list-unstyled w-25">
@@ -244,7 +256,7 @@ $favourite = $row['favourite_id'];
                             </svg>
                             <span class="icon-text-bi">Seats</span>
                         </div>
-                        <p class="icon-text">Leather, 5 Seats</p>
+                        <p class="icon-text">Leather, <?php echo $seats ?></p>
                     </li>
                     <li class="list-unstyled w-25">
                         <div class="icon-style">
@@ -253,7 +265,7 @@ $favourite = $row['favourite_id'];
                             </svg>
                             <span class="icon-text-bi">Engine</span>
                         </div>
-                        <p class="icon-text">2L</p>
+                        <p class="icon-text"><?php echo $engineSize ?></p>
                     </li>
                 </div>
                 <!-- end of key features second row -->
@@ -265,7 +277,7 @@ $favourite = $row['favourite_id'];
                             </svg>
                             <span class="icon-text-bi">Body Type</span>
                         </div>
-                        <p class="icon-text">4 doors, Sedan</p>
+                        <p class="icon-text">4 doors, <?php echo $bodytype ?></p>
                     </li>
                     <li class="list-unstyled w-25">
                         <div class="icon-style">
@@ -340,7 +352,7 @@ $favourite = $row['favourite_id'];
                             <h6 class="card-title text-center font-weight-bold card-title-dividerTitle">Carland Quality
                                 Assured</h6>
                             <p class="card-text text-center font-weight-lighter card-text-dividerText">All used Carland
-                                cars have passed through 300 point inspection, been fully reconditioned and have a
+                                vehicles have passed through 300 point inspection, been fully reconditioned and have a
                                 recent service and VTNZ, if required.</p>
                         </div>
                     </div>
@@ -372,10 +384,10 @@ $favourite = $row['favourite_id'];
         </div>
         <!-- end of divider block -->
         <div class="clearfix mt-5"></div>
-        <!-- browsing similar cars -->
+        <!-- browsing similar vehicles -->
         <div class="container-fluid mb-5">
             <div class="browsing-title text-center">
-                <h4>Other cars you might like</h4>
+                <h4>Other vehicles you might like</h4>
             </div>
             <div class="d-flex flew-row justify-content-around">
                 <div class="card ml-3 card-style">
@@ -515,7 +527,7 @@ $favourite = $row['favourite_id'];
                 </div>
             </div>
             <div class="row justify-content-center ml-3 mt-4 container-fluid">
-                <a class="btn btn-outline-success" href="#" role="button">Explore Similar Cars</a>
+                <a class="btn btn-outline-success" href="#" role="button">Explore Similar vehicles</a>
             </div>
         </div>
         <!-- car financing block -->
@@ -532,7 +544,7 @@ $favourite = $row['favourite_id'];
                             <h6 class="card-title text-center font-weight-bold card-title-iconTitle">Find your perfect
                                 car</h6>
                             <p class="card-text text-center card-text-iconText">Browse our wide range of high-quality
-                                used Carland cars that are available to buy or finance.</p>
+                                used Carland vehicles that are available to buy or finance.</p>
                         </div>
                     </div>
                     <div class="borderless mb-3 mr-2 card-icon" style="max-width: 18rem;">

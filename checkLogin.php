@@ -2,7 +2,7 @@
 // check if the member is sign in
 if (isset($_SESSION['email'])) {
 
-    $userId = $_SESSION['id'];
+    $userId = $_SESSION['user_id'];
     $query = "SELECT COUNT(*) AS totalFavouriteCount FROM favourite WHERE favourite.user_id = $userId;";
 
     $resultCounter = mysqli_query($link, $query) or die(mysqli_error($link));
