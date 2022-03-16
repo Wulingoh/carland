@@ -1,37 +1,37 @@
 <?php
 include "config.php";
 
-if (isset($_POST['contact_submit'])) {
-    $form_success = true;
-    $form_errors = array();
+if (isset($_POST['contactSubmit'])) {
+    $formSuccess = true;
+    $formErrors = array();
 
-    $contact_fullname = $_POST['contact_fullname'];
-    $contact_email = $_POST['contact_email'];
-    $contact_phone = $_POST['contact_phone'];
-    $contact_enquiry = $_POST['contact_enquiry'];
-    $contact_message = $_POST['contact_message'];
+    $contactFullname = $_POST['contactFullname'];
+    $contactEmail = $_POST['contactEmail'];
+    $contactPhone = $_POST['contactPhone'];
+    $contactEnquiry = $_POST['contactEnquiry'];
+    $contactMessage = $_POST['contactMessage'];
 
-    if (empty($contact_fullname)) {
-        $form_success = false;
-        $form_errors[] = "You have not entered a fullname";
+    if (empty($contactFullname)) {
+        $formSuccess = false;
+        $formErrors[] = "You have not entered a fullname";
     }
-    if (empty($contact_email)) {
-        $form_success = false;
-        $form_errors[] = "You have not entered an email address";
-    } elseif (!filter_var($contact_email, FILTER_VALIDATE_EMAIL)) {
-        $form_success = false;
-        $form_errors[] = "You have not entered a valid address";
+    if (empty($contactEmail)) {
+        $formSuccess = false;
+        $formErrors[] = "You have not entered an email address";
+    } elseif (!filter_var($contactEmail, FILTER_VALIDATE_EMAIL)) {
+        $formSuccess = false;
+        $formErrors[] = "You have not entered a valid address";
     }
-    if (empty($contact_message)) {
-        $form_success = false;
-        $form_errors[] = "You have entered a message";
-    } elseif (strlen($contact_message) < 20) {
-        $form_success = false;
-        $form_errors[] = "Your messages must be greater than 20 characters";
+    if (empty($contactMessage)) {
+        $formSuccess = false;
+        $formErrors[] = "You have entered a message";
+    } elseif (strlen($contactMessage) < 20) {
+        $formSuccess = false;
+        $formErrors[] = "Your messages must be greater than 20 characters";
     }
 
-    if ($form_success) {
-        $query = "INSERT INTO `contact`(`fullname`, `email`, `phone`, `topic`, `message`) VALUES ('$contact_fullname','$contact_email','$contact_phone',' $contact_enquiry','$contact_message')";
+    if ($formSuccess) {
+        $query = "INSERT INTO `contact`(`fullname`, `email`, `phone`, `topic`, `message`) VALUES ('$contactFullname','$contactEmail','$contactPhone',' $contactEnquiry','$contactMessage')";
         mysqli_query($link, $query);
         if (isset($_SESSION['return_page'])) {
             header("Location: " . $_SESSION['return_page']);
@@ -85,44 +85,44 @@ if (isset($_POST['contact_submit'])) {
         </div>
         <!-- end of breadcrumbs -->
         <div class="container container-error-wrapper">
-            <ul id="errors" class="<?php echo (isset($form_success) && !$form_success) ? 'visible' : ''; ?>">
+            <ul id="errors" class="<?php echo (isset($formSuccess) && !$formSuccess) ? 'visible' : ''; ?>">
                 <li id="info">There were some problems with your form submission:</li>
                 <?php
-                if (isset($form_errors) && count($form_errors) > 0) :
-                    foreach ($form_errors as $form_error) :
+                if (isset($formErrors) && count($formErrors) > 0) :
+                    foreach ($formErrors as $formError) :
                 ?>
-                <li><?php echo $form_error ?></li>
+                <li><?php echo $formError ?></li>
                 <?php
                     endforeach;
                 endif;
                 ?>
             </ul>
-            <p id="success" class="<?php echo (isset($form_success) && !$form_errors) ? 'visible' : ''; ?>">Thanks for your message! We will get back to you ASAP!</p>
+            <p id="success" class="<?php echo (isset($formSuccess) && !$formErrors) ? 'visible' : ''; ?>">Thanks for your message! We will get back to you ASAP!</p>
             <div class="container contactFormWrapper mt-3 mb-5">
                 <div class="row registerRowBox">
                     <div class="col-6 register-left-frame pr-3">
                         <form id='contact-form' action="contact.php" method="post">
                             <div class="form-group">
                                 <label class="col-form-label" for="fullname">Fullname <span class="required">*</span></label>
-                                <input type="text" class="form-control" id="fullname" name="contact_fullname" placeholder="Fullname" pattern=[A-Z\sa-z]{3,20} required="required" autofocus="autofocus">
+                                <input type="text" class="form-control" id="fullname" name="contactFullname" placeholder="Fullname" pattern=[A-Z\sa-z]{3,20} required="required" autofocus="autofocus">
                                 <span class="error" aria-live="polite"></span>
                             </div>
                             <div class="form-group">
                                 <label class="col-form-label" for="email">Email <span class="required">*</span></label>
-                                <input type="email" class="form-control" id="email" name="contact_email" placeholder="Email" required="required">
+                                <input type="email" class="form-control" id="email" name="contactEmail" placeholder="Email" required="required">
                                 <span class="error" aria-live="polite"></span>
                             </div>
 
                             <div class="form-group">
                                 <label for="phone">Phone</label>
-                                <input type="tel" class="form-control" id="phone" name="contact_phone" placeholder="Phone">
+                                <input type="tel" class="form-control" id="phone" name="contactPhone" placeholder="Phone">
                             </div>
                             <div class="form-group">
                                 <label for="enquiry">Enquiry</label>
-                                <select class="form-control" id="enguiry" name="contact_enquiry">
+                                <select class="form-control" id="enguiry" name="contactEnquiry">
                                     <option value="0">Select a Topic</option>
                                     <option value="1">General</option>
-                                    <option <?php if(isset($_GET['carId']))echo 'selected'?> value="2">Vehicle </option>
+                                    <option <?php if(isset($_GET['vehicleId']))echo 'selected'?> value="2">Vehicle </option>
                                     <option value="3">Service</option>
                                     <option value="4">Complaint</option>
                                     <option value="5">Other</option>
@@ -130,10 +130,10 @@ if (isset($_POST['contact_submit'])) {
                             </div>
                             <div class="form-group">
                                 <label for="message">Message <span class="required">*</span></label>
-                                <textarea class="form-control" id="message" name="contact_message" rows="3" placeholder="Your message must be greater than 20 characters" required="required" data-minlength="20"></textarea>
+                                <textarea class="form-control" id="message" name="contactMessage" rows="3" placeholder="Your message must be greater than 20 characters" required="required" data-minlength="20"></textarea>
                                 <span class="error" aria-live="polite"></span>
                             </div>
-                            <button type="submit" name="contact_submit" class="btn btn-outline-success btn-block">
+                            <button type="submit" name="contactSubmit" class="btn btn-outline-success btn-block">
                                 Send
                             </button>
                             <p id="req-field-desc"><span class="required">*</span> indicates a required field</p>

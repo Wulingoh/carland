@@ -1,34 +1,34 @@
 <?php
 // Database Connection.
 include 'config.php';
-$valid_token = false;
+$validToken = false;
 $showSuccess = false;
 $showErrors = array();
 
 
-if (isset($_POST['reset_password'])) {
+if (isset($_POST['resetPassword'])) {
 
     // Include file which makes the
-    $password_reset_token = $_POST['password_reset_token'];
-    $user_password = $_POST["user_password"];
-    $user_cpassword = $_POST["user_cpassword"];
+    $passwordResetToken = $_POST['passwordResetToken'];
+    $userPassword = $_POST["password"];
+    $userCpassword = $_POST["cpassword"];
 
     // validated users fields
-    if (empty($user_password)) {
+    if (empty($userPassword)) {
         $showErrors[] = "Please enter the password";
-    } elseif ($user_password !== $user_cpassword) {
+    } elseif ($userPassword !== $userCpassword) {
         $showErrors[] = "Passwords do not match";
     }
     if (empty($showErrors)) {
 
         $hash = password_hash(
-            $user_password,
+            $userPassword,
             PASSWORD_DEFAULT
         );
         // Password Hashing is used here.
 
-        echo $password_reset_token;
-        $query = "UPDATE `users` SET `password_hash` = '$hash', `password_reset_token` = NULL WHERE `password_reset_token` = '$password_reset_token'";
+        echo $passwordResetToken;
+        $query = "UPDATE `users` SET `password_hash` = '$hash', `password_reset_token` = NULL WHERE `password_reset_token` = '$passwordResetToken'";
 
         $result = mysqli_query($link, $query);
         echo $result;
@@ -42,14 +42,14 @@ if (isset($_POST['reset_password'])) {
     }
 } //end if   
 else {
-    $password_reset_token = $_GET["token"];
+    $passwordResetToken = $_GET["token"];
 
-    $query = "SELECT * FROM `users` WHERE `password_reset_token`= '$password_reset_token'";
+    $query = "SELECT * FROM `users` WHERE `password_reset_token`= '$passwordResetToken'";
 
     $result = mysqli_query($link, $query);
 
     if (mysqli_num_rows($result) > 0) {
-        $valid_token = true;
+        $validToken = true;
     } else {
         header("Location:index.php");
     }
@@ -105,22 +105,22 @@ else {
                 <p id="success" class="<?php
                                         if (!$showErrors) echo $showSuccess ? 'visible' : ''; ?>">Your password has been reset. Please proceed to log in.</p>
             </div>
-            <?php if ($valid_token) { ?>
+            <?php if ($validToken) { ?>
                 <!-- end of show error  -->
                 <div class="container">
                     <div class="container registerForm-wrapper mt-3 mb-5">
                         <div class="row registerRowBox">
                             <div class="col-6 register-left-frame">
                                 <form action="resetPassword.php" method="post">
-                                    <input type="hidden" name="password_reset_token" value="<?php echo $password_reset_token; ?>">
+                                    <input type="hidden" name="passwordResetToken" value="<?php echo $passwordResetToken; ?>">
                                     <div class="form-group">
                                         <label for="password">New Password</label>
-                                        <input type="password" class="form-control" id="password" name="user_password" placeholder="Password" required="required">
+                                        <input type="password" class="form-control" id="password" name="password" placeholder="Password" required="required">
                                         <span class="error" aria-live="polite"></span>
                                     </div>
                                     <div class="form-group">
                                         <label for="cpassword">Confirm New Password</label>
-                                        <input type="password" class="form-control" id="cpassword" name="user_cpassword" required="required">
+                                        <input type="password" class="form-control" id="cpassword" name="cpassword" required="required">
                                         <span class="error" aria-live="polite"></span>
 
                                         <small id="emailHelp" class="form-text text-muted">
@@ -128,7 +128,7 @@ else {
                                         </small>
                                     </div>
 
-                                    <button id="register_submit" type="submit" name="reset_password" class="btn btn-outline-success btn-block">
+                                    <button id="register_submit" type="submit" name="resetPassword" class="btn btn-outline-success btn-block">
                                         Update
                                     </button>
                                 </form>
