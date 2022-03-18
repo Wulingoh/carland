@@ -362,7 +362,12 @@ p {
 .btn-bookTest {
     background-color: #fff;
 }
-
+.slider-item-ratio {
+    height: 33.3% !important;
+}
+.slider-item-show4 {
+    height: auto !important;
+}
 
 
   /* product-detail accordion */
