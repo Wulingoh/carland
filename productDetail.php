@@ -1,6 +1,7 @@
 <?php 
 include "config.php";
 include "returnPage.php";
+include "fetchVehicleImg.php";
 
 if(!isset($_GET['vehicleId'])) {
     header("Location: productsListing.php");
@@ -53,6 +54,8 @@ $bodytype = $row['bodytype'];
 $category = $row['category'];
 $location = $row['location'];
 $favourite = $row['favourite_id'];
+
+$vehicleGallery = fetchVehicleImages($vehicleId);
 ?>
 
 
@@ -85,7 +88,7 @@ $favourite = $row['favourite_id'];
                 <!-- Sidebar -->
             </div>
             <!-- main content -->
-            <div class="col-sm-9">
+            <div class="col-sm-9 mb-5">
                 <!-- breadcrumbs -->
                 <div class="row">
                     <div class="pull-left col">
@@ -123,32 +126,32 @@ $favourite = $row['favourite_id'];
                     </div>
                         <!-- end of favourite heart icon -->
 
-                    <div class="swiffy-slider slider-item-ratio slider-nav-round slider-nav-autoplay data-slider-nav-autoplay-interval=5000 slider-nav-autopause slider-nav-nodelay" id="pgallery">
+                    <div class="swiffy-slider slider-item-ratio  slider-nav-round slider-nav-autoplay data-slider-nav-autoplay-interval=5000 slider-item-ratio-32x9 slider-nav-autopause slider-nav-nodelay" id="pgallery">
                         <ul class="slider-container">
-                            <li><img src="images/BMW3Series/image1.jpeg" loading="lazy" alt="..." data-bs-toggle="modal" data-bs-target="#productGalleryModal" onclick="imageClick(0)"></li>
-                            <li><img src="images/BMW3Series/image2.jpeg" loading="lazy" alt="..." data-bs-toggle="modal" data-bs-target="#productGalleryModal" onclick="imageClick(1)"></li>
-                            <li><img src="images/BMW3Series/image3.jpeg" loading="lazy" alt="..." data-bs-toggle="modal" data-bs-target="#productGalleryModal" onclick="imageClick(2)"></li>
-                            <li><img src="images/BMW3Series/image4.jpeg" loading="lazy" alt="..." data-bs-toggle="modal" data-bs-target="#productGalleryModal" onclick="imageClick(3)"></li>
-                            <li><img src="images/BMW3Series/image5.jpeg" loading="lazy" alt="..." data-bs-toggle="modal" data-bs-target="#productGalleryModal" onclick="imageClick(4)"></li>
-                            <li><img src="images/BMW3Series/image6.jpeg" loading="lazy" alt="..." data-bs-toggle="modal" data-bs-target="#productGalleryModal" onclick="imageClick(5)"></li>
+                            <?php foreach ($vehicleGallery as $key => $vehicleGalleryImage) {
+                            ?>
+                           
+                            <li class="ratio ratio-32x9"><img src="admin/vehicles/uploads/<?php echo $vehicleGalleryImage['gallery_img']?>" loading="lazy" alt="..." data-bs-toggle="modal" data-bs-target="#productGalleryModal" onclick="imageClick(<?php echo $key ?>)"></li>
+                            <?php 
+                             } 
+                             ?>
                         </ul>
 
                         <button type="button" class="slider-nav" aria-label="Go previous"></button>
                         <button type="button" class="slider-nav slider-nav-next" aria-label="Go next"></button>
                     </div>
 
-                    <div class="swiffy-slider slider-nav-dark slider-nav-sm slider-nav-chevron  slider-item-show4 slider-item-snapstart slider-item-ratio slider-nav-autopause slider-nav-visible slider-nav-page slider-nav-round  pt-3 d-none d-lg-block">
-                        <ul class="slider-container" id="pgallerythumbs" style="cursor:pointer">
-                            <li><img src="images/BMW3Series/image1.jpeg" loading="lazy" alt="..." onmouseover="thumbHover(0)"></li>
-                            <li><img src="images/BMW3Series/image2.jpeg" loading="lazy" alt="..." onmouseover="thumbHover(1)"></li>
-                            <li><img src="images/BMW3Series/image3.jpeg" loading="lazy" alt="..." onmouseover="thumbHover(2)"></li>
-                            <li><img src="images/BMW3Series/image4.jpeg" loading="lazy" alt="..." onmouseover="thumbHover(3)"></li>
-                            <li><img src="images/BMW3Series/image5.jpeg" loading="lazy" alt="..." onmouseover="thumbHover(4)"></li>
-                            <li><img src="images/BMW3Series/image6.jpeg" loading="lazy" alt="..." onmouseover="thumbHover(5)"></li>
+                    <div class="swiffy-slider slider-nav-dark slider-nav-sm slider-nav-chevron  slider-item-show4 slider-item-snap start slider-item-ratio slider-nav-autopause slider-nav-visible slider-nav-page slider-nav-round  pt-3 d-none d-lg-block">
+                        <ul class="slider-container" style="max-width: 100%;height: auto;" id="pgallerythumbs" style="cursor:pointer">
+                            <?php foreach ($vehicleGallery as $key => $vehicleGalleryImage) {
+                            ?>
+                            <li><img src="admin/vehicles/uploads/<?php echo $vehicleGalleryImage['gallery_img']?>" loading="lazy" alt="..." onmouseover="thumbHover(<?php echo $key ?>)"></li>
+                            <?php 
+                             } 
+                             ?>
                         </ul>
-
-                        <button type="button" class="slider-nav" aria-label="Go previous"></button>
-                        <button type="button" class="slider-nav slider-nav-next" aria-label="Go next"></button>
+                        <button type="button" class="slider-nav" style="max-width: 100%;height: auto;" aria-label="Go previous"></button>
+                        <button type="button" class="slider-nav slider-nav-next" style="max-width: 100%;height: auto;" aria-label="Go next"></button>
                     </div>
                 </div>
                 <!--/.Carousel Wrapper-->
