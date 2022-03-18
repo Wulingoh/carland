@@ -68,6 +68,8 @@ $favourite = $row['favourite_id'];
     <link href="css/bootstrap.css" rel="stylesheet">
     <script src="js/jquery-3.5.1.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.5.0/dist/js/swiffy-slider.min.js" crossorigin="anonymous" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.5.0/dist/css/swiffy-slider.min.css" rel="stylesheet" crossorigin="anonymous">
     <link href="css/style.css" rel="stylesheet">
     <link href="icon/bootstrap-icons.css" rel="stylesheet">
 </head>
@@ -109,105 +111,45 @@ $favourite = $row['favourite_id'];
                     </div>
                 </div>
                 <!-- end of main header -->
+                
                 <!--Carousel Wrapper-->
-                <div class="container-carousel-wrapper">
-                    <div class="carousel-container position-relative">
-                        <!-- favourite heart icon -->
-                        <div class="favourite-wrapper-container">
-                            <a href="javascript:;" class="favourite-heart btn btn-default" name="addToFavourite" id="favouriteBtn" data-carid="<?php echo $vehicleId ?>">
-                                <i class="bi bi-balloon-heart-fill" att="0" style="color: <?php echo $favourite ?"DF4E3C":"white"?>; font-size: 40px"></i>
-                            </a>
-                        </div>
+                <div class="col mb-5" id="productGallery">
+                    <!-- favourite heart icon -->
+                    <div class="favourite-wrapper-container">
+                        <a href="javascript:;" class="favourite-heart btn btn-default" name="addToFavourite" id="favouriteBtn" data-carid="<?php echo $vehicleId ?>">
+                            <i class="bi bi-balloon-heart-fill" att="0" style="color: <?php echo $favourite ?"DF4E3C":"white"?>; font-size: 40px">
+                            </i>
+                        </a>
+                    </div>
                         <!-- end of favourite heart icon -->
-                        <div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active" data-slide-number="0">
-                                    <img src="images/BMW3Series/image1.jpeg" class="d-block w-100" alt="..." data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
-                                </div>
-                                <div class="carousel-item" data-slide-number="1">
-                                    <img src="images/BMW3Series/image2.jpeg" class="d-block w-100" alt="..." data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
-                                </div>
-                                <div class="carousel-item" data-slide-number="2">
-                                    <img src="images/BMW3Series/image3.jpeg" class="d-block w-100" alt="..." data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
-                                </div>
-                                <div class="carousel-item" data-slide-number="3">
-                                    <img src="images/BMW3Series/image4.jpeg" class="d-block w-100" alt="..." data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
-                                </div>
-                                <div class="carousel-item" data-slide-number="4">
-                                    <img src="images/BMW3Series/image5.jpeg" class="d-block w-100" alt="..." data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
-                                </div>
-                                <div class="carousel-item" data-slide-number="5">
-                                    <img src="images/BMW3Series/image6.jpeg" class="d-block w-100" alt="..." data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
-                                </div>
-                                <div class="carousel-item" data-slide-number="6">
-                                    <img src="images/BMW3Series/image7.jpeg" class="d-block w-100" alt="..." data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
-                                </div>
-                                <div class="carousel-item" data-slide-number="7">
-                                    <img src="images/BMW3Series/image8.jpeg" class="d-block w-100" alt="..." data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
-                                </div>
-                                <div class="carousel-item" data-slide-number="8">
-                                    <img src="images/BMW3Series/image9.jpeg" class="d-block w-100" alt="..." data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
-                                </div>
-                                <div class="carousel-item" data-slide-number="9">
-                                    <img src="images/BMW3Series/image10.jpeg" class="d-block w-100" alt="..." data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Carousel Navigation -->
-                        <div id="carousel-thumbs" class="carousel slide carousel-thumbnails" data-ride="carousel">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <div class="row mx-0">
-                                        <div id="carousel-selector-0" class="thumb col-4 col-sm-2 px-1 py-2 selected" data-target="#myCarousel" data-slide-to="0">
-                                            <img src="images/BMW3Series/image1.jpeg" class="img-fluid" alt="...">
-                                        </div>
-                                        <div id="carousel-selector-1" class="thumb col-4 col-sm-2 px-1 py-2" data-target="#myCarousel" data-slide-to="1">
-                                            <img src="images/BMW3Series/image2.jpeg" class="img-fluid" alt="...">
-                                        </div>
-                                        <div id="carousel-selector-2" class="thumb col-4 col-sm-2 px-1 py-2" data-target="#myCarousel" data-slide-to="2">
-                                            <img src="images/BMW3Series/image3.jpeg" class="img-fluid" alt="...">
-                                        </div>
-                                        <div id="carousel-selector-3" class="thumb col-4 col-sm-2 px-1 py-2" data-target="#myCarousel" data-slide-to="3">
-                                            <img src="images/BMW3Series/image4.jpeg" class="img-fluid" alt="...">
-                                        </div>
-                                        <div id="carousel-selector-4" class="thumb col-4 col-sm-2 px-1 py-2" data-target="#myCarousel" data-slide-to="4">
-                                            <img src="images/BMW3Series/image5.jpeg" class="img-fluid" alt="...">
-                                        </div>
-                                        <div id="carousel-selector-5" class="thumb col-4 col-sm-2 px-1 py-2" data-target="#myCarousel" data-slide-to="5">
-                                            <img src="images/BMW3Series/image6.jpeg" class="img-fluid" alt="...">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="carousel-item">
-                                    <div class="row mx-0">
-                                        <div id="carousel-selector-6" class="thumb col-4 col-sm-2 px-1 py-2" data-target="#myCarousel" data-slide-to="6">
-                                            <img src="images/BMW3Series/image7.jpeg" class="img-fluid" alt="...">
-                                        </div>
-                                        <div id="carousel-selector-7" class="thumb col-4 col-sm-2 px-1 py-2" data-target="#myCarousel" data-slide-to="7">
-                                            <img src="images/BMW3Series/image8.jpeg" class="img-fluid" alt="...">
-                                        </div>
-                                        <div id="carousel-selector-8" class="thumb col-4 col-sm-2 px-1 py-2" data-target="#myCarousel" data-slide-to="8">
-                                            <img src="images/BMW3Series/image9.jpeg" class="img-fluid" alt="...">
-                                        </div>
-                                        <div id="carousel-selector-9" class="thumb col-4 col-sm-2 px-1 py-2" data-target="#myCarousel" data-slide-to="9">
-                                            <img src="images/BMW3Series/image10.jpeg" class="img-fluid" alt="...">
-                                        </div>
-                                        <div class="col-2 px-1 py-2">
-                                        </div>
-                                        <div class="col-2 px-1 py-2"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a class="carousel-control-prev" href="#carousel-thumbs" role="button" data-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="carousel-control-next" href="#carousel-thumbs" role="button" data-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </div>
-                    </div> <!-- /container -->
+
+                    <div class="swiffy-slider slider-item-ratio slider-nav-round slider-nav-autoplay data-slider-nav-autoplay-interval=5000 slider-nav-autopause slider-nav-nodelay" id="pgallery">
+                        <ul class="slider-container">
+                            <li><img src="images/BMW3Series/image1.jpeg" loading="lazy" alt="..." data-bs-toggle="modal" data-bs-target="#productGalleryModal" onclick="imageClick(0)"></li>
+                            <li><img src="images/BMW3Series/image2.jpeg" loading="lazy" alt="..." data-bs-toggle="modal" data-bs-target="#productGalleryModal" onclick="imageClick(1)"></li>
+                            <li><img src="images/BMW3Series/image3.jpeg" loading="lazy" alt="..." data-bs-toggle="modal" data-bs-target="#productGalleryModal" onclick="imageClick(2)"></li>
+                            <li><img src="images/BMW3Series/image4.jpeg" loading="lazy" alt="..." data-bs-toggle="modal" data-bs-target="#productGalleryModal" onclick="imageClick(3)"></li>
+                            <li><img src="images/BMW3Series/image5.jpeg" loading="lazy" alt="..." data-bs-toggle="modal" data-bs-target="#productGalleryModal" onclick="imageClick(4)"></li>
+                            <li><img src="images/BMW3Series/image6.jpeg" loading="lazy" alt="..." data-bs-toggle="modal" data-bs-target="#productGalleryModal" onclick="imageClick(5)"></li>
+                        </ul>
+
+                        <button type="button" class="slider-nav" aria-label="Go previous"></button>
+                        <button type="button" class="slider-nav slider-nav-next" aria-label="Go next"></button>
+                    </div>
+
+                    <div class="swiffy-slider slider-nav-dark slider-nav-sm slider-nav-chevron  slider-item-show4 slider-item-snapstart slider-item-ratio slider-nav-autopause slider-nav-visible slider-nav-page slider-nav-round  pt-3 d-none d-lg-block">
+                        <ul class="slider-container" id="pgallerythumbs" style="cursor:pointer">
+                            <li><img src="images/BMW3Series/image1.jpeg" loading="lazy" alt="..." onmouseover="thumbHover(0)"></li>
+                            <li><img src="images/BMW3Series/image2.jpeg" loading="lazy" alt="..." onmouseover="thumbHover(1)"></li>
+                            <li><img src="images/BMW3Series/image3.jpeg" loading="lazy" alt="..." onmouseover="thumbHover(2)"></li>
+                            <li><img src="images/BMW3Series/image4.jpeg" loading="lazy" alt="..." onmouseover="thumbHover(3)"></li>
+                            <li><img src="images/BMW3Series/image5.jpeg" loading="lazy" alt="..." onmouseover="thumbHover(4)"></li>
+                            <li><img src="images/BMW3Series/image6.jpeg" loading="lazy" alt="..." onmouseover="thumbHover(5)"></li>
+                        </ul>
+
+                        <button type="button" class="slider-nav" aria-label="Go previous"></button>
+                        <button type="button" class="slider-nav slider-nav-next" aria-label="Go next"></button>
+                    </div>
                 </div>
                 <!--/.Carousel Wrapper-->
                 <div class="row justify-content-between">
