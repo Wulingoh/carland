@@ -1,6 +1,6 @@
 <?php 
 include "../../config.php";
-include "../../image-creation.php";
+include "../lib/image-creation.php";
 
 
 
@@ -25,11 +25,6 @@ $fueltype = $row['fueltype'];
 $color = $row['color'];
 $safety = $row['safety'];
 $detail = $row['detail'];
-
-
-
-
-
 
 
 ?>
@@ -87,7 +82,7 @@ function arrowChange2(){
              </div>
              <div class="col" style="text-align: right;">
                 <br><br>
-                <p>Hi&nbsp;,<b><?php echo  $_SESSION['fullname'] ; ?></b>,&nbsp;welcom to the admin system!&nbsp;&nbsp;<a href="../../logout.php">[Log Out]</a></p>
+                <p>Hi&nbsp;,<b><?php echo  $_SESSION['fullname'] ; ?></b>,&nbsp;Welcome Admin!&nbsp;&nbsp;<a href="../../logout.php">[Log Out]</a></p>
              </div>
          </div>
          <br>
