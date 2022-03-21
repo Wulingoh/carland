@@ -1,6 +1,6 @@
 <?php 
 include "../../config.php";
-include "../../image-creation.php";
+include "../../lib/image-creation.php";
 
 
 
@@ -13,6 +13,7 @@ $img = $row ['img'];
 $year = $row['year'];
 $make_id = $row['make_id'];
 $model_id = $row['model_id'];
+$title = $row['title'];
 
 $queryMake = "SELECT * FROM vehicle_make WHERE make_id = '$make_id'";
 $resultMake = mysqli_query($link, $queryMake);
@@ -32,11 +33,11 @@ if (isset($_POST['addImg'])) {
         $imgName = $_FILES['gallery_img']['name'];
         $ext = strrchr($imgName, "."); //Finds the last occurrence of a string inside another string, string=> photoName, needle => "."
         $newName = md5(rand()*time()).$ext;
-        $imgPath = CAR_IMG . $newName;
+        $imgPath = CAR_IMG_DIR . $newName;
         $tmpName = $_FILES['gallery_img']['tmp_name'];
         createThumbnail($tmpName, $imgPath, CAR_IMG_WIDTH);
         
-      } else{
+      } else {
         $newName = "";
       }
     $query = "INSERT INTO vehicle_gallery (vehicle_id, gallery_img, gallery_img_title) VALUES ('$id', '$newName', '$gallery_img_title' )";
@@ -114,7 +115,7 @@ function arrowChange2(){
              </div>
              <div class="col" style="text-align: right;">
                 <br><br>
-                <p>Hi&nbsp;,<b><?php echo  $_SESSION['fullname'] ; ?></b>,&nbsp;welcom to the admin system!&nbsp;&nbsp;<a href="../../logout.php">[Log Out]</a></p>
+                <p>Hi&nbsp;,<b><?php echo  $_SESSION['fullname'] ; ?></b>,&nbsp;Welcome Admin!&nbsp;&nbsp;<a href="../../logout.php">[Log Out]</a></p>
              </div>
          </div>
          <br>
@@ -184,8 +185,8 @@ function arrowChange2(){
                  </div>
                  <hr>
                  <div class="row">
-                     <div class="col">
-                         <h5><b><?php echo $year; ?>&nbsp;<?php echo $make; ?>&nbsp;<?php echo $model; ?></b></h5>
+                     <div class="col p-0">
+                         <h5><b><?php echo $title; ?></b></h5>
                      </div>
                                           
                  </div>
@@ -209,7 +210,7 @@ function arrowChange2(){
                  <div class="row">
                      <div class="form-group col-6">
                         <label for="gallery_img">Upload Gellery Image</label>
-                        <input type="file" class="form-control-file" id="gallery_img" name="gallery_img">
+                        <input type="file" class="form-control-file" id="gallery_img" name="gallery_img" required>
                      </div>
                  </div>
                  <br>

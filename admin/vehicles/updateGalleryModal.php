@@ -2,11 +2,6 @@
 include "../../config.php";
 include "../../image-creation.php";
 
-
-
-
-   
-      
     if (isset($_POST['modalUpdate'])) {
         $id = $_POST['car_id'];
         $img_id = $_POST['img_id'];
@@ -15,7 +10,7 @@ include "../../image-creation.php";
             $imgName = $_FILES['modal_img']['name'];
             $ext = strrchr($imgName, "."); //Finds the last occurrence of a string inside another string, string=> photoName, needle => "."
             $newName = md5(rand()*time()).$ext;
-            $imgPath = CAR_IMG . $newName;
+            $imgPath = CAR_IMG_DIR . $newName;
             $tmpName = $_FILES['modal_img']['tmp_name'];
             createThumbnail($tmpName, $imgPath, CAR_IMG_WIDTH);
             $query = "UPDATE vehicle_gallery SET gallery_img_title = '$title', gallery_img = '$newName' WHERE img_id = '$img_id'  ";
