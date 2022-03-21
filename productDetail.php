@@ -1,7 +1,7 @@
 <?php 
 include "config.php";
 include "returnPage.php";
-include "fetchVehicleImg.php";
+include "queryHelpers.php";
 
 if(!isset($_GET['vehicleId'])) {
     header("Location: productsListing.php");
