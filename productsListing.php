@@ -28,9 +28,16 @@ INNER JOIN vehicle_bodytype ON vehicles.bodytype_id = vehicle_bodytype.bodytype_
 LEFT JOIN favourite ON favourite.vehicle_id = vehicles.vehicle_id AND favourite.user_id = $userId
 ORDER BY $orderBy;";
 
+
+
 $stmt = $link->prepare($query);
 $stmt->execute();
 $result = $stmt->get_result();
+
+
+
+  
+   
 
 
 ?>
@@ -60,7 +67,7 @@ $result = $stmt->get_result();
         <div class="row p-0 ml-0 mr-0">
             <div class="col-3">
                 <!-- Sidebar -->
-                <?php include "sidebarFilter.php" ?>
+               <?php include "sidebarFilter.php" ?>
                 <!-- Sidebar -->
             </div>
             <!-- main content -->
@@ -118,8 +125,25 @@ $result = $stmt->get_result();
                         <label class="sort-style-label">
                             <form method="GET" id="orderBy">
                                 <div class="sort-select-option">
+                                <!--to merge search filter with sorting box, not good, should use other way to do it-->
+                                <input type="hidden" name="searchMake" <?php if(isset($_GET['filterSearch'])): ?> value="<?= $_GET['searchMake']; ?>" <?php endif; ?>>
+                                <input type="hidden" name="searchModel" <?php if(isset($_GET['filterSearch'])): ?> value="<?= $_GET['searchModel']; ?>" <?php endif; ?>>
+                                <input type="hidden" name="searchLocation" <?php if(isset($_GET['filterSearch'])): ?> value="<?= $_GET['searchLocation']; ?>" <?php endif; ?>>
+                                <input type="hidden" name="minPrice" <?php if(isset($_GET['filterSearch'])): ?> value="<?= $_GET['minPrice']; ?>" <?php endif; ?>>
+                                <input type="hidden" name="maxPrice" <?php if(isset($_GET['filterSearch'])): ?> value="<?= $_GET['maxPrice']; ?>" <?php endif; ?>>
+                                <input type="hidden" name="searchFueltype" <?php if(isset($_GET['filterSearch'])): ?> value="<?= $_GET['searchFueltype']; ?>" <?php endif; ?>>
+                                <input type="hidden" name="minManufacturedYear" <?php if(isset($_GET['filterSearch'])): ?> value="<?= $_GET['minManufacturedYear']; ?>" <?php endif; ?>>
+                                <input type="hidden" name="maxManufacturedYear" <?php if(isset($_GET['filterSearch'])): ?> value="<?= $_GET['maxManufacturedYear']; ?>" <?php endif; ?>>
+                                <input type="hidden" name="minMileage" <?php if(isset($_GET['filterSearch'])): ?> value="<?= $_GET['minMileage']; ?>" <?php endif; ?>>
+                                <input type="hidden" name="maxMileage" <?php if(isset($_GET['filterSearch'])): ?> value="<?= $_GET['maxMileage']; ?>" <?php endif; ?>>
+                                <input type="hidden" name="searchTransmission" <?php if(isset($_GET['filterSearch'])): ?> value="<?= $_GET['searchTransmission']; ?>" <?php endif; ?>>
+                                <input type="hidden" name="searchColor" <?php if(isset($_GET['filterSearch'])): ?> value="<?= $_GET['searchColor']; ?>" <?php endif; ?>>
+                                <input type="hidden" name="sesarchBodytype" <?php if(isset($_GET['filterSearch'])): ?> value="<?= $_GET['sesarchBodytype']; ?>" <?php endif; ?>>
+                                <input type="hidden" name="searchSeats" <?php if(isset($_GET['filterSearch'])): ?> value="<?= $_GET['searchSeats']; ?>" <?php endif; ?>>
+                                <input type="hidden" name="filterSearch" <?php if(isset($_GET['filterSearch'])): ?> value=" " <?php endif; ?>>
+                                <!--to merge search filter with sorting box, not good, should use other way to do it-->
                                     <select name="orderBy" onchange='submitSelectpicker()' class="selectpicker" data-width="150px">
-                                        <option value="vehicles.price ASC" window.location.productsListing 
+                                        <option value="vehicles.price ASC" window.location.productsListing
                                             <?php if ($orderBy == 'vehicles.price ASC') {
                                                 echo "selected";
                                             } 
@@ -147,8 +171,10 @@ $result = $stmt->get_result();
                                     </select>
                                 </div>
                             </form>
-
+                         
                         </label>
+                        
+                        
                     </div>
                     <!-- end of sort style page -->
                 </div>
@@ -161,7 +187,7 @@ $result = $stmt->get_result();
                         <div class="col-lg-4 col-md-12">
                             <div class="card ml-3 card-style">
                                 <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
-                                    <img src="images/BMW3Series/image1.jpeg" class="card-img" />
+                                    <img src="../carland-main/admin/vehicles/uploads/<?php echo $row['img']; ?>" class="card-img" />
                                     <div class="card-img-overlay d-flex justify-content-end h-25">
                                         <a href="javascript:" class="favourite-heart btn btn-default" name="addToFavourite" id="favouriteBtn" data-carid="<?php echo $row['vehicle_id'] ?>">
                                             <i class="bi bi-balloon-heart-fill" att="0" style="color:<?php echo $row['favourite_id'] ? "#DF4E3C" : "white" ?>; font-size: 20px"></i>
@@ -186,7 +212,7 @@ $result = $stmt->get_result();
                                     <a href="" class="text-reset">
                                         <p class="product-description"><?php echo htmlentities($row['subtitle']); ?></p>
                                         <span class="product-text-mileage"><?php echo htmlentities($row['mileage']) ?>km</span>
-                                        <span class="product-text-reg"><?php echo htmlentities($row['rego']) ?> reg</span>
+                                        <span class="product-text-reg"><?php echo htmlentities($row['rego']) ?> </span>
                                     </a>
                                     <h6 class="mt-3 mb-3"><b>$<?php echo number_format($row['price']) ?></b></h6>
                                 </div>
