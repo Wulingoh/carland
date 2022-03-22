@@ -1,6 +1,6 @@
 <?php 
 include "../../config.php";
-include "../../image-creation.php";
+include "../../lib/image-creation.php";
 
 
 
@@ -32,7 +32,7 @@ if (isset($_POST['addImg'])) {
         $imgName = $_FILES['gallery_img']['name'];
         $ext = strrchr($imgName, "."); //Finds the last occurrence of a string inside another string, string=> photoName, needle => "."
         $newName = md5(rand()*time()).$ext;
-        $imgPath = CAR_IMG . $newName;
+        $imgPath = CAR_IMG_DIR . $newName;
         $tmpName = $_FILES['gallery_img']['tmp_name'];
         createThumbnail($tmpName, $imgPath, CAR_IMG_WIDTH);
         
