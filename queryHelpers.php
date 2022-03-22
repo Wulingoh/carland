@@ -27,4 +27,20 @@ function fetchModelList($makeId) {
     return $result->fetch_all(MYSQLI_ASSOC);
     
 }
+
+function fetchSimilarProductsList($userId, $bodytypeId, $vehicleId) {
+    global $link;
+    
+    $stmt = $link->prepare('SELECT vehicles.*, location, favourite_id FROM vehicles
+                            INNER JOIN vehicle_location ON vehicles.location_id = vehicle_location.location_id 
+                            LEFT JOIN favourite ON favourite.vehicle_id = vehicles.vehicle_id AND favourite.user_id = ?
+                            WHERE bodytype_id = ? AND vehicles.vehicle_id != ? LIMIT 3');
+
+    $stmt->bind_param('iii', $userId, $bodytypeId, $vehicleId);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+    return $result->fetch_all(MYSQLI_ASSOC);
+    
+}
 ?>

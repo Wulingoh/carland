@@ -28,17 +28,9 @@ INNER JOIN vehicle_bodytype ON vehicles.bodytype_id = vehicle_bodytype.bodytype_
 LEFT JOIN favourite ON favourite.vehicle_id = vehicles.vehicle_id AND favourite.user_id = $userId
 ORDER BY $orderBy;";
 
-
-
 $stmt = $link->prepare($query);
 $stmt->execute();
 $result = $stmt->get_result();
-
-
-
-  
-   
-
 
 ?>
 
