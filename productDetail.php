@@ -1,20 +1,20 @@
-<?php 
+<?php
 include "config.php";
 include "returnPage.php";
 include "queryHelpers.php";
 
-if(!isset($_GET['vehicleId'])) {
+if (!isset($_GET['vehicleId'])) {
     header("Location: productsListing.php");
     exit;
 }
 $vehicleId = $_GET['vehicleId'];
 if (isset($_SESSION['user_id'])) {
     $userId = $_SESSION['user_id'];
-}else { 
+} else {
     $userId = 0;
 }
-$query = 
-        "SELECT vehicles.vehicle_id, img, price, year, mileage, engine_size, detail, rego, category, bodytype, fuelType, vehicle_make.make_id, vehicle_model.model_id, vehicle_transmission.transmission, color, seats, vehicle_safety.safety_id, vehicle_location.location, title, subtitle,favourite_id 
+$query =
+    "SELECT vehicles.vehicle_id, img, price, year, mileage, engine_size, detail, rego, category, bodytype, fuelType, vehicle_make.make_id, vehicle_model.model_id, vehicle_transmission.transmission, color, seats, vehicle_safety.safety_id, vehicle_location.location, title, subtitle,favourite_id, vehicles.bodytype_id 
         FROM vehicles 
         INNER JOIN vehicle_make ON vehicles.make_id = vehicle_make.make_id 
         INNER JOIN vehicle_model ON vehicles.model_id = vehicle_model.model_id 
@@ -30,7 +30,7 @@ $query =
         WHERE vehicles.vehicle_id = $vehicleId;";
 $result = mysqli_query($link, $query) or die(mysqli_error($link));
 
-if(mysqli_num_rows($result) == 0) {
+if (mysqli_num_rows($result) == 0) {
     header("Location: productsListing.php");
     exit;
 }
@@ -54,8 +54,10 @@ $bodytype = $row['bodytype'];
 $category = $row['category'];
 $location = $row['location'];
 $favourite = $row['favourite_id'];
+$bodytypeId = $row['bodytype_id'];
 
 $vehicleGallery = fetchVehicleImages($vehicleId);
+$vehicleSimilarProductsList = fetchSimilarProductsList($userId, $bodytypeId, $vehicleId);
 ?>
 
 
@@ -78,7 +80,7 @@ $vehicleGallery = fetchVehicleImages($vehicleId);
 </head>
 
 <body>
-    <?php include "navigation.php"?>
+    <?php include "navigation.php" ?>
     <!-- sidebar filter -->
     <section class="container-fluid">
         <div class="row">
@@ -114,27 +116,27 @@ $vehicleGallery = fetchVehicleImages($vehicleId);
                     </div>
                 </div>
                 <!-- end of main header -->
-                
+
                 <!--Carousel Wrapper-->
                 <div class="col mb-5" id="productGallery">
                     <!-- favourite heart icon -->
                     <div class="favourite-wrapper-container">
                         <a href="javascript:;" class="favourite-heart btn btn-default" name="addToFavourite" id="favouriteBtn" data-carid="<?php echo $vehicleId ?>">
-                            <i class="bi bi-balloon-heart-fill" att="0" style="color: <?php echo $favourite ?"DF4E3C":"white"?>; font-size: 40px">
+                            <i class="bi bi-balloon-heart-fill" att="0" style="color: <?php echo $favourite ? "DF4E3C" : "white" ?>; font-size: 40px">
                             </i>
                         </a>
                     </div>
-                        <!-- end of favourite heart icon -->
+                    <!-- end of favourite heart icon -->
 
                     <div class="swiffy-slider slider-item-ratio  slider-nav-round slider-nav-autoplay data-slider-nav-autoplay-interval=5000 slider-item-ratio-16x9 slider-nav-autopause slider-nav-nodelay" id="pgallery">
                         <ul class="slider-container">
                             <?php foreach ($vehicleGallery as $key => $vehicleGalleryImage) {
                             ?>
-                           
-                            <li class="ratio"><img src="admin/vehicles/uploads/<?php echo $vehicleGalleryImage['gallery_img']?>" loading="lazy" alt="..." data-bs-toggle="modal" data-bs-target="#productGalleryModal" onclick="imageClick(<?php echo $key ?>)"></li>
-                            <?php 
-                             } 
-                             ?>
+
+                                <li class="ratio"><img src="admin/vehicles/uploads/<?php echo $vehicleGalleryImage['gallery_img'] ?>" loading="lazy" alt="..." data-bs-toggle="modal" data-bs-target="#productGalleryModal" onclick="imageClick(<?php echo $key ?>)"></li>
+                            <?php
+                            }
+                            ?>
                         </ul>
 
                         <button type="button" class="slider-nav" aria-label="Go previous"></button>
@@ -145,17 +147,17 @@ $vehicleGallery = fetchVehicleImages($vehicleId);
                         <ul class="slider-container" style="max-width: 100%;height: auto;" id="pgallerythumbs" style="cursor:pointer">
                             <?php foreach ($vehicleGallery as $key => $vehicleGalleryImage) {
                             ?>
-                            <li><img src="admin/vehicles/uploads/<?php echo $vehicleGalleryImage['gallery_img']?>" loading="lazy" alt="..." onmouseover="thumbHover(<?php echo $key ?>)"></li>
-                            <?php 
-                             } 
-                             ?>
+                                <li><img src="admin/vehicles/uploads/<?php echo $vehicleGalleryImage['gallery_img'] ?>" loading="lazy" alt="..." onmouseover="thumbHover(<?php echo $key ?>)"></li>
+                            <?php
+                            }
+                            ?>
                         </ul>
                         <button type="button" class="slider-nav" style="max-width: 100%;height: auto;" aria-label="Go previous"></button>
                         <button type="button" class="slider-nav slider-nav-next" style="max-width: 100%;height: auto;" aria-label="Go next"></button>
                     </div>
                 </div>
                 <!--/.Carousel Wrapper-->
-                <div class="row justify-content-between">
+                <div class="row justify-content-between ml-3">
                     <li class="list-unstyled w-25">
                         <div class="icon-style">
                             <i class="bi bi-calendar4-event"></i>
@@ -182,7 +184,7 @@ $vehicleGallery = fetchVehicleImages($vehicleId);
                     </li>
                 </div>
                 <!-- end of first key features row -->
-                <div class="row justify-content-between mt-3">
+                <div class="row justify-content-between mt-3 ml-3">
                     <li class="list-unstyled w-25">
                         <div class="icon-style">
                             <svg width="50" height="50" viewBox="0 0 24 24" fill="none" class="sc-1tndrw2-0 hGYlvQ">
@@ -214,7 +216,7 @@ $vehicleGallery = fetchVehicleImages($vehicleId);
                     </li>
                 </div>
                 <!-- end of key features second row -->
-                <div class="row justify-content-between mt-3">
+                <div class="row justify-content-between mt-3 ml-3">
                     <li class="list-unstyled w-25">
                         <div class="icon-style">
                             <svg width="50" height="50" viewBox="0 0 25 23" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -234,7 +236,7 @@ $vehicleGallery = fetchVehicleImages($vehicleId);
                         </div>
                         <p class="icon-text">
                             <?php
-                            for($i=0; $i<$safety; $i++) {
+                            for ($i = 0; $i < $safety; $i++) {
                                 echo "<i class='bi bi-emoji-smile'></i> ";
                             }
                             ?>
@@ -304,144 +306,46 @@ $vehicleGallery = fetchVehicleImages($vehicleId);
                 <h4>Other vehicles you might like</h4>
             </div>
             <div class="d-flex flew-row justify-content-around">
-                <div class="card ml-3 card-style">
-                    <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
-                        <img src="images/BMW3Series/image1.jpeg" class="card-img" />
-                        <div class="card-img-overlay d-flex justify-content-end h-25">
-                            <a href="#" class="card-link text-danger like">
-                                <i class="bi bi-heart"></i>
-                            </a>
-                        </div>
-                        <div class="mask">
-                            <div class="d-flex justify-content-end">
-                                <a href="#">
-                                    <span class="product-location">Christchurch</span>
+                <?php foreach ($vehicleSimilarProductsList as $key => $vehicleSimilarProduct) {
+                ?>
+                    <div class="col-lg-4 col-md-12">
+                        <div class="card ml-3 card-style">
+                            <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
+                                <img src="admin/vehicles/uploads/<?php echo $vehicleSimilarProduct['img']; ?>" class="card-img" />
+                                <div class="card-img-overlay d-flex justify-content-end h-25">
+                                    <a href="javascript:" class="favourite-heart btn btn-default" name="addToFavourite" id="favouriteBtn" data-carid="<?php echo $vehicleSimilarProduct['vehicle_id'] ?>">
+                                        <i class="bi bi-balloon-heart-fill" att="0" style="color:<?php echo $vehicleSimilarProduct['favourite_id'] ? "#DF4E3C" : "white" ?>; font-size: 20px"></i>
+                                    </a>
+                                </div>
+                                <div class="mask">
+                                    <div class="d-flex justify-content-end">
+                                        <a href="#">
+                                            <span class="product-location" ><?php echo $vehicleSimilarProduct['location'] ?></span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="hover-overlay">
+                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <a href="" class="text-reset">
+                                    <h5 class="card-title mb-3"><?php echo htmlentities($vehicleSimilarProduct['title']); ?></h5>
                                 </a>
-                            </div>
-                        </div>
-                        <div class="hover-overlay">
-                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <a href="" class="text-reset">
-                            <h5 class="card-title mb-3">BMW 3 Series</h5>
-                        </a>
-                        <a href="" class="text-reset">
-                            <p class="product-description">2L M Sport Shadow Edition 320d</p>
-                            <span class="product-text-mileage">28,650km</span>
-                            <span class="product-text-reg">2017 reg</span>
-                        </a>
-                        <h6 class="mt-3 mb-3"><b>$55,125</b></h6>
-                    </div>
-                    <a href="#" class="btn btn-outline-success mb-3 w-90 ml-3 mr-3" role="button"><i class="bi bi-eye pr-2"></i> View This Car</a>
-                </div>
-                <div class="card ml-3 card-style">
-                    <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
-                        <img src="images/BMW3Series/image1.jpeg" class="card-img" />
-                        <div class="card-img-overlay d-flex justify-content-end h-25">
-                            <a href="#" class="card-link text-danger like">
-                                <i class="bi bi-heart"></i>
-                            </a>
-                        </div>
-                        <div class="mask">
-                            <div class="d-flex justify-content-end">
-                                <a href="#">
-                                    <span class="product-location">Christchurch</span>
+                                <a href="" class="text-reset">
+                                    <p class="product-description"><?php echo htmlentities($vehicleSimilarProduct['subtitle']); ?></p>
+                                    <span class="product-text-mileage"><?php echo htmlentities($vehicleSimilarProduct['mileage']) ?>km</span>
+                                    <span class="product-text-reg"><?php echo htmlentities($vehicleSimilarProduct['rego']) ?> </span>
                                 </a>
+                                <h6 class="mt-3 mb-3"><b>$<?php echo number_format($vehicleSimilarProduct['price']) ?></b></h6>
                             </div>
-                        </div>
-                        <div class="hover-overlay">
-                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);">
-                            </div>
+                            <a class="btn btn-outline-success mb-3 w-90 ml-3 mr-3" href='productDetail.php?vehicleId=<?php echo htmlentities($vehicleSimilarProduct['vehicle_id']); ?>'><i class="bi bi-eye pr-2"></i> View This Car</a>
                         </div>
                     </div>
-                    <div class="card-body">
-                        <a href="" class="text-reset">
-                            <h5 class="card-title mb-3">BMW 3 Series</h5>
-                        </a>
-                        <a href="" class="text-reset">
-                            <p class="product-description">2L M Sport Shadow Edition 320d</p>
-                            <span class="product-text-mileage">28,650km</span>
-                            <span class="product-text-reg">2017 reg</span>
-                        </a>
-                        <h6 class="mt-3 mb-3"><b>$55,125</b></h6>
-                    </div>
-                    <a href="#" class="btn btn-outline-success mb-3 w-90 ml-3 mr-3"><i class="bi bi-eye pr-2"></i> View
-                        This Car</a>
-                </div>
-                <div class="card ml-3 card-style">
-                    <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
-                        <img src="images/BMW3Series/image1.jpeg" class="card-img" />
-                        <div class="card-img-overlay d-flex justify-content-end h-25">
-                            <a href="#" class="card-link text-danger like">
-                                <i class="bi bi-heart"></i>
-                            </a>
-                        </div>
-                        <div class="mask">
-                            <div class="d-flex justify-content-end">
-                                <a href="#">
-                                    <span class="product-location">Christchurch</span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="hover-overlay">
-                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <a href="" class="text-reset">
-                            <h5 class="card-title mb-3">BMW 3 Series</h5>
-                        </a>
-                        <a href="" class="text-reset">
-                            <p class="product-description">2L M Sport Shadow Edition 320d</p>
-                            <span class="product-text-mileage">28,650km</span>
-                            <span class="product-text-reg">2017 reg</span>
-                        </a>
-                        <h6 class="mt-3 mb-3"><b>$55,125</b></h6>
-                    </div>
-                    <a href="#" class="btn btn-outline-success mb-3 w-90 ml-3 mr-3"><i class="bi bi-eye pr-2"></i> View
-                        This Car</a>
-                </div>
-                <div class="card ml-3 card-style">
-                    <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
-                        <img src="images/BMW3Series/image1.jpeg" class="card-img" />
-                        <div class="card-img-overlay d-flex justify-content-end h-25">
-                            <a href="#" class="card-link text-danger like">
-                                <i class="bi bi-heart"></i>
-                            </a>
-                        </div>
-                        <div class="mask">
-                            <div class="d-flex justify-content-end">
-                                <a href="#">
-                                    <span class="product-location">Christchurch</span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="hover-overlay">
-                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <a href="" class="text-reset">
-                            <h5 class="card-title mb-3">BMW 3 Series</h5>
-                        </a>
-                        <a href="" class="text-reset">
-                            <p class="product-description">2L M Sport Shadow Edition 320d</p>
-                            <span class="product-text-mileage">28,650km</span>
-                            <span class="product-text-reg">2017 reg</span>
-                        </a>
-                        <h6 class="mt-3 mb-3"><b>$55,125</b></h6>
-                    </div>
-                    <a href="#" class="btn btn-outline-success mb-3 w-90 ml-3 mr-3"><i class="bi bi-eye pr-2"></i> View
-                        This Car</a>
-                </div>
-            </div>
-            <div class="row justify-content-center ml-3 mt-4 container-fluid">
-                <a class="btn btn-outline-success" href="#" role="button">Explore Similar vehicles</a>
+                <?php
+                }
+                ?>
             </div>
         </div>
         <!-- car financing block -->
@@ -481,7 +385,7 @@ $vehicleGallery = fetchVehicleImages($vehicleId);
                         </div>
                     </div>
                 </div>
-                <button type="button" class="btn btn-outline-success info-btn" href="#">More info <i class="bi bi-plus-square"></i></button>
+                <button type="button" class="btn btn-outline-success info-btn disabled" href="#">More info <i class="bi bi-plus-square"></i></button>
             </div>
         </div>
         <!-- end of car financing block -->
