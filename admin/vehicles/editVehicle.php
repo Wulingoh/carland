@@ -1,6 +1,6 @@
 <?php 
 include "../../config.php";
-include "../../image-creation.php";
+include "../../lib/image-creation.php";
 
 
 
@@ -33,7 +33,7 @@ if (isset($_POST['updateCar'])){
     $imgName = $_FILES['img']['name'];
     $ext = strrchr($imgName, "."); 
     $newName = md5(rand()*time()).$ext;
-    $imgPath = CAR_IMG . $newName;
+    $imgPath = CAR_IMG_DIR . $newName;
     $tmpName = $_FILES['img']['tmp_name'];
     createThumbnail($tmpName, $imgPath, CAR_IMG_WIDTH);
 

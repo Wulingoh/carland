@@ -12,7 +12,7 @@ if (isset($_SESSION['email'])) {
 ?>
     <li class="nav-item mt-2">Welcome <?php echo $_SESSION['email'] ?>! </li>
     <li class="nav-item me-3 me-lg-0">
-        <a class="nav-link px-3 favouriteHeartCounter position-relative" href="displayFavouritePage.php">Favourite
+        <a class="nav-link px-3 pt-1 favouriteHeartCounter position-relative" href="displayFavouritePage.php">Favourite
             <i class="bi bi-balloon-heart-fill favourite-heart-icon">
                 <span class ="counterNumber position-absolute z-index: 300"><?php echo $favouriteCount ?></span>
             </i>

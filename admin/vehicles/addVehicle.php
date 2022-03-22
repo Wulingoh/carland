@@ -74,7 +74,7 @@ if (isset($_POST['addCar'])) {
 
 
 
-  $query = "INSERT INTO vehicles (make_id, model_id, color_id, category_id,transmission_id, bodytype_id, seats_id,fueltype_id, safety_id, price, year, mileage, engine_size, rego, stock, location_id, title, subtitle, detail, img) VALUES('$make_id','$model_id','$color_id','$category_id','$transmission_id','$bodytype_id','$seats_id','$fueltype_id','$safety_id','$price','$year','$mileage','$engine_size','$rego','$title', '$subtitle', '$stock', '$location_id','$detail','$newName')";
+  $query = "INSERT INTO vehicles (make_id, model_id, color_id, category_id,transmission_id, bodytype_id, seats_id,fueltype_id, safety_id, price, year, mileage, engine_size, rego, stock, location_id, title,subtitle, detail, img) VALUES('$make_id','$model_id','$color_id','$category_id','$transmission_id','$bodytype_id','$seats_id','$fueltype_id','$safety_id','$price','$year','$mileage','$engine_size','$rego','$stock', '$location_id','$title', '$subtitle', '$detail','$newName')";
   mysqli_query($link, $query) or die(mysqli_error($link));
   header("Location: index.php");
 }
@@ -555,7 +555,7 @@ if (isset($_POST['addCar'])) {
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <form action="addVehicle.php" method="POST" onsubmit="return false;">
+          <form action="addVehicle.php" method="POST">
             <div class="modal-body">
               <div class="form-group">
                 <label for="recipient-name" class="col-form-label">New Model</label>
@@ -565,7 +565,7 @@ if (isset($_POST['addCar'])) {
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-              <button type="submit" class="btn btn-primary" name="addModel">Add New Make</button>
+              <button type="submit" class="btn btn-primary" name="addModel">Add New Model</button>
             </div>
           </form>
         </div>

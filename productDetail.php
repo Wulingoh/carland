@@ -104,7 +104,7 @@ $vehicleGallery = fetchVehicleImages($vehicleId);
                 <!-- end of breadcrumbs -->
                 <!-- main-header -->
                 <div class="row">
-                    <div class="col main-header ml-3">
+                    <div class="col main-header ml-3 mt-3">
                         <h4 class="main-title"><?php echo $title ?></h4>
                         <h4 class="model-title"><?php echo $subtitle ?></h6>
                     </div>
@@ -126,12 +126,12 @@ $vehicleGallery = fetchVehicleImages($vehicleId);
                     </div>
                         <!-- end of favourite heart icon -->
 
-                    <div class="swiffy-slider slider-item-ratio  slider-nav-round slider-nav-autoplay data-slider-nav-autoplay-interval=5000 slider-item-ratio-32x9 slider-nav-autopause slider-nav-nodelay" id="pgallery">
+                    <div class="swiffy-slider slider-item-ratio  slider-nav-round slider-nav-autoplay data-slider-nav-autoplay-interval=5000 slider-item-ratio-16x9 slider-nav-autopause slider-nav-nodelay" id="pgallery">
                         <ul class="slider-container">
                             <?php foreach ($vehicleGallery as $key => $vehicleGalleryImage) {
                             ?>
                            
-                            <li class="ratio ratio-32x9"><img src="admin/vehicles/uploads/<?php echo $vehicleGalleryImage['gallery_img']?>" loading="lazy" alt="..." data-bs-toggle="modal" data-bs-target="#productGalleryModal" onclick="imageClick(<?php echo $key ?>)"></li>
+                            <li class="ratio"><img src="admin/vehicles/uploads/<?php echo $vehicleGalleryImage['gallery_img']?>" loading="lazy" alt="..." data-bs-toggle="modal" data-bs-target="#productGalleryModal" onclick="imageClick(<?php echo $key ?>)"></li>
                             <?php 
                              } 
                              ?>
@@ -226,13 +226,6 @@ $vehicleGallery = fetchVehicleImages($vehicleId);
                     </li>
                     <li class="list-unstyled w-25">
                         <div class="icon-style">
-                            <i class="bi bi-person-bounding-box"></i>
-                            <span class="icon-text-bi">NZ Owner</span>
-                        </div>
-                        <p class="icon-text"></p>
-                    </li>
-                    <li class="list-unstyled w-25">
-                        <div class="icon-style">
                             <svg width="50" height="56" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M512 64 128 192v384c0 212.1 171.9 384 384 384s384-171.9 384-384V192L512 64zm312 512c0 172.3-139.7 312-312 312S200 748.3 200 576V246l312-110 312 110v330z" />
                                 <path d="M378.4 475.1a35.91 35.91 0 0 0-50.9 0 35.91 35.91 0 0 0 0 50.9l129.4 129.4 2.1 2.1a33.98 33.98 0 0 0 48.1 0L730.6 434a33.98 33.98 0 0 0 0-48.1l-2.8-2.8a33.98 33.98 0 0 0-48.1 0L483 579.7 378.4 475.1z" />
@@ -247,34 +240,10 @@ $vehicleGallery = fetchVehicleImages($vehicleId);
                             ?>
                         </p>
                     </li>
-                </div>
-                <!-- end of key features third row -->
-                <div class="row justify-content-start mt-2">
-                    <li class="list-unstyled">
+                    <li class="list-unstyled w-25">
                         <div class="icon-style">
-                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="35px" height="35px" viewBox="0 0 436.844 436.844" style="enable-background:new 0 0 436.844 436.844;" xml:space="preserve">
-                                <path d="M0,112.738c0,14.768,11.971,26.737,26.741,26.737c14.766,0,26.735-11.97,26.735-26.737S26.741,67.152,26.741,67.152
-                                           S0,97.971,0,112.738z" />
-                                <path d="M433.4,168.984c-4.48-12.273-12.781-22.217-22.069-30.094l2.8-4.878l-27.377-15.716l3.425-6.339l-114.077-61.62
-                                           l-0.003,0.007l-29.593-15.978l-99.853-8.488l-4.177,7.732L97.753,9.454l-66.829,6.595l2.455,24.88L92.6,35.083l37.994,20.522
-                                           l-4.854,8.985l77.802,42.024l13.542,52.983l30.265,16.345l42.795-5.333l58.063,19.044l16.22-30.029l0.003,0.003l4.258-7.886
-                                           l26.524,15.227l1.848-3.219c4.761,4.756,8.188,9.768,10.041,14.841c2.987,8.177,2.056,16.837-2.89,26.548
-                                           c-11.484,22.909-46.961,40.323-105.441,51.761c-9.396,1.838-19.121,2.926-29.418,4.076c-31.361,3.504-66.909,7.477-90.902,36.436
-                                           l-0.108,0.131c-19.171,23.721-22.8,52.629-9.955,79.312c14.652,30.442,48.06,50.753,83.13,50.534l-0.172-27.999
-                                           c-24.474,0.15-47.672-13.786-57.729-34.679c-4.672-9.708-10.042-29.039,6.447-49.499c16.78-20.191,42.558-23.075,72.399-26.409
-                                           c10.403-1.163,21.162-2.364,31.684-4.424c68.384-13.374,109.305-35.188,125.059-66.613
-                                           C437.708,201.058,439.121,184.646,433.4,168.984z M338.556,165.44l-44.354-14.547l-31.7-2.83l4.016-7.431l14.172-26.237
-                                           l66.142,35.727L338.556,165.44z" />
-                            </svg>
-                            <span class="icon-text-bi">Fuelsaver</span>
                         </div>
-                        <p class="icon-text">
-                            <img src="images/fuelEconomyRating 1.svg" alt="Fuel Economy Rating" />
-                        </p>
-                        <p class="icon-text-bi">Fuel costs of $7,030 per year</p>
-                        <p class="icon-text-bi">Fuel economy is 7.0 litres per 100km</p>
-                        <p class="icon-text-bi">Cost per year based on price per litre of diesel $1.45 and an average
-                            distance of 40000 km</p>
+                        <p class="icon-text"></p>
                     </li>
                 </div>
             </div>

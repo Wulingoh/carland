@@ -1,7 +1,7 @@
 <!-- navbar -->
 <div class="">
     <nav class="navbar navbar-expand-lg navbar-fixed-top navbar-scroll shadow-0" style="background-color: #ffffff;">
-        <div class="container">
+        <div class="container-fluid ml-4 mr-3">
             <!-- begin left side elements -->
             <a class="navbar-brand" href="#"><img src="images/Logo.png" /></a>
             <button class="navbar-toggler ps-0" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarExample01" aria-controls="navbarExample01" aria-expanded="false" aria-label="Toggle navigation">
@@ -9,58 +9,32 @@
                     <i class="fas fa-bars"></i>
                 </span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarExample01">
+            <div class="collapse navbar-collapse ml-4" id="navbarExample01">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item active">
-                        <a class="nav-link px-3" href="#!">Home</a>
+                        <a class="nav-link px-3" href="index.php">Home</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link px-3 dropdown-toggle" href="#!" data-bs-toggle="dropdown">Buy car</a>
+                        <a class="nav-link px-3 dropdown-toggle" href="productsListing.php" data-bs-toggle="dropdown">Buy Vehicle</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#"> Buy Used Car</a></li>
-                            <li><a class="dropdown-item" href="#"> Buy New Car</a></li>
-                            <li><a class="dropdown-item" href="#"> Submenu item 3 </a></li>
+                            <li><a class="dropdown-item" href="#">Buy Used Vehicle</a></li>
+                            <li><a class="dropdown-item" href="#">Buy New Vehicle</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link px-3 dropdown-toggle" href="#!" data-bs-toggle="dropdown">Sell Car</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#"> Trade-In</a></li>
-                            <li><a class="dropdown-item" href="#"> Trade-Part</a></li>
-                            <li><a class="dropdown-item" href="#"> Submenu item 3 </a></li>
-                        </ul>
+                        <a class="nav-link px-3 disabled" href="#!" data-bs-toggle="dropdown">Sell Car</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link px-3 dropdown-toggle" href="#!" data-bs-toggle="dropdown">Why Carland</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#"> Our Story</a></li>
-                            <li><a class="dropdown-item" href="#"> Our Mission</a></li>
-                            <li><a class="dropdown-item" href="#"> Our Values</a></li>
-                            <li><a class="dropdown-item" href="#"> Our Team</a></li>
-                            <li><a class="dropdown-item" href="#"> Submenu item 3 </a></li>
+                            <li><a class="dropdown-item" href="#">Our Story</a></li>
+                            <li><a class="dropdown-item" href="#">Our Mission</a></li>
+                            <li><a class="dropdown-item" href="#">Our Values</a></li>
+                            <li><a class="dropdown-item" href="#">Our Team</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link px-3 dropdown-toggle" href="#!" data-bs-toggle="dropdown">Carland
-                            Care</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#"> Our Story</a></li>
-                            <li><a class="dropdown-item" href="#"> Our Mission</a></li>
-                            <li><a class="dropdown-item" href="#"> Our Values</a></li>
-                            <li><a class="dropdown-item" href="#"> Our Team</a></li>
-                            <li><a class="dropdown-item" href="#"> Submenu item 3 </a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link px-3 dropdown-toggle" href="#!" data-bs-toggle="dropdown">Carland
-                            Advice</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#"> Our Story</a></li>
-                            <li><a class="dropdown-item" href="#"> Our Mission</a></li>
-                            <li><a class="dropdown-item" href="#"> Our Values</a></li>
-                            <li><a class="dropdown-item" href="#"> Our Team</a></li>
-                            <li><a class="dropdown-item" href="#"> Submenu item 3 </a></li>
-                        </ul>
+                        <a class="nav-link px-3" href="contact.php" data-bs-toggle="dropdown">Contact Carland</a>
                     </li>
                 </ul>
             </div>

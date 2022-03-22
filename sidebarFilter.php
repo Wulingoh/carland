@@ -101,13 +101,13 @@ $(document).ready(function(){
                                     </div>
                                 </li>
                             </ul>
-                            <a class="list-group-item list-group-item-action py-2 ripple collapsed" aria-current="true" data-toggle="collapse" href="#collapseExample2" aria-expanded="true" aria-controls="collapseExample2" role="button">
+                            <a class="list-group-item list-group-item-action py-2 ripple collapsed" aria-current="true" data-toggle="collapse" href="#location" aria-expanded="true" aria-controls="collapseExample2" role="button">
                                 <span>Location</span>
                                 <i class="bi bi-chevron-compact-down rotate-icon"></i>
                             </a>
-                            <ul id="collapseExample2" class="collapse list-group list-group-flush">
+                            <ul id="location" class="collapse list-group list-group-flush">
                                 <li class="list-group-item py-1">
-                                    <div class="sidebar-inner-content">
+                                    <div class="sidebar-inner-content ml-5">
                                         <label class="sidebar-style-label">
                                             
                                             <div class="sidebar-select-option">
@@ -191,16 +191,16 @@ $(document).ready(function(){
                                     </div>
                                 </li>
                             </ul>
-                            <a class="list-group-item list-group-item-action py-2 ripple collapsed" aria-current="true" data-toggle="collapse" href="#collapseExample2" aria-expanded="true" aria-controls="collapseExample2" role="button">
+                            <a class="list-group-item list-group-item-action py-2 ripple collapsed" aria-current="true" data-toggle="collapse" href="#fueltype" aria-expanded="true" aria-controls="collapseExample2" role="button">
                                 <span>Fuel Type</span>
                                 <i class="bi bi-chevron-compact-down rotate-icon"></i>
                             </a>
-                            <ul id="collapseExample2" class="collapse list-group list-group-flush">
+                            <ul id="fueltype" class="collapse list-group list-group-flush">
                                 <li class="list-group-item py-1">
                                     <div class="sidebar-inner-content">
                                         <label class="sidebar-style-label">
                                            
-                                            <div class="sidebar-select-option">
+                                            <div class="sidebar-select-option ml-5">
                                                 <select class="selectpicker sidebar-selectpicker" name="searchFueltype" id="searchFueltype">
                                                     <option value="">Any</option>
                                                     <?php
@@ -227,11 +227,11 @@ $(document).ready(function(){
                                     </div>
                                 </li>
                             </ul>
-                            <a class="list-group-item list-group-item-action py-2 ripple collapsed" aria-current="true" data-toggle="collapse" href="#Year" aria-expanded="true" aria-controls="collapseExample2" role="button">
+                            <a class="list-group-item list-group-item-action py-2 ripple collapsed" aria-current="true" data-toggle="collapse" href="#year" aria-expanded="true" aria-controls="collapseExample2" role="button">
                                 <span>Year</span>
                                 <i class="bi bi-chevron-compact-down rotate-icon"></i>
                             </a>
-                            <ul id="Year" class="collapse list-group list-group-flush">
+                            <ul id="year" class="collapse list-group list-group-flush">
                                 <li class="list-group-item py-1">
                                     <div class="sidebar-inner-content">
                                         <label class="sidebar-style-label">
@@ -340,16 +340,16 @@ $(document).ready(function(){
                                     </div>
                                 </li>
                             </ul>
-                            <a class="list-group-item list-group-item-action py-2 ripple collapsed" aria-current="true" data-toggle="collapse" href="#collapseExample2" aria-expanded="true" aria-controls="collapseExample2" role="button">
+                            <a class="list-group-item list-group-item-action py-2 ripple collapsed" aria-current="true" data-toggle="collapse" href="#transmission" aria-expanded="true" aria-controls="collapseExample2" role="button">
                                 <span>Transmission</span>
                                 <i class="bi bi-chevron-compact-down rotate-icon"></i>
                             </a>
-                            <ul id="collapseExample2" class="collapse list-group list-group-flush">
+                            <ul id="transmission" class="collapse list-group list-group-flush">
                                 <li class="list-group-item py-1">
                                     <div class="sidebar-inner-content">
                                         <label class="sidebar-style-label">
                                             
-                                            <div class="sidebar-select-option">
+                                            <div class="sidebar-select-option ml-5">
                                                 <select class="selectpicker sidebar-selectpicker" name="searchTransmission">
                                                     <option value="">Any</option>
                                                     
@@ -371,16 +371,16 @@ $(document).ready(function(){
                                     </div>
                                 </li>
                             </ul>
-                            <a class="list-group-item list-group-item-action py-2 ripple collapsed" aria-current="true" data-toggle="collapse" href="#collapseExample2" aria-expanded="true" aria-controls="collapseExample2" role="button">
+                            <a class="list-group-item list-group-item-action py-2 ripple collapsed" aria-current="true" data-toggle="collapse" href="#color" aria-expanded="true" aria-controls="collapseExample2" role="button">
                                 <span>Color</span>
                                 <i class="bi bi-chevron-compact-down rotate-icon"></i>
                             </a>
-                            <ul id="collapseExample2" class="collapse list-group list-group-flush">
+                            <ul id="color" class="collapse list-group list-group-flush">
                                 <li class="list-group-item py-1">
                                     <div class="sidebar-inner-content">
                                         <label class="sidebar-style-label">
                                             
-                                            <div class="sidebar-select-option">
+                                            <div class="sidebar-select-option ml-5">
                                                 <select class="selectpicker sidebar-selectpicker" name="searchColor">
                                                     <option value="">Any</option>
                                                     <?php
@@ -401,13 +401,13 @@ $(document).ready(function(){
                                     </div>
                                 </li>
                             </ul>
-                            <a class="list-group-item list-group-item-action py-2 ripple collapsed" aria-current="true" data-toggle="collapse" href="#collapseExample2" aria-expanded="true" aria-controls="collapseExample2" role="button">
+                            <a class="list-group-item list-group-item-action py-2 ripple collapsed" aria-current="true" data-toggle="collapse" href="#bodytype" aria-expanded="true" aria-controls="collapseExample2" role="button">
                                 <span>Body Type</span>
                                 <i class="bi bi-chevron-compact-down rotate-icon"></i>
                             </a>
-                            <ul id="collapseExample2" class="collapse list-group list-group-flush">
+                            <ul id="bodytype" class="collapse list-group list-group-flush">
                                 <li class="list-group-item py-1">
-                                    <div class="sidebar-inner-content">
+                                    <div class="sidebar-inner-content ml-5">
                                         <label class="sidebar-style-label">
                                            
                                             <div class="sidebar-select-option">
@@ -433,16 +433,16 @@ $(document).ready(function(){
                             </ul>
     
                            
-                            <a class="list-group-item list-group-item-action py-2 ripple collapsed" aria-current="true" data-toggle="collapse" href="#collapseExample2" aria-expanded="true" aria-controls="collapseExample2" role="button">
+                            <a class="list-group-item list-group-item-action py-2 ripple collapsed" aria-current="true" data-toggle="collapse" href="#seats" aria-expanded="true" aria-controls="collapseExample2" role="button">
                                 <span>Seats</span>
                                 <i class="bi bi-chevron-compact-down rotate-icon"></i>
                             </a>
-                            <ul id="collapseExample2" class="collapse list-group list-group-flush">
+                            <ul id="seats" class="collapse list-group list-group-flush">
                                 <li class="list-group-item py-1">
                                     <div class="sidebar-inner-content">
                                         <label class="sidebar-style-label">
                                            
-                                            <div class="sidebar-select-option">
+                                            <div class="sidebar-select-option ml-5">
                                                 <select class="selectpicker sidebar-selectpicker" name="searchSeats">
                                                     <option value="">Any</option>
                                                     <?php
