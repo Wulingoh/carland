@@ -43,4 +43,6 @@ function fetchSimilarProductsList($userId, $bodytypeId, $vehicleId) {
     return $result->fetch_all(MYSQLI_ASSOC);
     
 }
+
+
 ?>
