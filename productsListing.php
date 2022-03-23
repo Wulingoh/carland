@@ -2,35 +2,12 @@
 include "config.php";
 include "returnPage.php";
 
-$orderBy = "vehicles.price ASC";
-if (isset($_GET["orderBy"])) {
-    $orderByOption = array("vehicles.price ASC", "vehicles.price DESC", "vehicles.mileage DESC", "vehicles.mileage ASC");
-    $orderByKey = array_search($_GET["orderBy"], $orderByOption);
-    $orderBy = $orderByOption[$orderByKey];
-}
 if (isset($_SESSION['user_id'])) {
     $userId = $_SESSION['user_id'];
 } else {
     $userId = 0;
 }
-$query = "SELECT vehicles.vehicle_id, img, price, year, mileage, engine_size, detail, rego, category, bodytype, fuelType, vehicle_make.make_id, vehicle_model.model_id, vehicle_transmission.transmission, color, seats, vehicle_safety.safety_id, vehicle_location.location, title, subtitle,favourite_id 
-FROM vehicles 
-INNER JOIN vehicle_make ON vehicles.make_id = vehicle_make.make_id 
-INNER JOIN vehicle_model ON vehicles.model_id = vehicle_model.model_id 
-INNER JOIN vehicle_color ON vehicles.color_id = vehicle_color.color_id 
-INNER JOIN vehicle_fueltype ON vehicles.fuelType_id = vehicle_fueltype.fuelType_id 
-INNER JOIN vehicle_safety ON vehicles.safety_id = vehicle_safety.safety_id
-INNER JOIN vehicle_transmission ON vehicles.transmission_id = vehicle_transmission.transmission_id
-INNER JOIN vehicle_seats ON vehicles.seats_id = vehicle_seats.seats_id
-INNER JOIN vehicle_location ON vehicles.location_id = vehicle_location.location_id
-INNER JOIN vehicle_category ON vehicles.category_id = vehicle_category.category_id
-INNER JOIN vehicle_bodytype ON vehicles.bodytype_id = vehicle_bodytype.bodytype_id
-LEFT JOIN favourite ON favourite.vehicle_id = vehicles.vehicle_id AND favourite.user_id = $userId
-ORDER BY $orderBy;";
 
-$stmt = $link->prepare($query);
-$stmt->execute();
-$result = $stmt->get_result();
 
 ?>
 
@@ -81,7 +58,7 @@ $result = $stmt->get_result();
                     <div class="col main-header ml-3">
                         <h4 class="main-title">Carland vehicles</h4>
                         <p class="main-content">
-                            Browse our wide range of high-quality new and <a href="#">used vehicles</a>. Whether you’re
+                            Browse our wide range of high-quality new vehicles. Whether you’re
                             buying, financing or subscribing, you can complete your purchase entirely online and choose
                             home delivery or collection from a Carland Customer Centre. For total peace of mind, every
                             car comes with a 7-Day Money Back Guarantee.
@@ -94,22 +71,11 @@ $result = $stmt->get_result();
                     <!-- result count -->
                     <div class="col-2 sort-style-page">
                         <p class="result-count">
-                            1 - 48 of 5,813 results
+                            <?php echo $result->num_rows ?> vehicles
                         </p>
                     </div>
                     <!-- end of result count -->
                     <!-- sort style page -->
-                    <div class="col-4 sort-style-page btn-group btn-group-toggle" data-toggle="buttons">
-                        <label class="btn btn-secondary" for="option1">All
-                            <input type="radio" class="btn-check" name="all" id="option1" autocomplete="off" checked />
-                        </label>
-                        <label class="btn btn-secondary" for="option2">New
-                            <input type="radio" class="btn-check" name="new" id="option2" autocomplete="off" />
-                        </label>
-                        <label class="btn btn-secondary" for="option3">Used
-                            <input type="radio" class="btn-check" name="used" id="option3" autocomplete="off" />
-                        </label>
-                    </div>
                     <div class="col-3 offset-md-3 sort-style-page">
                         <span class="sort-style-text">
                             Sort by
@@ -124,13 +90,11 @@ $result = $stmt->get_result();
                                 <input type="hidden" name="minPrice" <?php if(isset($_GET['filterSearch'])): ?> value="<?= $_GET['minPrice']; ?>" <?php endif; ?>>
                                 <input type="hidden" name="maxPrice" <?php if(isset($_GET['filterSearch'])): ?> value="<?= $_GET['maxPrice']; ?>" <?php endif; ?>>
                                 <input type="hidden" name="searchFueltype" <?php if(isset($_GET['filterSearch'])): ?> value="<?= $_GET['searchFueltype']; ?>" <?php endif; ?>>
-                                <input type="hidden" name="minManufacturedYear" <?php if(isset($_GET['filterSearch'])): ?> value="<?= $_GET['minManufacturedYear']; ?>" <?php endif; ?>>
-                                <input type="hidden" name="maxManufacturedYear" <?php if(isset($_GET['filterSearch'])): ?> value="<?= $_GET['maxManufacturedYear']; ?>" <?php endif; ?>>
                                 <input type="hidden" name="minMileage" <?php if(isset($_GET['filterSearch'])): ?> value="<?= $_GET['minMileage']; ?>" <?php endif; ?>>
                                 <input type="hidden" name="maxMileage" <?php if(isset($_GET['filterSearch'])): ?> value="<?= $_GET['maxMileage']; ?>" <?php endif; ?>>
                                 <input type="hidden" name="searchTransmission" <?php if(isset($_GET['filterSearch'])): ?> value="<?= $_GET['searchTransmission']; ?>" <?php endif; ?>>
                                 <input type="hidden" name="searchColor" <?php if(isset($_GET['filterSearch'])): ?> value="<?= $_GET['searchColor']; ?>" <?php endif; ?>>
-                                <input type="hidden" name="sesarchBodytype" <?php if(isset($_GET['filterSearch'])): ?> value="<?= $_GET['sesarchBodytype']; ?>" <?php endif; ?>>
+                                <input type="hidden" name="searchBodytype" <?php if(isset($_GET['filterSearch'])): ?> value="<?= $_GET['searchBodytype']; ?>" <?php endif; ?>>
                                 <input type="hidden" name="searchSeats" <?php if(isset($_GET['filterSearch'])): ?> value="<?= $_GET['searchSeats']; ?>" <?php endif; ?>>
                                 <input type="hidden" name="filterSearch" <?php if(isset($_GET['filterSearch'])): ?> value=" " <?php endif; ?>>
                                 <!--to merge search filter with sorting box, not good, should use other way to do it-->
@@ -149,7 +113,13 @@ $result = $stmt->get_result();
                                             ?>
                                         >Highest Price
                                         </option>
-                                        <option value="">Recently Added</option>
+                                        <option value="vehicles.created_at DESC" window.location.productsListing 
+                                            <?php if($orderBy == 'vehicles.created_at DESC'){
+                                                echo "selected";
+                                            } 
+                                            ?>
+                                        >Recently Added
+                                        </option>
                                         <option value="vehicles.mileage DESC" window.location.productsListing
                                             <?php if($orderBy == 'vehicles.mileage DESC'){
                                                 echo "selected";
