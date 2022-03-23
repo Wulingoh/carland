@@ -101,13 +101,13 @@ $(document).ready(function(){
                                     </div>
                                 </li>
                             </ul>
-                            <a class="list-group-item list-group-item-action py-2 ripple collapsed" aria-current="true" data-toggle="collapse" href="#location" aria-expanded="true" aria-controls="collapseExample2" role="button">
+                            <a class="list-group-item list-group-item-action py-2 ripple collapsed" aria-current="true" data-toggle="collapse" href="#collapseExample2" aria-expanded="true" aria-controls="collapseExample2" role="button">
                                 <span>Location</span>
                                 <i class="bi bi-chevron-compact-down rotate-icon"></i>
                             </a>
-                            <ul id="location" class="collapse list-group list-group-flush">
+                            <ul id="collapseExample2" class="collapse list-group list-group-flush">
                                 <li class="list-group-item py-1">
-                                    <div class="sidebar-inner-content ml-5">
+                                    <div class="sidebar-inner-content">
                                         <label class="sidebar-style-label">
                                             
                                             <div class="sidebar-select-option">
@@ -191,16 +191,16 @@ $(document).ready(function(){
                                     </div>
                                 </li>
                             </ul>
-                            <a class="list-group-item list-group-item-action py-2 ripple collapsed" aria-current="true" data-toggle="collapse" href="#fueltype" aria-expanded="true" aria-controls="collapseExample2" role="button">
+                            <a class="list-group-item list-group-item-action py-2 ripple collapsed" aria-current="true" data-toggle="collapse" href="#collapseExample2" aria-expanded="true" aria-controls="collapseExample2" role="button">
                                 <span>Fuel Type</span>
                                 <i class="bi bi-chevron-compact-down rotate-icon"></i>
                             </a>
-                            <ul id="fueltype" class="collapse list-group list-group-flush">
+                            <ul id="collapseExample2" class="collapse list-group list-group-flush">
                                 <li class="list-group-item py-1">
                                     <div class="sidebar-inner-content">
                                         <label class="sidebar-style-label">
                                            
-                                            <div class="sidebar-select-option ml-5">
+                                            <div class="sidebar-select-option">
                                                 <select class="selectpicker sidebar-selectpicker" name="searchFueltype" id="searchFueltype">
                                                     <option value="">Any</option>
                                                     <?php
@@ -227,11 +227,11 @@ $(document).ready(function(){
                                     </div>
                                 </li>
                             </ul>
-                            <a class="list-group-item list-group-item-action py-2 ripple collapsed" aria-current="true" data-toggle="collapse" href="#year" aria-expanded="true" aria-controls="collapseExample2" role="button">
+                            <a class="list-group-item list-group-item-action py-2 ripple collapsed" aria-current="true" data-toggle="collapse" href="#Year" aria-expanded="true" aria-controls="collapseExample2" role="button">
                                 <span>Year</span>
                                 <i class="bi bi-chevron-compact-down rotate-icon"></i>
                             </a>
-                            <ul id="year" class="collapse list-group list-group-flush">
+                            <ul id="Year" class="collapse list-group list-group-flush">
                                 <li class="list-group-item py-1">
                                     <div class="sidebar-inner-content">
                                         <label class="sidebar-style-label">
@@ -340,16 +340,16 @@ $(document).ready(function(){
                                     </div>
                                 </li>
                             </ul>
-                            <a class="list-group-item list-group-item-action py-2 ripple collapsed" aria-current="true" data-toggle="collapse" href="#transmission" aria-expanded="true" aria-controls="collapseExample2" role="button">
+                            <a class="list-group-item list-group-item-action py-2 ripple collapsed" aria-current="true" data-toggle="collapse" href="#collapseExample2" aria-expanded="true" aria-controls="collapseExample2" role="button">
                                 <span>Transmission</span>
                                 <i class="bi bi-chevron-compact-down rotate-icon"></i>
                             </a>
-                            <ul id="transmission" class="collapse list-group list-group-flush">
+                            <ul id="collapseExample2" class="collapse list-group list-group-flush">
                                 <li class="list-group-item py-1">
                                     <div class="sidebar-inner-content">
                                         <label class="sidebar-style-label">
                                             
-                                            <div class="sidebar-select-option ml-5">
+                                            <div class="sidebar-select-option">
                                                 <select class="selectpicker sidebar-selectpicker" name="searchTransmission">
                                                     <option value="">Any</option>
                                                     
@@ -371,16 +371,16 @@ $(document).ready(function(){
                                     </div>
                                 </li>
                             </ul>
-                            <a class="list-group-item list-group-item-action py-2 ripple collapsed" aria-current="true" data-toggle="collapse" href="#color" aria-expanded="true" aria-controls="collapseExample2" role="button">
+                            <a class="list-group-item list-group-item-action py-2 ripple collapsed" aria-current="true" data-toggle="collapse" href="#collapseExample2" aria-expanded="true" aria-controls="collapseExample2" role="button">
                                 <span>Color</span>
                                 <i class="bi bi-chevron-compact-down rotate-icon"></i>
                             </a>
-                            <ul id="color" class="collapse list-group list-group-flush">
+                            <ul id="collapseExample2" class="collapse list-group list-group-flush">
                                 <li class="list-group-item py-1">
                                     <div class="sidebar-inner-content">
                                         <label class="sidebar-style-label">
                                             
-                                            <div class="sidebar-select-option ml-5">
+                                            <div class="sidebar-select-option">
                                                 <select class="selectpicker sidebar-selectpicker" name="searchColor">
                                                     <option value="">Any</option>
                                                     <?php
@@ -401,13 +401,13 @@ $(document).ready(function(){
                                     </div>
                                 </li>
                             </ul>
-                            <a class="list-group-item list-group-item-action py-2 ripple collapsed" aria-current="true" data-toggle="collapse" href="#bodytype" aria-expanded="true" aria-controls="collapseExample2" role="button">
+                            <a class="list-group-item list-group-item-action py-2 ripple collapsed" aria-current="true" data-toggle="collapse" href="#collapseExample2" aria-expanded="true" aria-controls="collapseExample2" role="button">
                                 <span>Body Type</span>
                                 <i class="bi bi-chevron-compact-down rotate-icon"></i>
                             </a>
-                            <ul id="bodytype" class="collapse list-group list-group-flush">
+                            <ul id="collapseExample2" class="collapse list-group list-group-flush">
                                 <li class="list-group-item py-1">
-                                    <div class="sidebar-inner-content ml-5">
+                                    <div class="sidebar-inner-content">
                                         <label class="sidebar-style-label">
                                            
                                             <div class="sidebar-select-option">
@@ -433,16 +433,16 @@ $(document).ready(function(){
                             </ul>
     
                            
-                            <a class="list-group-item list-group-item-action py-2 ripple collapsed" aria-current="true" data-toggle="collapse" href="#seats" aria-expanded="true" aria-controls="collapseExample2" role="button">
+                            <a class="list-group-item list-group-item-action py-2 ripple collapsed" aria-current="true" data-toggle="collapse" href="#collapseExample2" aria-expanded="true" aria-controls="collapseExample2" role="button">
                                 <span>Seats</span>
                                 <i class="bi bi-chevron-compact-down rotate-icon"></i>
                             </a>
-                            <ul id="seats" class="collapse list-group list-group-flush">
+                            <ul id="collapseExample2" class="collapse list-group list-group-flush">
                                 <li class="list-group-item py-1">
                                     <div class="sidebar-inner-content">
                                         <label class="sidebar-style-label">
                                            
-                                            <div class="sidebar-select-option ml-5">
+                                            <div class="sidebar-select-option">
                                                 <select class="selectpicker sidebar-selectpicker" name="searchSeats">
                                                     <option value="">Any</option>
                                                     <?php
@@ -472,9 +472,9 @@ $(document).ready(function(){
             </div>
     </nav>
     <?php 
-    // *************************search filter query section****************************
-    $searchUrl = "";
+  
     if (isset($_GET['filterSearch'])){
+       
         $filter = array();
         if ($_GET['searchMake']){
             $make_id = $_GET['searchMake'];
@@ -586,7 +586,7 @@ $(document).ready(function(){
 
         }
         //get URL when isset search button
-         $searchUrl = "&searchMake=".$_GET['searchMake']."&searchModel=".$_GET['searchModel']."&searchLocation=".$_GET['searchLocation']."&minPrice=".$_GET['minPrice']."&maxPrice=".$_GET['maxPrice']."&searchFueltype=".$_GET['searchFueltype']."&minManufacturedYear=".$_GET['minManufacturedYear']."&maxManufacturedYear=".$_GET['maxManufacturedYear']."&minMileage=".$_GET['minMileage']."&maxMileage=".$_GET['maxMileage']."&searchTransmission=".$_GET['searchTransmission']."&searchColor=".$_GET['searchColor']."&sesarchBodytype=".$_GET['sesarchBodytype']."&searchSeats=".$_GET['searchSeats']."&filterSearch=";
+         $searchUrl = "&searchMake=".$_GET['searchMake']."&searchModel=".$_GET['searchModel']."&searchLocation=".$_GET['searchLocation']."&minPrice=".$_GET['minPrice']."&maxPrice=".$_GET['maxPrice']."&searchFueltype=".$_GET['searchFueltype']."&minManufacturedYear=".$_GET['minManufacturedYear']."&maxManufacturedYear=".$_GET['maxManufacturedYear']."&minMileage=".$_GET['minMileage']."&maxMileage=".$_GET['maxMileage']."&searchTransmission=".$_GET['searchTransmission']."&searchColor=".$_GET['searchColor']."&sesarchBodytype=".$_GET['sesarchBodytype']."&searchSeats=".$_GET['searchSeats']."&orderBy=".$_GET['orderBy']."&filterSearch=";
         
    
         $query = "SELECT vehicles.vehicle_id, img, price, year, mileage, engine_size, detail, rego, category, bodytype, fuelType, vehicle_make.make_id, vehicle_model.model_id, vehicle_transmission.transmission, color, seats, vehicle_safety.safety_id, vehicle_location.location, title, subtitle,favourite_id 
@@ -609,10 +609,13 @@ $(document).ready(function(){
         $query .= implode(" && ", $filter);
        
         $query .= " ORDER BY $orderBy";
-        $result = mysqli_query($link, $query);
+
+        
+       
+        
 
         if ($filter == NULL){
-            $query = "SELECT vehicles.vehicle_id, img, price, year, mileage, engine_size, detail, rego, category, bodytype, fuelType, vehicle_make.make_id, vehicle_model.model_id, vehicle_transmission.transmission, color, seats, vehicle_safety.safety_id, vehicle_location.location, title, subtitle,favourite_id 
+        $query = "SELECT vehicles.vehicle_id, img, price, year, mileage, engine_size, detail, rego, category, bodytype, fuelType, vehicle_make.make_id, vehicle_model.model_id, vehicle_transmission.transmission, color, seats, vehicle_safety.safety_id, vehicle_location.location, title, subtitle,favourite_id 
         FROM vehicles 
         INNER JOIN vehicle_make ON vehicles.make_id = vehicle_make.make_id 
         INNER JOIN vehicle_model ON vehicles.model_id = vehicle_model.model_id 
@@ -628,18 +631,25 @@ $(document).ready(function(){
         ORDER BY $orderBy
         ";
         
-        $result = mysqli_query($link, $query);
-
-        }
-        //****** merge with sorting*/
+        
        
-        //$query .= " ORDER BY $orderBy";
-        //$result = mysqli_query($link, $query);
+        
+        
+        }
+
+       
+        $result = mysqli_query($link, $query);
+        
+        
 
 
         
 
 
     }
+
+  
+  
+    
     
     ?>

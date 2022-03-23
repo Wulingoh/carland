@@ -2,17 +2,24 @@
 include "config.php";
 include "returnPage.php";
 
+
+$rowsPerPage = 3;
+$searchUrl = "";
+
 $orderBy = "vehicles.price ASC";
-if (isset($_GET["orderBy"])) {
-    $orderByOption = array("vehicles.price ASC", "vehicles.price DESC", "vehicles.mileage DESC", "vehicles.mileage ASC");
-    $orderByKey = array_search($_GET["orderBy"], $orderByOption);
-    $orderBy = $orderByOption[$orderByKey];
-}
+
 if (isset($_SESSION['user_id'])) {
     $userId = $_SESSION['user_id'];
 } else {
     $userId = 0;
 }
+if (isset($_GET["orderBy"])) {
+    $orderByOption = array("vehicles.price ASC", "vehicles.price DESC", "vehicles.mileage DESC", "vehicles.mileage ASC");
+    $orderByKey = array_search($_GET["orderBy"], $orderByOption);
+    $orderBy = $orderByOption[$orderByKey];
+    $searchUrl = "&searchMake=".$_GET['searchMake']."&searchModel=".$_GET['searchModel']."&searchLocation=".$_GET['searchLocation']."&minPrice=".$_GET['minPrice']."&maxPrice=".$_GET['maxPrice']."&searchFueltype=".$_GET['searchFueltype']."&minManufacturedYear=".$_GET['minManufacturedYear']."&maxManufacturedYear=".$_GET['maxManufacturedYear']."&minMileage=".$_GET['minMileage']."&maxMileage=".$_GET['maxMileage']."&searchTransmission=".$_GET['searchTransmission']."&searchColor=".$_GET['searchColor']."&sesarchBodytype=".$_GET['sesarchBodytype']."&searchSeats=".$_GET['searchSeats']."&orderBy=".$_GET['orderBy']."&filterSearch=";
+
+
 $query = "SELECT vehicles.vehicle_id, img, price, year, mileage, engine_size, detail, rego, category, bodytype, fuelType, vehicle_make.make_id, vehicle_model.model_id, vehicle_transmission.transmission, color, seats, vehicle_safety.safety_id, vehicle_location.location, title, subtitle,favourite_id 
 FROM vehicles 
 INNER JOIN vehicle_make ON vehicles.make_id = vehicle_make.make_id 
@@ -26,11 +33,37 @@ INNER JOIN vehicle_location ON vehicles.location_id = vehicle_location.location_
 INNER JOIN vehicle_category ON vehicles.category_id = vehicle_category.category_id
 INNER JOIN vehicle_bodytype ON vehicles.bodytype_id = vehicle_bodytype.bodytype_id
 LEFT JOIN favourite ON favourite.vehicle_id = vehicles.vehicle_id AND favourite.user_id = $userId
-ORDER BY $orderBy;";
+ORDER BY $orderBy ;";
+} else {
+$query = "SELECT vehicles.vehicle_id, img, price, year, mileage, engine_size, detail, rego, category, bodytype, fuelType, vehicle_make.make_id, vehicle_model.model_id, vehicle_transmission.transmission, color, seats, vehicle_safety.safety_id, vehicle_location.location, title, subtitle,favourite_id 
+FROM vehicles 
+INNER JOIN vehicle_make ON vehicles.make_id = vehicle_make.make_id 
+INNER JOIN vehicle_model ON vehicles.model_id = vehicle_model.model_id 
+INNER JOIN vehicle_color ON vehicles.color_id = vehicle_color.color_id 
+INNER JOIN vehicle_fueltype ON vehicles.fuelType_id = vehicle_fueltype.fuelType_id 
+INNER JOIN vehicle_safety ON vehicles.safety_id = vehicle_safety.safety_id
+INNER JOIN vehicle_transmission ON vehicles.transmission_id = vehicle_transmission.transmission_id
+INNER JOIN vehicle_seats ON vehicles.seats_id = vehicle_seats.seats_id
+INNER JOIN vehicle_location ON vehicles.location_id = vehicle_location.location_id
+INNER JOIN vehicle_category ON vehicles.category_id = vehicle_category.category_id
+INNER JOIN vehicle_bodytype ON vehicles.bodytype_id = vehicle_bodytype.bodytype_id
+LEFT JOIN favourite ON favourite.vehicle_id = vehicles.vehicle_id AND favourite.user_id = $userId ORDER BY $orderBy";
+}
+
 
 $stmt = $link->prepare($query);
 $stmt->execute();
 $result = $stmt->get_result();
+
+
+
+
+
+
+
+  
+   
+
 
 ?>
 
@@ -60,7 +93,9 @@ $result = $stmt->get_result();
             <div class="col-3">
                 <!-- Sidebar -->
                <?php include "sidebarFilter.php" ?>
-                <!-- Sidebar -->
+               <?php include "pagination.php" ?>
+               
+                
             </div>
             <!-- main content -->
             <div class="col-sm-9">
@@ -140,30 +175,26 @@ $result = $stmt->get_result();
                                                 echo "selected";
                                             } 
                                             ?>
-                                        >Lowest Price
-                                        </option>
+                                        >Lowest Price</option>
                                         <option value="vehicles.price DESC" window.location.productsListing 
                                             <?php if ($orderBy == 'vehicles.price DESC') {
                                                 echo "selected";
                                             } 
                                             ?>
-                                        >Highest Price
-                                        </option>
+                                        >Highest Price</option>
                                         <option value="">Recently Added</option>
                                         <option value="vehicles.mileage DESC" window.location.productsListing
                                             <?php if($orderBy == 'vehicles.mileage DESC'){
                                                 echo "selected";
                                             } 
                                             ?>
-                                        >Highest Mileage
-                                        </option>
+                                        >Highest Mileage</option>
                                         <option value="vehicles.mileage ASC" window.location.productsListing 
                                             <?php if($orderBy == 'vehicles.mileage ASC'){
                                                 echo "selected";
                                             } 
                                             ?>
-                                        >Lowest Mileage
-                                        </option>
+                                        >Lowest Mileage</option>
                                     </select>
                                 </div>
                             </form>
@@ -177,13 +208,15 @@ $result = $stmt->get_result();
                 <!-- end of sort style page row -->
                 <div class="row product-list no-gutters">
                     <?php
-                    while ($row = $result->fetch_assoc()) {
+                    $pagingLink = getPagingLink($query, $rowsPerPage, $searchUrl );
+                    $resultP = mysqli_query($link, getPagingQuery($query, $rowsPerPage));
+                    while ($row = mysqli_fetch_array($resultP)) {
                         $vehicleId = $row['vehicle_id'];
                     ?>
                         <div class="col-lg-4 col-md-12">
                             <div class="card ml-3 card-style">
                                 <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
-                                    <img src="admin/vehicles/uploads/<?php echo $row['img']; ?>" class="card-img" />
+                                    <img src="../carland-main/admin/vehicles/uploads/<?php echo $row['img']; ?>" class="card-img" />
                                     <div class="card-img-overlay d-flex justify-content-end h-25">
                                         <a href="javascript:" class="favourite-heart btn btn-default" name="addToFavourite" id="favouriteBtn" data-carid="<?php echo $row['vehicle_id'] ?>">
                                             <i class="bi bi-balloon-heart-fill" att="0" style="color:<?php echo $row['favourite_id'] ? "#DF4E3C" : "white" ?>; font-size: 20px"></i>
@@ -224,41 +257,11 @@ $result = $stmt->get_result();
             <!-- pagination -->
             <div class="container-fluid mt-5 mb-5">
                 <div class="row">
-                    <div class="col-12">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination justify-content-center pagination-style">
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="First">
-                                        <span aria-hidden="true"><i class="bi bi-chevron-bar-left"></i></span>
-                                    </a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">
-                                        <span aria-hidden="true"><i class="bi bi-chevron-compact-left"></i></span>
-                                    </a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">...</a></li>
-                                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                <li class="page-item"><a class="page-link" href="#">5</a></li>
-                                <li class="page-item"><a class="page-link" href="#">6</a></li>
-                                <li class="page-item"><a class="page-link" href="#">7</a></li>
-                                <li class="page-item"><a class="page-link" href="#">8</a></li>
-                                <li class="page-item"><a class="page-link" href="#">...</a></li>
-                                <li class="page-item"><a class="page-link" href="#">20</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
-                                        <span aria-hidden="true"><i class="bi bi-chevron-compact-right"></i></span>
-                                    </a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="End">
-                                        <span aria-hidden="true"><i class="bi bi-chevron-bar-right"></i></span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
 
+                    <div class="col">
+                       <h3 style="text-align:center">
+                           <?php echo $pagingLink; // display paging links ?>
+                       </h3>
                     </div>
                 </div>
             </div>
