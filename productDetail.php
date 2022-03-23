@@ -1,20 +1,20 @@
-<?php
+<?php 
 include "config.php";
 include "returnPage.php";
-include "queryHelpers.php";
 
-if (!isset($_GET['vehicleId'])) {
+
+if(!isset($_GET['vehicleId'])) {
     header("Location: productsListing.php");
     exit;
 }
 $vehicleId = $_GET['vehicleId'];
 if (isset($_SESSION['user_id'])) {
     $userId = $_SESSION['user_id'];
-} else {
+}else { 
     $userId = 0;
 }
-$query =
-    "SELECT vehicles.vehicle_id, img, price, year, mileage, engine_size, detail, rego, category, bodytype, fuelType, vehicle_make.make_id, vehicle_model.model_id, vehicle_transmission.transmission, color, seats, vehicle_safety.safety_id, vehicle_location.location, title, subtitle,favourite_id, vehicles.bodytype_id 
+$query = 
+        "SELECT vehicles.vehicle_id, img, price, year, mileage, engine_size, detail, rego, category, bodytype, fuelType, vehicle_make.make_id, vehicle_model.model_id, vehicle_transmission.transmission, color, seats, vehicle_safety.safety_id, vehicle_location.location, title, subtitle,favourite_id 
         FROM vehicles 
         INNER JOIN vehicle_make ON vehicles.make_id = vehicle_make.make_id 
         INNER JOIN vehicle_model ON vehicles.model_id = vehicle_model.model_id 
@@ -30,7 +30,7 @@ $query =
         WHERE vehicles.vehicle_id = $vehicleId;";
 $result = mysqli_query($link, $query) or die(mysqli_error($link));
 
-if (mysqli_num_rows($result) == 0) {
+if(mysqli_num_rows($result) == 0) {
     header("Location: productsListing.php");
     exit;
 }
@@ -45,7 +45,7 @@ $color = $row['color'];
 $fuel = $row['fuelType'];
 $engineSize = $row['engine_size'];
 $safety = $row['safety_id'];
-$main_title = $row['title'];
+$title = $row['title'];
 $subtitle = $row['subtitle'];
 $mileage = $row['mileage'];
 $seats = $row['seats'];
@@ -54,10 +54,11 @@ $bodytype = $row['bodytype'];
 $category = $row['category'];
 $location = $row['location'];
 $favourite = $row['favourite_id'];
-$bodytypeId = $row['bodytype_id'];
-
-$vehicleGallery = fetchVehicleImages($vehicleId);
-$vehicleSimilarProductsList = fetchSimilarProductsList($userId, $bodytypeId, $vehicleId);
+$img = $row ['img'];
+//get images from gallery
+$queryGallery = "SELECT * FROM vehicle_gallery WHERE vehicle_id = '$vehicleId' ";
+$resultGallery = mysqli_query($link, $queryGallery);
+$img_num = mysqli_num_rows($resultGallery);
 ?>
 
 
@@ -73,14 +74,12 @@ $vehicleSimilarProductsList = fetchSimilarProductsList($userId, $bodytypeId, $ve
     <link href="css/bootstrap.css" rel="stylesheet">
     <script src="js/jquery-3.5.1.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.5.0/dist/js/swiffy-slider.min.js" crossorigin="anonymous" defer></script>
-    <link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.5.0/dist/css/swiffy-slider.min.css" rel="stylesheet" crossorigin="anonymous">
     <link href="css/style.css" rel="stylesheet">
     <link href="icon/bootstrap-icons.css" rel="stylesheet">
 </head>
 
 <body>
-    <?php include "navigation.php" ?>
+    <?php include "navigation.php"?>
     <!-- sidebar filter -->
     <section class="container-fluid">
         <div class="row">
@@ -90,23 +89,13 @@ $vehicleSimilarProductsList = fetchSimilarProductsList($userId, $bodytypeId, $ve
                 <!-- Sidebar -->
             </div>
             <!-- main content -->
-            <div class="col-sm-9 mb-5">
+            <div class="col-sm-9">
                 <!-- breadcrumbs -->
-                <div class="row">
-                    <div class="pull-left col">
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item" aria-current="page">BMW</li>
-                                <li class="breadcrumb-item active" aria-current="page">3 Series</li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div>
+                 <?php include "breadcrumbsForProductDetail.php"; ?>
                 <!-- end of breadcrumbs -->
                 <!-- main-header -->
                 <div class="row">
-                    <div class="col main-header ml-3 mt-3">
+                    <div class="col main-header ml-3">
                         <h4 class="main-title"><?php echo $title ?></h4>
                         <h4 class="model-title"><?php echo $subtitle ?></h6>
                     </div>
@@ -116,52 +105,163 @@ $vehicleSimilarProductsList = fetchSimilarProductsList($userId, $bodytypeId, $ve
                     </div>
                 </div>
                 <!-- end of main header -->
-
                 <!--Carousel Wrapper-->
-                <div class="col mb-5" id="productGallery">
-                    <!-- favourite heart icon -->
-                    <div class="favourite-wrapper-container">
-                        <a href="javascript:;" class="favourite-heart btn btn-default" name="addToFavourite" id="favouriteBtn" data-carid="<?php echo $vehicleId ?>">
-                            <i class="bi bi-balloon-heart-fill" att="0" style="color: <?php echo $favourite ? "DF4E3C" : "white" ?>; font-size: 40px">
-                            </i>
-                        </a>
-                    </div>
-                    <!-- end of favourite heart icon -->
+                <div class="container-carousel-wrapper">
+                    <div class="carousel-container position-relative">
+                        <!-- favourite heart icon -->
+                        <div class="favourite-wrapper-container">
+                            <a href="javascript:;" class="favourite-heart btn btn-default" name="addToFavourite" id="favouriteBtn" data-carid="<?php echo $vehicleId ?>">
+                                <i class="bi bi-balloon-heart-fill" att="0" style="color: <?php echo $favourite ?"DF4E3C":"white"?>; font-size: 40px"></i>
+                            </a>
+                        </div>
+                        <!-- end of favourite heart icon -->
+                        <div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active"  data-slide-number="0">
+                                    <img src="../carland-main/admin/vehicles/uploads/<?php echo $img; ?>" class="d-block w-100" alt="..." data-type="image" data-toggle="lightbox"  data-gallery="example-gallery">
+                                </div>
+                                <?php 
+                                while ($rowGallery = mysqli_fetch_array($resultGallery)){
+                                    extract($rowGallery);
+                                    $img_id = $rowGallery['img_id'];
+                                    $gallery_img = $rowGallery['gallery_img'];
+                                    for ($i=1;$i<= $img_num;$i++){
+                                    
+                                ?>
+                                <div class="carousel-item" data-slide-number="<?php echo $i; ?>" >
+                                    <img src="../carland-main/admin/vehicles/uploads/<?php echo $gallery_img; ?>" class="d-block w-100" alt="..." data-type="image" data-toggle="lightbox"  data-gallery="example-gallery">
+                                </div>
+                                <?php
+                                    }    
+                                }
+                                ?>
+                                <!--
+                                <div class="carousel-item active" data-slide-number="0">
+                                    <img src="images/BMW3Series/image1.jpeg" class="d-block w-100" alt="..." data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
+                                </div>
+                                <div class="carousel-item" data-slide-number="1">
+                                    <img src="images/BMW3Series/image2.jpeg" class="d-block w-100" alt="..." data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
+                                </div>
+                                <div class="carousel-item" data-slide-number="2">
+                                    <img src="images/BMW3Series/image3.jpeg" class="d-block w-100" alt="..." data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
+                                </div>
+                                <div class="carousel-item" data-slide-number="3">
+                                    <img src="images/BMW3Series/image4.jpeg" class="d-block w-100" alt="..." data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
+                                </div>
+                                <div class="carousel-item" data-slide-number="4">
+                                    <img src="images/BMW3Series/image5.jpeg" class="d-block w-100" alt="..." data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
+                                </div>
+                                <div class="carousel-item" data-slide-number="5">
+                                    <img src="images/BMW3Series/image6.jpeg" class="d-block w-100" alt="..." data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
+                                </div>
+                                <div class="carousel-item" data-slide-number="6">
+                                    <img src="images/BMW3Series/image7.jpeg" class="d-block w-100" alt="..." data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
+                                </div>
+                                <div class="carousel-item" data-slide-number="7">
+                                    <img src="images/BMW3Series/image8.jpeg" class="d-block w-100" alt="..." data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
+                                </div>
+                                <div class="carousel-item" data-slide-number="8">
+                                    <img src="images/BMW3Series/image9.jpeg" class="d-block w-100" alt="..." data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
+                                </div>
+                                <div class="carousel-item" data-slide-number="9">
+                                    <img src="images/BMW3Series/image10.jpeg" class="d-block w-100" alt="..." data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
+                                </div>
+                            -->
+                            </div>
+                        </div>
+                        <br><br>
+                        <!-- Carousel Navigation -->
+                        <div id="carousel-thumbs" class="carousel slide carousel-thumbnails" data-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <div class="row mx-0">
+                                        <div id="carousel-selector-0" class="thumb col-4 col-sm-2 px-1 py-2 selected" data-target="#myCarousel" data-slide-to="0">
+                                            <img src="../carland-main/admin/vehicles/uploads/<?php echo $img; ?>" class="img-fluid" alt="...">
+                                        </div>
+                                       
+                                        <?php 
+                                        while ($rowGallery = mysqli_fetch_array($resultGallery)){
+                                        extract($rowGallery);
+                                        $img_id = $rowGallery['img_id'];
+                                        $gallery_img = $rowGallery['gallery_img'];
+                                        for ($i=1;$i<= $img_num;$i++){
+                                        //$i = array_search($gallery_img,array_column($vehicle_galley, 'gallery_img')) +1 ; 
 
-                    <div class="swiffy-slider slider-item-ratio  slider-nav-round slider-nav-autoplay data-slider-nav-autoplay-interval=5000 slider-item-ratio-16x9 slider-nav-autopause slider-nav-nodelay" id="pgallery">
-                        <ul class="slider-container">
-                            <?php foreach ($vehicleGallery as $key => $vehicleGalleryImage) {
-                            ?>
+                                        
+                                        ?>
+                                        
+                                        <div id="carousel-selector-<?php echo $i; ?>" class="thumb col-4 col-sm-2 px-1 py-2 " data-target="#myCarousel" data-slide-to="<?php echo $i;?>" >
+                                            <img src="../carland-main/admin/vehicles/uploads/<?php echo $gallery_img; ?>" class="img-fluid" alt="...">
+                                        </div>
+                                        
+                                        <?php
+                                        }
+                                        }
+                                        ?>
 
-                                <li class="ratio"><img src="admin/vehicles/uploads/<?php echo $vehicleGalleryImage['gallery_img'] ?>" loading="lazy" alt="..." data-bs-toggle="modal" data-bs-target="#productGalleryModal" onclick="imageClick(<?php echo $key ?>)"></li>
-                            <?php
-                            }
-                            ?>
-                        </ul>
+                                        <!--
+                                        <div id="carousel-selector-0" class="thumb col-4 col-sm-2 px-1 py-2 selected" data-target="#myCarousel" data-slide-to="0">
+                                            <img src="images/BMW3Series/image1.jpeg" class="img-fluid" alt="...">
+                                        </div>
+                                        <div id="carousel-selector-1" class="thumb col-4 col-sm-2 px-1 py-2" data-target="#myCarousel" data-slide-to="1">
+                                            <img src="images/BMW3Series/image2.jpeg" class="img-fluid" alt="...">
+                                        </div>
+                                        <div id="carousel-selector-2" class="thumb col-4 col-sm-2 px-1 py-2" data-target="#myCarousel" data-slide-to="2">
+                                            <img src="images/BMW3Series/image3.jpeg" class="img-fluid" alt="...">
+                                        </div>
+                                        <div id="carousel-selector-3" class="thumb col-4 col-sm-2 px-1 py-2" data-target="#myCarousel" data-slide-to="3">
+                                            <img src="images/BMW3Series/image4.jpeg" class="img-fluid" alt="...">
+                                        </div>
+                                        <div id="carousel-selector-4" class="thumb col-4 col-sm-2 px-1 py-2" data-target="#myCarousel" data-slide-to="4">
+                                            <img src="images/BMW3Series/image5.jpeg" class="img-fluid" alt="...">
+                                        </div>
+                                        <div id="carousel-selector-5" class="thumb col-4 col-sm-2 px-1 py-2" data-target="#myCarousel" data-slide-to="5">
+                                            <img src="images/BMW3Series/image6.jpeg" class="img-fluid" alt="...">
+                                        </div>
+                                        -->
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="row mx-0">
+                    
+                                        <!--
+                                        <div id="carousel-selector-6" class="thumb col-4 col-sm-2 px-1 py-2" data-target="#myCarousel" data-slide-to="6">
+                                            <img src="images/BMW3Series/image7.jpeg" class="img-fluid" alt="...">
+                                        </div>
+                                        <div id="carousel-selector-7" class="thumb col-4 col-sm-2 px-1 py-2" data-target="#myCarousel" data-slide-to="7">
+                                            <img src="images/BMW3Series/image8.jpeg" class="img-fluid" alt="...">
+                                        </div>
+                                        <div id="carousel-selector-8" class="thumb col-4 col-sm-2 px-1 py-2" data-target="#myCarousel" data-slide-to="8">
+                                            <img src="images/BMW3Series/image9.jpeg" class="img-fluid" alt="...">
+                                        </div>
+                                        <div id="carousel-selector-9" class="thumb col-4 col-sm-2 px-1 py-2" data-target="#myCarousel" data-slide-to="9">
+                                            <img src="images/BMW3Series/image10.jpeg" class="img-fluid" alt="...">
+                                        </div>
 
-                        <button type="button" class="slider-nav" aria-label="Go previous"></button>
-                        <button type="button" class="slider-nav slider-nav-next" aria-label="Go next"></button>
-                    </div>
-
-                    <div class="swiffy-slider slider-nav-dark slider-nav-sm slider-nav-chevron  slider-item-show4 slider-item-snap start slider-item-ratio slider-nav-autopause slider-nav-visible slider-nav-page slider-nav-round  pt-3 d-none d-lg-block">
-                        <ul class="slider-container" style="max-width: 100%;height: auto;" id="pgallerythumbs" style="cursor:pointer">
-                            <?php foreach ($vehicleGallery as $key => $vehicleGalleryImage) {
-                            ?>
-                                <li><img src="admin/vehicles/uploads/<?php echo $vehicleGalleryImage['gallery_img'] ?>" loading="lazy" alt="..." onmouseover="thumbHover(<?php echo $key ?>)"></li>
-                            <?php
-                            }
-                            ?>
-                        </ul>
-                        <button type="button" class="slider-nav" style="max-width: 100%;height: auto;" aria-label="Go previous"></button>
-                        <button type="button" class="slider-nav slider-nav-next" style="max-width: 100%;height: auto;" aria-label="Go next"></button>
-                    </div>
+                                        <div class="col-2 px-1 py-2">
+                                        </div>
+                                        <div class="col-2 px-1 py-2"></div>
+                                    -->
+                                    </div>
+                                </div>
+                            </div>
+                            <a class="carousel-control-prev" href="#carousel-thumbs" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carousel-thumbs" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    </div> <!-- /container -->
                 </div>
                 <!--/.Carousel Wrapper-->
-                <div class="row justify-content-between ml-3">
+                <div class="row justify-content-between">
                     <li class="list-unstyled w-25">
                         <div class="icon-style">
                             <i class="bi bi-calendar4-event"></i>
-                            <span class="icon-text-bi">Reg date</span>
+                            <span class="icon-text-bi">Rego</span>
                         </div>
                         <p class="icon-text"><?php echo $rego ?></p>
                     </li>
@@ -184,7 +284,7 @@ $vehicleSimilarProductsList = fetchSimilarProductsList($userId, $bodytypeId, $ve
                     </li>
                 </div>
                 <!-- end of first key features row -->
-                <div class="row justify-content-between mt-3 ml-3">
+                <div class="row justify-content-between mt-3">
                     <li class="list-unstyled w-25">
                         <div class="icon-style">
                             <svg width="50" height="50" viewBox="0 0 24 24" fill="none" class="sc-1tndrw2-0 hGYlvQ">
@@ -216,7 +316,7 @@ $vehicleSimilarProductsList = fetchSimilarProductsList($userId, $bodytypeId, $ve
                     </li>
                 </div>
                 <!-- end of key features second row -->
-                <div class="row justify-content-between mt-3 ml-3">
+                <div class="row justify-content-between mt-3">
                     <li class="list-unstyled w-25">
                         <div class="icon-style">
                             <svg width="50" height="50" viewBox="0 0 25 23" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -228,6 +328,13 @@ $vehicleSimilarProductsList = fetchSimilarProductsList($userId, $bodytypeId, $ve
                     </li>
                     <li class="list-unstyled w-25">
                         <div class="icon-style">
+                            <i class="bi bi-person-bounding-box"></i>
+                            <span class="icon-text-bi">NZ Owner</span>
+                        </div>
+                        <p class="icon-text"></p>
+                    </li>
+                    <li class="list-unstyled w-25">
+                        <div class="icon-style">
                             <svg width="50" height="56" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M512 64 128 192v384c0 212.1 171.9 384 384 384s384-171.9 384-384V192L512 64zm312 512c0 172.3-139.7 312-312 312S200 748.3 200 576V246l312-110 312 110v330z" />
                                 <path d="M378.4 475.1a35.91 35.91 0 0 0-50.9 0 35.91 35.91 0 0 0 0 50.9l129.4 129.4 2.1 2.1a33.98 33.98 0 0 0 48.1 0L730.6 434a33.98 33.98 0 0 0 0-48.1l-2.8-2.8a33.98 33.98 0 0 0-48.1 0L483 579.7 378.4 475.1z" />
@@ -236,16 +343,40 @@ $vehicleSimilarProductsList = fetchSimilarProductsList($userId, $bodytypeId, $ve
                         </div>
                         <p class="icon-text">
                             <?php
-                            for ($i = 0; $i < $safety; $i++) {
+                            for($i=0; $i<$safety; $i++) {
                                 echo "<i class='bi bi-emoji-smile'></i> ";
                             }
                             ?>
                         </p>
                     </li>
-                    <li class="list-unstyled w-25">
+                </div>
+                <!-- end of key features third row -->
+                <div class="row justify-content-start mt-2">
+                    <li class="list-unstyled">
                         <div class="icon-style">
+                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="35px" height="35px" viewBox="0 0 436.844 436.844" style="enable-background:new 0 0 436.844 436.844;" xml:space="preserve">
+                                <path d="M0,112.738c0,14.768,11.971,26.737,26.741,26.737c14.766,0,26.735-11.97,26.735-26.737S26.741,67.152,26.741,67.152
+                                           S0,97.971,0,112.738z" />
+                                <path d="M433.4,168.984c-4.48-12.273-12.781-22.217-22.069-30.094l2.8-4.878l-27.377-15.716l3.425-6.339l-114.077-61.62
+                                           l-0.003,0.007l-29.593-15.978l-99.853-8.488l-4.177,7.732L97.753,9.454l-66.829,6.595l2.455,24.88L92.6,35.083l37.994,20.522
+                                           l-4.854,8.985l77.802,42.024l13.542,52.983l30.265,16.345l42.795-5.333l58.063,19.044l16.22-30.029l0.003,0.003l4.258-7.886
+                                           l26.524,15.227l1.848-3.219c4.761,4.756,8.188,9.768,10.041,14.841c2.987,8.177,2.056,16.837-2.89,26.548
+                                           c-11.484,22.909-46.961,40.323-105.441,51.761c-9.396,1.838-19.121,2.926-29.418,4.076c-31.361,3.504-66.909,7.477-90.902,36.436
+                                           l-0.108,0.131c-19.171,23.721-22.8,52.629-9.955,79.312c14.652,30.442,48.06,50.753,83.13,50.534l-0.172-27.999
+                                           c-24.474,0.15-47.672-13.786-57.729-34.679c-4.672-9.708-10.042-29.039,6.447-49.499c16.78-20.191,42.558-23.075,72.399-26.409
+                                           c10.403-1.163,21.162-2.364,31.684-4.424c68.384-13.374,109.305-35.188,125.059-66.613
+                                           C437.708,201.058,439.121,184.646,433.4,168.984z M338.556,165.44l-44.354-14.547l-31.7-2.83l4.016-7.431l14.172-26.237
+                                           l66.142,35.727L338.556,165.44z" />
+                            </svg>
+                            <span class="icon-text-bi">Fuelsaver</span>
                         </div>
-                        <p class="icon-text"></p>
+                        <p class="icon-text">
+                            <img src="images/fuelEconomyRating 1.svg" alt="Fuel Economy Rating" />
+                        </p>
+                        <p class="icon-text-bi">Fuel costs of $7,030 per year</p>
+                        <p class="icon-text-bi">Fuel economy is 7.0 litres per 100km</p>
+                        <p class="icon-text-bi">Cost per year based on price per litre of diesel $1.45 and an average
+                            distance of 40000 km</p>
                     </li>
                 </div>
             </div>
@@ -306,46 +437,144 @@ $vehicleSimilarProductsList = fetchSimilarProductsList($userId, $bodytypeId, $ve
                 <h4>Other vehicles you might like</h4>
             </div>
             <div class="d-flex flew-row justify-content-around">
-                <?php foreach ($vehicleSimilarProductsList as $key => $vehicleSimilarProduct) {
-                ?>
-                    <div class="col-lg-4 col-md-12">
-                        <div class="card ml-3 card-style">
-                            <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
-                                <img src="admin/vehicles/uploads/<?php echo $vehicleSimilarProduct['img']; ?>" class="card-img" />
-                                <div class="card-img-overlay d-flex justify-content-end h-25">
-                                    <a href="javascript:" class="favourite-heart btn btn-default" name="addToFavourite" id="favouriteBtn" data-carid="<?php echo $vehicleSimilarProduct['vehicle_id'] ?>">
-                                        <i class="bi bi-balloon-heart-fill" att="0" style="color:<?php echo $vehicleSimilarProduct['favourite_id'] ? "#DF4E3C" : "white" ?>; font-size: 20px"></i>
-                                    </a>
-                                </div>
-                                <div class="mask">
-                                    <div class="d-flex justify-content-end">
-                                        <a href="#">
-                                            <span class="product-location" ><?php echo $vehicleSimilarProduct['location'] ?></span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="hover-overlay">
-                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <a href="" class="text-reset">
-                                    <h5 class="card-title mb-3"><?php echo htmlentities($vehicleSimilarProduct['title']); ?></h5>
+                <div class="card ml-3 card-style">
+                    <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
+                        <img src="images/BMW3Series/image1.jpeg" class="card-img" />
+                        <div class="card-img-overlay d-flex justify-content-end h-25">
+                            <a href="#" class="card-link text-danger like">
+                                <i class="bi bi-heart"></i>
+                            </a>
+                        </div>
+                        <div class="mask">
+                            <div class="d-flex justify-content-end">
+                                <a href="#">
+                                    <span class="product-location">Christchurch</span>
                                 </a>
-                                <a href="" class="text-reset">
-                                    <p class="product-description"><?php echo htmlentities($vehicleSimilarProduct['subtitle']); ?></p>
-                                    <span class="product-text-mileage"><?php echo htmlentities($vehicleSimilarProduct['mileage']) ?>km</span>
-                                    <span class="product-text-reg"><?php echo htmlentities($vehicleSimilarProduct['rego']) ?> </span>
-                                </a>
-                                <h6 class="mt-3 mb-3"><b>$<?php echo number_format($vehicleSimilarProduct['price']) ?></b></h6>
                             </div>
-                            <a class="btn btn-outline-success mb-3 w-90 ml-3 mr-3" href='productDetail.php?vehicleId=<?php echo htmlentities($vehicleSimilarProduct['vehicle_id']); ?>'><i class="bi bi-eye pr-2"></i> View This Car</a>
+                        </div>
+                        <div class="hover-overlay">
+                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);">
+                            </div>
                         </div>
                     </div>
-                <?php
-                }
-                ?>
+                    <div class="card-body">
+                        <a href="" class="text-reset">
+                            <h5 class="card-title mb-3">BMW 3 Series</h5>
+                        </a>
+                        <a href="" class="text-reset">
+                            <p class="product-description">2L M Sport Shadow Edition 320d</p>
+                            <span class="product-text-mileage">28,650km</span>
+                            <span class="product-text-reg">2017 reg</span>
+                        </a>
+                        <h6 class="mt-3 mb-3"><b>$55,125</b></h6>
+                    </div>
+                    <a href="#" class="btn btn-outline-success mb-3 w-90 ml-3 mr-3" role="button"><i class="bi bi-eye pr-2"></i> View This Car</a>
+                </div>
+                <div class="card ml-3 card-style">
+                    <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
+                        <img src="images/BMW3Series/image1.jpeg" class="card-img" />
+                        <div class="card-img-overlay d-flex justify-content-end h-25">
+                            <a href="#" class="card-link text-danger like">
+                                <i class="bi bi-heart"></i>
+                            </a>
+                        </div>
+                        <div class="mask">
+                            <div class="d-flex justify-content-end">
+                                <a href="#">
+                                    <span class="product-location">Christchurch</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="hover-overlay">
+                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <a href="" class="text-reset">
+                            <h5 class="card-title mb-3">BMW 3 Series</h5>
+                        </a>
+                        <a href="" class="text-reset">
+                            <p class="product-description">2L M Sport Shadow Edition 320d</p>
+                            <span class="product-text-mileage">28,650km</span>
+                            <span class="product-text-reg">2017 reg</span>
+                        </a>
+                        <h6 class="mt-3 mb-3"><b>$55,125</b></h6>
+                    </div>
+                    <a href="#" class="btn btn-outline-success mb-3 w-90 ml-3 mr-3"><i class="bi bi-eye pr-2"></i> View
+                        This Car</a>
+                </div>
+                <div class="card ml-3 card-style">
+                    <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
+                        <img src="images/BMW3Series/image1.jpeg" class="card-img" />
+                        <div class="card-img-overlay d-flex justify-content-end h-25">
+                            <a href="#" class="card-link text-danger like">
+                                <i class="bi bi-heart"></i>
+                            </a>
+                        </div>
+                        <div class="mask">
+                            <div class="d-flex justify-content-end">
+                                <a href="#">
+                                    <span class="product-location">Christchurch</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="hover-overlay">
+                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <a href="" class="text-reset">
+                            <h5 class="card-title mb-3">BMW 3 Series</h5>
+                        </a>
+                        <a href="" class="text-reset">
+                            <p class="product-description">2L M Sport Shadow Edition 320d</p>
+                            <span class="product-text-mileage">28,650km</span>
+                            <span class="product-text-reg">2017 reg</span>
+                        </a>
+                        <h6 class="mt-3 mb-3"><b>$55,125</b></h6>
+                    </div>
+                    <a href="#" class="btn btn-outline-success mb-3 w-90 ml-3 mr-3"><i class="bi bi-eye pr-2"></i> View
+                        This Car</a>
+                </div>
+                <div class="card ml-3 card-style">
+                    <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
+                        <img src="images/BMW3Series/image1.jpeg" class="card-img" />
+                        <div class="card-img-overlay d-flex justify-content-end h-25">
+                            <a href="#" class="card-link text-danger like">
+                                <i class="bi bi-heart"></i>
+                            </a>
+                        </div>
+                        <div class="mask">
+                            <div class="d-flex justify-content-end">
+                                <a href="#">
+                                    <span class="product-location">Christchurch</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="hover-overlay">
+                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <a href="" class="text-reset">
+                            <h5 class="card-title mb-3">BMW 3 Series</h5>
+                        </a>
+                        <a href="" class="text-reset">
+                            <p class="product-description">2L M Sport Shadow Edition 320d</p>
+                            <span class="product-text-mileage">28,650km</span>
+                            <span class="product-text-reg">2017 reg</span>
+                        </a>
+                        <h6 class="mt-3 mb-3"><b>$55,125</b></h6>
+                    </div>
+                    <a href="#" class="btn btn-outline-success mb-3 w-90 ml-3 mr-3"><i class="bi bi-eye pr-2"></i> View
+                        This Car</a>
+                </div>
+            </div>
+            <div class="row justify-content-center ml-3 mt-4 container-fluid">
+                <a class="btn btn-outline-success" href="#" role="button">Explore Similar vehicles</a>
             </div>
         </div>
         <!-- car financing block -->
@@ -385,7 +614,7 @@ $vehicleSimilarProductsList = fetchSimilarProductsList($userId, $bodytypeId, $ve
                         </div>
                     </div>
                 </div>
-                <button type="button" class="btn btn-outline-success info-btn disabled" href="#">More info <i class="bi bi-plus-square"></i></button>
+                <button type="button" class="btn btn-outline-success info-btn" href="#">More info <i class="bi bi-plus-square"></i></button>
             </div>
         </div>
         <!-- end of car financing block -->
