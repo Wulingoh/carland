@@ -13,4 +13,9 @@ $link = mysqli_connect($server, $user, $password, $database);
 if(!$link) {
     die("Error". mysqli_connect_error()); 
 } 
+
+define('CAR_IMG_DIR', '/Users/wulingoh/code/vision_college2021/carland/admin/vehicles/uploads/');
+
+// width is scale on the fly
+define('CAR_IMG_WIDTH', 500);
 ?>

@@ -37,12 +37,6 @@
                             <li class="font-weight-bolder">
                                 <a href="#">Sell</a>
                             </li>
-                            <li>
-                                <a href="#">Trade-In</a>
-                            </li>
-                            <li>
-                                <a href="#">Trade-Part</a>
-                            </li>
                         </ul>
                         <ul class="col-md-2 list-unstyled footer-nav">
                             <li class="font-weight-bolder">
@@ -95,14 +89,6 @@
                         <div class="clearfix"></div>
                         <div class="container">
                             <div class="row">
-                                <span class="footer-text">Get the latest automotive news sent to your inbox!</span>
-                                <form class="form-inline">
-                                    <input type="text" class="form-control mb-2" id="inlineFormInputEmail2"
-                                        placeholder="Email address*">
-                                    <button type="submit" class="btn btn-primary footer-btn mb-2">Submit</button>
-                                </form>
-                                <span class="footer-text">By submitting this form, you agree to our Privacy Policy
-                                </span>
                                 <div class="container">
                                     <div class="row">
                                         <ul class="list-unstyled flexbox">

@@ -4,7 +4,7 @@ $errorMessage = "";
 
 if (isset($_POST['btn_login'])) {
 
-    if ($stmt = $link->prepare('SELECT user_id, password_hash, user_role FROM users WHERE user_email = ?')) {
+    if ($stmt = $link->prepare('SELECT user_id, password_hash, user_role, user_fullname FROM users WHERE user_email = ?')) {
         // Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
         $stmt->bind_param('s', $_POST['email']);
         $stmt->execute();
@@ -12,7 +12,7 @@ if (isset($_POST['btn_login'])) {
         $stmt->store_result();
 
         if ($stmt->num_rows > 0) {
-            $stmt->bind_result($id, $password_hash, $role);
+            $stmt->bind_result($userId, $password_hash, $userRole, $fullname);
             $stmt->fetch();
             // Account exists, now we verify the password.
             // Note: remember to use password_hash in your registration file to store the hashed passwords.
@@ -22,11 +22,11 @@ if (isset($_POST['btn_login'])) {
                 session_regenerate_id();
                 $_SESSION['loggedin'] = TRUE;
                 $_SESSION['email'] = $_POST['email'];
-                $_SESSION['id'] = $id;
-                $_SESSION['role'] = $role; 
-                
-                if ($role == 'admin' ) {
-                    header('Location: admin/index.php');
+                $_SESSION['user_id'] = $userId;
+                $_SESSION['user_role'] = $userRole;
+                $_SESSION['fullname'] = $fullname;  
+                if ($userRole == 'admin' ) {
+                    header('Location: admin/users/index.php');
                 } else {
                     if (isset($_SESSION['return_page'])) {
                         header("Location: ".$_SESSION['return_page']);
@@ -97,9 +97,7 @@ if (isset($_POST['btn_login'])) {
                             <small id="emailHelp" class="form-text text-muted text-center">
                                 Don't have an account? <a href="register.php">Register</a>
                             </small>
-                            <small id="passwordHelp" class="form-text text-muted text-center">
-                                Forgotten your password? <a href="forgotPassword.php">Password Reset</a>
-                            </small>
+
                         </form>
                     </div>
                     <div class="col-6 register-right-frame">
