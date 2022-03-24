@@ -1,6 +1,7 @@
 <?php
 include "config.php";
 include "returnPage.php";
+include "queryHelpers.php";
 
 if (isset($_SESSION['user_id'])) {
     $userId = $_SESSION['user_id'];
@@ -147,8 +148,12 @@ if (isset($_SESSION['user_id'])) {
                 <!-- end of sort style page row -->
                 <div class="row product-list no-gutters">
                     <?php
-                    while ($row = $result->fetch_assoc()) {
-                        $vehicleId = $row['vehicle_id'];
+                        $rowsPerPage = 10;
+                        $pagingLink = getPagingLink($query, $rowsPerPage, $searchUrl);
+                        $resultP = mysqli_query($link, getPagingQuery($query, $rowsPerPage));
+                        while($row = $resultP->fetch_assoc()) {
+                            $vehicleId = $row['vehicle_id'];
+            
                     ?>
                         <div class="col-lg-4 col-md-12">
                             <div class="card ml-3 card-style">
@@ -195,43 +200,16 @@ if (isset($_SESSION['user_id'])) {
             <div class="container-fluid mt-5 mb-5">
                 <div class="row">
                     <div class="col-12">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination justify-content-center pagination-style">
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="First">
-                                        <span aria-hidden="true"><i class="bi bi-chevron-bar-left"></i></span>
-                                    </a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">
-                                        <span aria-hidden="true"><i class="bi bi-chevron-compact-left"></i></span>
-                                    </a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">...</a></li>
-                                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                <li class="page-item"><a class="page-link" href="#">5</a></li>
-                                <li class="page-item"><a class="page-link" href="#">6</a></li>
-                                <li class="page-item"><a class="page-link" href="#">7</a></li>
-                                <li class="page-item"><a class="page-link" href="#">8</a></li>
-                                <li class="page-item"><a class="page-link" href="#">...</a></li>
-                                <li class="page-item"><a class="page-link" href="#">20</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
-                                        <span aria-hidden="true"><i class="bi bi-chevron-compact-right"></i></span>
-                                    </a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="End">
-                                        <span aria-hidden="true"><i class="bi bi-chevron-bar-right"></i></span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
+                    <div class="col">
+                       <h3 style="text-align:center">
+                           <?php echo $pagingLink; // display paging links ?>
+                       </h3>
+                    </div>
 
                     </div>
                 </div>
             </div>
+            <div class="mb-5"></div>
     </section>
     <?php include "footer.php" ?>
 
