@@ -254,7 +254,7 @@ $vehicleRecentlyAddedGallery = fetchRecentlyAddedGallery($userId);
     </section>
     <!-- end of brands search -->
     <!-- divider block -->
-    <div class="row finance-row mt-2">
+    <div class="container_fluid finance-row mt-2">
         <div class="container finance-block-wrapper mb-3">
             <h4 class="text-center font-weight-bolder">Complete car confidence</h4>
             <div class="row borderless-card-row">
