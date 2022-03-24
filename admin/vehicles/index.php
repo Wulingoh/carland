@@ -169,7 +169,7 @@ include "../../lib/image-creation.php";
                      </thead>
                      <?php
                      $query = "SELECT * FROM vehicles ";
-                     $result = mysqli_query($link, $query);
+                     $result = mysqli_query($link, $query) or die(mysqli_error($link));
                      while ($row = mysqli_fetch_array($result)) {
                         extract($row);
                         $id = $row['vehicle_id'];

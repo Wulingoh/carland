@@ -1,6 +1,17 @@
-<?php 
+<?php
 include "config.php";
 include "returnPage.php";
+include "queryHelpers.php";
+
+if (isset($_SESSION['user_id'])) {
+    $userId = $_SESSION['user_id'];
+} else {
+    $userId = 0;
+}
+
+
+$vehicleBrandLogoGallery = fetchVehicleBrandLogo();
+$vehicleRecentlyAddedGallery = fetchRecentlyAddedGallery($userId);
 ?>
 
 <!DOCTYPE html>
@@ -12,384 +23,380 @@ include "returnPage.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carland</title>
     <link href="css/bootstrap.css" rel="stylesheet">
-    <script src="js/jquery-1.10.1.min.js"></script>
+    <script src="js/jquery-3.5.1.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.5.0/dist/js/swiffy-slider.min.js" crossorigin="anonymous" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.5.0/dist/css/swiffy-slider.min.css" rel="stylesheet" crossorigin="anonymous">
     <link href="css/style.css" rel="stylesheet">
+    <link href="icon/bootstrap-icons.css" rel="stylesheet">
 </head>
 
+
 <body>
-    <!DOCTYPE html>
-    <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Carland</title>
-        <link href="css/bootstrap.css" rel="stylesheet">
-        <script src="js/jquery-1.10.1.min.js"></script>
-        <script src="js/bootstrap.bundle.min.js"></script>
-        <link href="css/style.css" rel="stylesheet">
-        <link href="icon/bootstrap-icons.css" rel="stylesheet">
-    </head>
+    <?php include "navigation.php" ?>
 
-    <body>
-       
-        <?php include "navigation.php"?>
-
-        <section class="container-fluid">
-            <div class="container">
-                <div class="row">
-                    <!-- landing image -->
-                    <div class="col-7">
-                        <img src="images/landingImage.png" />
-                    </div>
-                    <!-- landing select form -->
-                    <div class="col-5 landing-forms">
-                        <!-- Tabs navs -->
-                        <ul class="nav nav-tabs landing-nav" id="ex1" role="tablist">
-                            <li class="nav-item" role="presentation">
-                                <a class="nav-link active" id="ex1-tab-1" data-mdb-toggle="tab" href="#ex1-tabs-1" role="tab" aria-controls="ex1-tabs-1" aria-selected="true">Buy</a>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <a class="nav-link" id="ex1-tab-2" data-mdb-toggle="tab" href="#ex1-tabs-2" role="tab" aria-controls="ex1-tabs-2" aria-selected="false">Sell</a>
-                            </li>
-                        </ul>
-                        <!-- Tabs navs -->
-
-                        <!-- Tabs content -->
-                        <div class="tab-content landing-content" id="ex1-content">
-                            <div class="tab-pane fade show active" id="ex1-tabs-1" role="tabpanel" aria-labelledby="ex1-tab-1">
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                    </div>
-                                    <select class="custom-select" id="inputGroupSelect01">
-                                        <option selected>Select Make</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
-                                        <option value="4">Four</option>
-                                    </select>
-                                    <select class="custom-select" id="inputGroupSelect01">
-                                        <option selected>Select Make</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
-                                        <option value="4">Four</option>
-                                    </select>
-                                    <select class="custom-select" id="inputGroupSelect01">
-                                        <option selected>Select Make</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
-                                        <option value="4">Four</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="ex1-tabs-2" role="tabpanel" aria-labelledby="ex1-tab-2">
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                    </div>
-                                    <select class="custom-select" id="inputGroupSelect01">
-                                        <option selected>Value</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
-                                        <option value="4">Four</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Tabs content -->
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="container-fluid mt-5 pt-2">
+    <section class="container-fluid mb-5">
+        <div class="container">
             <div class="row">
-                <h4>Latest Vehicle </h4>
-                <div class="col-7 mt-5">
-                    <img src="images/tesla.svg" alt="Tesla" />
+                <!-- landing image -->
+                <div class="col-7">
+                    <img src="images/landingImage.png" />
                 </div>
-                <div class="pl-2 mt-5 d-flex">
-                    <img src="images/tesla-logo.svg" alt="Tesla Logo" width="100px" height="124px">
-                    <img src="images/tesla-logo.svg" alt="Tesla Logo" width="100px" height="124px">
-                    <img src="images/tesla-logo.svg" alt="Tesla Logo" width="100px" height="124px">
+                <div class="col-5 searchFilterWrapper">
+                    <form method="GET" action="productsListing.php">
+                        <div class="list-group list-group-flush mt-4">
+                            <!-- Collapse 1 -->
+                            <a class="list-group-item list-group-item-action py-2 ripple" aria-current="true" data-toggle="collapse" href="#make" aria-expanded="true" aria-controls="collapseExample2" role="button">
+                                <span>Make & Model</span>
+                                <i class="bi bi-chevron-compact-down rotate-icon"></i>
+                            </a>
+                            <ul id="make" class="list-group list-group-flush">
+                                <li class="list-group-item py-1">
+                                    <div class="sidebar-inner-content">
+                                        <label class="sidebar-style-label">
+                                            <span class="sidebar-text"> Make</span>
+                                            <div class="sidebar-select-option">
+                                                <select class="selectpicker sidebar-selectpicker" name="searchMake" id="searchMake">
+                                                    <option value="">Any</option>
+                                                    <?php
+                                                    $queryMake = "SELECT * FROM vehicle_make ";
+                                                    $resultMake = mysqli_query($link, $queryMake);
+                                                    while ($rowMake = mysqli_fetch_array($resultMake)) {
+                                                        extract($rowMake);
+                                                        $make_id = $rowMake['make_id'];
+                                                        $make = $rowMake['make'];
+
+                                                    ?>
+                                                        <option value="<?= $make_id; ?>" <?php if (isset($_GET['filterSearch'])) {
+                                                        if ($_GET['searchMake'] == $make_id) {
+                                                        echo "selected";
+                                                        }
+                                                        } ?>><?= $make; ?></option>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </li>
+                                <li class="list-group-item py-1">
+                                    <div class="sidebar-inner-content">
+                                        <label class="sidebar-style-label">
+                                            <span class="sidebar-text"> Model</span>
+                                            <div class="sidebar-select-option">
+                                                <select class="selectpicker sidebar-selectpicker" name="searchModel" id="searchModel">
+                                                    <?php
+                                                    $id =  $_GET['searchModel']; //not ideal way to get selected model but works, should check AJAX
+                                                    if (isset($_GET['filterSearch']) && $_GET['searchModel']) {
+                                                    ?>
+                                                        <option value="<?= $_GET['searchModel']; ?>">
+                                                            <?php
+                                                            $queryMd = "SELECT * FROM vehicle_model WHERE model_id = '$id' ";
+                                                            $resultMd = mysqli_query($link, $queryMd);
+                                                            $rowMd = mysqli_fetch_assoc($resultMd);
+                                                            echo $rowMd['model'];
+                                                            ?>
+                                                        </option>
+                                                    <?php
+                                                    } else {
+                                                    ?>
+                                                        <option value="">Any</option>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </li>
+                            </ul>
+                            <a class="list-group-item list-group-item-action py-2 ripple" aria-current="true" data-toggle="collapse" href="#location" aria-expanded="true" aria-controls="collapseExample2">
+                                <span>Location</span>
+                                <i class="bi bi-chevron-compact-down rotate-icon"></i>
+                            </a>
+                            <ul id="location" class="list-group list-group-flush">
+                                <li class="list-group-item py-1">
+                                    <div class="sidebar-inner-content">
+                                        <label class="sidebar-style-label">
+                                            <span class="sidebar-text"> City</span>
+                                            <div class="sidebar-select-option">
+                                                <select class="selectpicker sidebar-selectpicker" name="searchLocation" id="searchLocation">
+                                                    <option value="">Any</option>
+                                                    <?php
+                                                    $queryLocation = "SELECT * FROM vehicle_location";
+                                                    $resultLocation  = mysqli_query($link, $queryLocation);
+                                                    while ($rowLocation = mysqli_fetch_array($resultLocation)) {
+                                                        extract($rowLocation);
+                                                    ?>
+                                                    <option value="<?= $rowLocation['location_id']; ?>" <?php if (isset($_GET['filterSearch'])) {
+                                                        if ($_GET['searchLocation'] == $rowLocation['location_id']) {echo "selected";
+                                                        }
+                                                        } ?>>
+                                                            <?= $rowLocation['location']; ?>
+                                                    </option>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </li>
+                            </ul>
+                            <!-- Tabs content -->
+                        </div>
+                        <nav class="navbar sidebar-footer justify-content-center pl-0 pr-0">
+                            <button type="submit" class="btn btn-block col-12" name="filterSearch" style="background:#2B6777 ;color:white;width:100%;">Search Car</button>
+                        </nav>
+                    </form>
                 </div>
             </div>
-        </section>
-        <section class="brands-block mt-5 border border-primary">
+        </div>
+    </section>
+    <section class="container">
+        <div class="row">
+            <div class="col mr-5">
+                <h3 class="text-center">What our customers are saying:</h3>
+            </div>
+            <div class="swiffy-slider slider-item-show2 slider-nav-sm slider-nav-page slider-item-snapstart slider-item-nogap slider-nav-round slider-nav-dark slider-indicators-sm slider-indicators-outside slider-indicators-round slider-indicators-dark slider-nav-animation slider-nav-animation-slideup slider-item-first-visible col">
+                <div class="slider-container">
+                    <div class="p-3 p-xl-5 text-light slide-visible" style="background-color: #354f52;">
+                        <span class="col stars mb-5">
+                            <img class="" src="images/fiveStars.svg" alt="" />
+                        </span>
+                        <h3 class="text-uppercase h5 mt-3">5 🌟 experience</h3>
+                        <p>
+                            5 🌟 experience. Easy to obtain quote, clear guidance to rate condition of my ca...
+                        </p>
+                        <p>Clint Bezos</p>
+                        <span class="col buyerScore d-flex justify-content-end">
+                            <img src="images/buyerScore.svg" alt="" />
+                        </span>
+                    </div>
+                    <div class="p-3 p-xl-5 text-light slide-visible" style="background-color: #2f3e46;">
+                        <span class="col stars mb-5">
+                            <img class="" src="images/fiveStars.svg" alt="" />
+                        </span>
+                        <h3 class="text-uppercase h5 mt-3">5 🌟 experience</h3>
+                        <p>
+                            5 🌟 experience. Easy to obtain quote, clear guidance to rate condition of my ca...
+                        </p>
+                        <p>Clint Bezos</p>
+                        <span class="col buyerScore d-flex justify-content-end">
+                            <img src="images/buyerScore.svg" alt="" />
+                        </span>
+                    </div>
+                    <div class="p-3 p-xl-5 text-light" style="background-color: #52796f;">
+                        <h3 class="text-uppercase h5">Understand what sliders can do for your business</h3>
+                        <p>
+                            Gochujang edison bulb church-key gentrify you probably haven't heard of them, artisan selfies. Live-edge tousled wolf cronut shaman.
+                        </p>
+                        <button class="btn btn-outline-light">Sign up</button>
+                    </div>
+                    <div class="p-3 p-xl-5 text-light" style="background-color: #354f52;">
+                        <h3 class="text-uppercase h5">Benefits from using our products</h3>
+                        <p>
+                            I'm baby edison bulb etsy franzen fixie messenger bag ugh hell of farm-to-table brunch. Tumeric hashtag meh pabst organic next level meggings whatever hella listicle.
+                        </p>
+                        <button class="btn btn-outline-light">Read more</button>
+                    </div>
+                    <div class="p-3 p-xl-5 text-light" style="background-color: #2f3e46;">
+                        <h3 class="text-uppercase h5">Join the webinar this week</h3>
+                        <p>
+                            I'm baby edison bulb etsy franzen fixie messenger bag ugh hell of farm-to-table brunch. Tumeric hashtag meh pabst organic next level meggings whatever hella listicle.
+                        </p>
+                        <button class="btn btn-outline-light">Sign up</button>
+                    </div>
+                    <div class="p-3 p-xl-5 text-light" style="background-color: #52796f;">
+                        <h3 class="text-uppercase h5">Understand what sliders can do for your business</h3>
+                        <p>
+                            I'm baby edison bulb etsy franzen fixie messenger bag ugh hell of farm-to-table brunch. Tumeric hashtag meh pabst organic next level meggings whatever hella listicle.
+                        </p>
+                        <button class="btn btn-outline-light">Sign up</button>
+                    </div>
+                </div>
+
+                <button type="button" class="slider-nav" aria-label="Go left"></button>
+                <button type="button" class="slider-nav slider-nav-next" aria-label="Go left"></button>
+
+                <div class="slider-indicators d-md-none">
+                    <button class="active" aria-label="Go to slide"></button>
+                    <button aria-label="Go to slide"></button>
+                    <button aria-label="Go to slide"></button>
+                    <button aria-label="Go to slide"></button>
+                    <button aria-label="Go to slide"></button>
+                    <button aria-label="Go to slide"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="mt-5 mb-5">
+        <div class="mt-3">
             <h4>Search by Popular Brands</h4>
-            <div class="container">
-                <div class="row d-flex">
-                    <div class="col">
-                        <a class="brand" href="#"><img src="images/ford-logo.svg" /></a>
+        </div>
+        <div class="mt-5 swiffy-slider slider-item-show4 slider-nav-outside slider-nav-dark slider-nav-sm slider-nav-visible slider-nav-page slider-item-snapstart slider-nav-autoplay slider-nav-autopause slider-item-ratio slider-item-ratio-contain slider-item-ratio-32x9 bg-white shadow-lg py-3 py-lg-4" data-slider-nav-autoplay-interval="2000">
+            <div class="slider-container">
+                <?php foreach ($vehicleBrandLogoGallery as $key => $vehicleBrandLogoImage) {
+                ?>
+                    <a href="productsListing.php?searchMake=<?php echo($vehicleBrandLogoImage['make_id']); ?>">
+                            <img src="admin/vehicles/uploads/<?php echo $vehicleBrandLogoImage['brand_logo'] ?>" alt="...">
+                    </a>
+                <?php
+                }
+                ?>
+            </div>
+            <button type="button" class="slider-nav" aria-label="Go left"></button>
+            <button type="button" class="slider-nav slider-nav-next" aria-label="Go left"></button>
+        </div>
+
+    </section>
+    <!-- end of brands search -->
+    <!-- divider block -->
+    <div class="row finance-row mt-2">
+        <div class="container finance-block-wrapper mb-3">
+            <h4 class="text-center font-weight-bolder">Complete car confidence</h4>
+            <div class="row borderless-card-row">
+                <div class="borderless mb-3 mr-2 card-icon" style="max-width: 18rem;">
+                    <div class="card-header border-bottom-0 text-center card-header-dividerIcon"><img class="divider-icon" src="images/meritIcon.png" alt="" />
                     </div>
-                    <div class="col">
-                        <a class="brand" href="#"><img src="images/toyota-logo.svg" /></a>
+                    <div class="card-body border-top-0">
+                        <h6 class="card-title text-center font-weight-bold card-title-dividerTitle">Carland Quality
+                            Assured</h6>
+                        <p class="card-text text-center font-weight-lighter card-text-dividerText">All used Carland
+                            vehicles have passed through 300 point inspection, been fully reconditioned and have a
+                            recent service and VTNZ, if required.</p>
                     </div>
-                    <div class="col">
-                        <a class="brand" href="#"><img src="images/hondalogo.svg" /></a>
+                </div>
+                <div class="borderless mb-3 mr-2 card-icon" style="max-width: 18rem;">
+                    <div class="card-header border-bottom-0 text-center card-header-dividerIcon"><img class="divider-icon" src="images/moneyMeritIcon.png" alt="" /></div>
+                    <div class="card-body">
+                        <h5 class="card-title text-center font-weight-bold ard-title-dividerTitle">Money Back
+                            Guarantee</h5>
+                        <p class="card-text text-center font-weight-lighter card-text-dividerText">Enjoy your car
+                            for up to 7 days to make
+                            sure it fits in with your lifestyle. If you
+                            change your mind, you can return it for a full refund, no questions asked
+                        </p>
                     </div>
-                    <div class="col">
-                        <a class="brand" href="#"><img src="images/mazdalogo.svg" /></a>
-                    </div>
-                    <div class="col">
-                        <a class="brand" href="#"><img src="images/mitsubishilogo.svg" /></a>
-                    </div>
-                    <div class="col">
-                        <a class="brand" href="#"><img src="images/toyota-logo.svg" /></a>
-                    </div>
-                    <div class="col">
-                        <a class="brand" href="#"><img src="images/toyota-logo.svg" /></a>
+                </div>
+                <div class="borderless mb-3 mr-2 card-icon" style="max-width: 18rem;">
+                    <div class="card-header border-bottom-0 text-center card-header-dividerIcon"><img class="divider-icon" src="images/car-care.png" alt="" /></div>
+                    <div class="card-body">
+                        <h5 class="card-title text-center font-weight-bold ard-title-dividerTitle">Carland Car Care
+                        </h5>
+                        <p class="card-text text-center font-weight-lighter card-text-dividerText">You’ll get at
+                            least 90 days of warranty and RAC roadside assistance. We also offer paint and fabric
+                            protection, extended warranty and car servicing.
+                        </p>
                     </div>
                 </div>
             </div>
-        </section>
-        <!-- end of brands search -->
-        <!-- products carousel -->
-        <section class="container-xl mt-5">
-            <div class="row">
-                <div class="col-md-12">
-                    <h2 class="carousel-title">Featured <b>Products</b></h2>
-                    <div id="productsCarousel" class="carousel slide" data-ride="carousel" data-interval="0">
-                        <ol class="carousel-indicators">
-                            <li data-target="#productsCarousel" data-slide-to="0" class="active"></li>
-                            <li data-target="#productsCarousel" data-slide-to="1" class="active"></li>
-                            <li data-target="#productsCarousel" data-slide-to="2" class="active"></li>
-                        </ol>
-                        <!-- wrapper for carousel items -->
-                        <div class="carousel-inner">
-                            <div class="item carousel-item active">
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <div class="thumb-wrapper">
-                                            <span class="wish-icon">
-                                                <i class="bi bi-heart"></i>
-                                            </span>
-                                            <div class="img-box">
-                                                <img src="images/BMW3Series/image1.jpeg" class="img-fluid" alt="BMW 3 Series White">
-                                                <div class="thumb-content">
-                                                    <h4>BMW 3 Series</h4>
-                                                    <div class="star-rating"></div>
-                                                    <p class="item-price"><strike>$400.00</strike> <b>$369.00</b>
-                                                    </p>
-                                                    <a href="#" class="btn btn-primary-outline">Add to Cart</a>
-                                                </div>
+        </div>
+    </div>
+    <!-- end of divider block -->
+    <!-- products carousel -->
+    <section class="container-xl mt-5">
+        <div class="row">
+            <div class="swiffy-slider slider-item-show3 slider-nav-round slider-nav-page">
+                <ul class="slider-container">
+                    <?php foreach ($vehicleRecentlyAddedGallery as $key => $vehicleRecentlyAddedCard) {
+                    ?>
+                        <li>
+                            <div class="col-lg-4 col-md-12">
+                                <div class="card ml-3 card-style">
+                                    <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
+                                        <img src="admin/vehicles/uploads/<?php echo $vehicleRecentlyAddedCard['img']; ?>" class="card-img" />
+                                        <div class="card-img-overlay d-flex justify-content-end h-25">
+                                            <a href="javascript:" class="favourite-heart btn btn-default" name="addToFavourite" id="favouriteBtn" data-carid="<?php echo $vehicleRecentlyAddedCard['vehicle_id'] ?>">
+                                                <i class="bi bi-balloon-heart-fill" att="0" style="color:<?php echo $vehicleRecentlyAddedCard['favourite_id'] ? "#DF4E3C" : "white" ?>; font-size: 20px"></i>
+                                            </a>
+                                        </div>
+                                        <div class="mask">
+                                            <div class="d-flex justify-content-end">
+                                                <a href="#">
+                                                    <span class="product-location"><?php echo $vehicleRecentlyAddedCard['location'] ?></span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="hover-overlay">
+                                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);">
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-3">
-                                        <div class="thumb-wrapper">
-                                            <span class="wish-icon">
-                                                <i class="bi bi-heart"></i>
-                                            </span>
-                                            <div class="img-box">
-                                                <img src="images/BMW3Series/image1.jpeg" class="img-fluid" alt="BMW 3 Series White">
-                                                <div class="thumb-content">
-                                                    <h4>BMW 3 Series</h4>
-                                                    <div class="star-rating"></div>
-                                                    <p class="item-price"><strike>$400.00</strike> <b>$369.00</b>
-                                                    </p>
-                                                    <a href="#" class="btn btn-primary">Add to Cart</a>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="card-body">
+                                        <a href="" class="text-reset">
+                                            <h5 class="card-title mb-3"><?php echo htmlentities($vehicleRecentlyAddedCard['title']); ?></h5>
+                                        </a>
+                                        <a href="" class="text-reset">
+                                            <p class="product-description"><?php echo htmlentities($vehicleRecentlyAddedCard['subtitle']); ?></p>
+                                            <span class="product-text-mileage"><?php echo htmlentities($vehicleRecentlyAddedCard['mileage']) ?>km</span>
+                                            <span class="product-text-reg"><?php echo htmlentities($vehicleRecentlyAddedCard['rego']) ?> </span>
+                                        </a>
+                                        <h6 class="mt-3 mb-3"><b>$<?php echo number_format($vehicleRecentlyAddedCard['price']) ?></b></h6>
                                     </div>
-                                    <div class="col-sm-3">
-                                        <div class="thumb-wrapper">
-                                            <span class="wish-icon">
-                                                <i class="bi bi-heart"></i>
-                                            </span>
-                                            <div class="img-box">
-                                                <img src="images/BMW3Series/image1.jpeg" class="img-fluid" alt="BMW 3 Series White">
-                                                <div class="thumb-content">
-                                                    <h4>BMW 3 Series</h4>
-                                                    <div class="star-rating"></div>
-                                                    <p class="item-price"><strike>$400.00</strike> <b>$369.00</b>
-                                                    </p>
-                                                    <a href="#" class="btn btn-primary">Add to Cart</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <div class="thumb-wrapper">
-                                            <span class="wish-icon">
-                                                <i class="bi bi-heart"></i>
-                                            </span>
-                                            <div class="img-box">
-                                                <img src="images/BMW3Series/image1.jpeg" class="img-fluid" alt="BMW 3 Series White">
-                                                <div class="thumb-content">
-                                                    <h4>BMW 3 Series</h4>
-                                                    <div class="star-rating"></div>
-                                                    <p class="item-price"><strike>$400.00</strike> <b>$369.00</b>
-                                                    </p>
-                                                    <a href="#" class="btn btn-primary">Add to Cart</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <a class="btn btn-outline-success mb-3 w-90 ml-3 mr-3" href='productDetail.php?vehicleId=<?php echo htmlentities($vehicleRecentlyAddedCard['vehicle_id']); ?>'><i class="bi bi-eye pr-2"></i> View This Car</a>
                                 </div>
                             </div>
-                            <div class="item carousel-item">
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <div class="thumb-wrapper">
-                                            <span class="wish-icon">
-                                                <i class="bi bi-heart"></i>
-                                            </span>
-                                            <div class="img-box">
-                                                <img src="images/BMW3Series/image1.jpeg" class="img-fluid" alt="BMW 3 Series White">
-                                                <div class="thumb-content">
-                                                    <h4>BMW 3 Series</h4>
-                                                    <div class="star-rating"></div>
-                                                    <p class="item-price"><strike>$400.00</strike> <b>$369.00</b>
-                                                    </p>
-                                                    <a href="#" class="btn btn-primary">Add to Cart</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <div class="thumb-wrapper">
-                                            <span class="wish-icon">
-                                                <i class="bi bi-heart"></i>
-                                            </span>
-                                            <div class="img-box">
-                                                <img src="images/BMW3Series/image1.jpeg" class="img-fluid" alt="BMW 3 Series White">
-                                                <div class="thumb-content">
-                                                    <h4>BMW 3 Series</h4>
-                                                    <div class="star-rating"></div>
-                                                    <p class="item-price"><strike>$400.00</strike> <b>$369.00</b>
-                                                    </p>
-                                                    <a href="#" class="btn btn-primary">Add to Cart</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <div class="thumb-wrapper">
-                                            <span class="wish-icon">
-                                                <i class="bi bi-heart"></i>
-                                            </span>
-                                            <div class="img-box">
-                                                <img src="images/BMW3Series/image1.jpeg" class="img-fluid" alt="BMW 3 Series White">
-                                                <div class="thumb-content">
-                                                    <h4>BMW 3 Series</h4>
-                                                    <div class="star-rating"></div>
-                                                    <p class="item-price"><strike>$400.00</strike> <b>$369.00</b>
-                                                    </p>
-                                                    <a href="#" class="btn btn-primary">Add to Cart</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <div class="thumb-wrapper">
-                                            <span class="wish-icon">
-                                                <i class="bi bi-heart"></i>
-                                            </span>
-                                            <div class="img-box">
-                                                <img src="images/BMW3Series/image1.jpeg" class="img-fluid" alt="BMW 3 Series White">
-                                                <div class="thumb-content">
-                                                    <h4>BMW 3 Series</h4>
-                                                    <div class="star-rating"></div>
-                                                    <p class="item-price"><strike>$400.00</strike> <b>$369.00</b>
-                                                    </p>
-                                                    <a href="#" class="btn btn-primary">Add to Cart</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item carousel-item">
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <div class="thumb-wrapper">
-                                            <span class="wish-icon">
-                                                <i class="bi bi-heart"></i>
-                                            </span>
-                                            <div class="img-box">
-                                                <img src="images/BMW3Series/image1.jpeg" class="img-fluid" alt="BMW 3 Series White">
-                                                <div class="thumb-content">
-                                                    <h4>BMW 3 Series</h4>
-                                                    <div class="star-rating"></div>
-                                                    <p class="item-price"><strike>$400.00</strike> <b>$369.00</b>
-                                                    </p>
-                                                    <a href="#" class="btn btn-primary">Add to Cart</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <div class="thumb-wrapper">
-                                            <span class="wish-icon">
-                                                <i class="bi bi-heart"></i>
-                                            </span>
-                                            <div class="img-box">
-                                                <img src="images/BMW3Series/image1.jpeg" class="img-fluid" alt="BMW 3 Series White">
-                                                <div class="thumb-content">
-                                                    <h4>BMW 3 Series</h4>
-                                                    <div class="star-rating"></div>
-                                                    <p class="item-price"><strike>$400.00</strike> <b>$369.00</b>
-                                                    </p>
-                                                    <a href="#" class="btn btn-primary">Add to Cart</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <div class="thumb-wrapper">
-                                            <span class="wish-icon">
-                                                <i class="bi bi-heart"></i>
-                                            </span>
-                                            <div class="img-box">
-                                                <img src="images/BMW3Series/image1.jpeg" class="img-fluid" alt="BMW 3 Series White">
-                                                <div class="thumb-content">
-                                                    <h4>BMW 3 Series</h4>
-                                                    <div class="star-rating"></div>
-                                                    <p class="item-price"><strike>$400.00</strike> <b>$369.00</b>
-                                                    </p>
-                                                    <a href="#" class="btn btn-primary">Add to Cart</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <div class="thumb-wrapper">
-                                            <span class="wish-icon">
-                                                <i class="bi bi-heart"></i>
-                                            </span>
-                                            <div class="img-box">
-                                                <img src="images/BMW3Series/image1.jpeg" class="img-fluid" alt="BMW 3 Series White">
-                                                <div class="thumb-content">
-                                                    <h4>BMW 3 Series</h4>
-                                                    <div class="star-rating"></div>
-                                                    <p class="item-price"><strike>$400.00</strike> <b>$369.00</b>
-                                                    </p>
-                                                    <a href="#" class="btn btn-primary">Add to Cart</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        </li>
+                    <?php
+                    }
+                    ?>
+                </ul>
+
+                <button type="button" class="slider-nav" aria-label="Go left"></button>
+                <button type="button" class="slider-nav slider-nav-next" aria-label="Go left"></button>
+            </div>
+        </div>
+    </section>
+    <div class="container">
+        <!-- car financing block -->
+        <div class="row finance-row mt-2">
+            <div class="container finance-block-wrapper mb-5">
+                <a href="#" class="finance-block-link">
+                    <h4 class="finance-block-header">Car Financing</h4>
+                </a>
+                <div class="row borderless-card-row">
+                    <div class="borderless mb-3 mr-2 card-icon" style="max-width: 18rem;">
+                        <div class="card-header border-bottom-0 text-center card-header-icon"><img class="circle-icon" src="images/iconCircleOne.png" alt="" />
+                        </div>
+                        <div class="card-body border-top-0">
+                            <h6 class="card-title text-center font-weight-bold card-title-iconTitle">Find your perfect
+                                car</h6>
+                            <p class="card-text text-center card-text-iconText">Browse our wide range of high-quality
+                                used Carland vehicles that are available to buy or finance.</p>
+                        </div>
+                    </div>
+                    <div class="borderless mb-3 mr-2 card-icon" style="max-width: 18rem;">
+                        <div class="card-header border-bottom-0 text-center card-header-icon"><img class="circle-icon" src="images/iconCircleTwo.png" alt="" /></div>
+                        <div class="card-body">
+                            <h5 class="card-title text-center font-weight-bold card-title-iconTitle">Choose your deal
+                            </h5>
+                            <p class="card-text text-center card-text-iconText">Apply for finance online. You can also
+                                part exchange your old car and lower your finance costs.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="borderless mb-3 mr-2 card-icon" style="max-width: 18rem;">
+                        <div class="card-header border-bottom-0 text-center card-header-icon"><img class="circle-icon" src="images/iconCircleThree.png" alt="" /></div>
+                        <div class="card-body">
+                            <h5 class="card-title text-center font-weight-bold card-title-iconTitle">Get approved</h5>
+                            <p class="card-text text-center card-text-iconText">Pay no deposit and sign all documents
+                                online. Then choose to collect your car or have it delivered.
+                            </p>
                         </div>
                     </div>
                 </div>
-                <div>
-                    <a class="carousel-control-prev" href="#productsCarousel" data-slide="prev">
-                        <i class="bi bi-arrow-left"></i>
-                    </a>
-                    <a class="carousel-control-next" href="#productsCarousel" data-slide="next">
-                        <i class="bi bi-arrow-right"></i>
-                    </a>
-                </div>
+                <button type="button" class="btn btn-outline-success info-btn disabled" href="#">More info <i class="bi bi-plus-square"></i></button>
             </div>
-        </section>
-        <?php include "footer.php" ?>
-    </body>
+        </div>
+        <!-- end of car financing block -->
+    </div>
+    <?php include "footer.php" ?>
+    <div class="clearfix"></div>
+    <script src="js/carousel-slider.js" type="text/javascript"></script>
+    <script src="js/vehicle.js" type="text/javascript"></script>
+</body>
 
-    </html>
+</html>

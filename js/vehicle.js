@@ -53,5 +53,25 @@ function submitSelectpicker() {
 }
 
 
+// ajax file for displayModel.php
+$(document).ready(function() {
+    $('#searchMake').on('change', function() {
+        var makeId = $(this).val();
+        if (makeId) {
+            $.ajax({
+                type: 'POST',
+                url: '/admin/vehicles/displayModel.php',
+                data: 'make_id=' + makeId,
+                success: function(html) {
+                    $('#searchModel').html(html);
 
+                }
+
+            });
+        } else {
+            $('#searchModel').html('<option value="">Select make first</option>');
+        }
+
+    });
+});
   

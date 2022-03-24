@@ -84,18 +84,18 @@ if (isset($_SESSION['user_id'])) {
                             <form method="GET" id="orderBy">
                                 <div class="sort-select-option">
                                 <!--to merge search filter with sorting box, not good, should use other way to do it-->
-                                <input type="hidden" name="searchMake" <?php if(isset($_GET['filterSearch'])): ?> value="<?= $_GET['searchMake']; ?>" <?php endif; ?>>
-                                <input type="hidden" name="searchModel" <?php if(isset($_GET['filterSearch'])): ?> value="<?= $_GET['searchModel']; ?>" <?php endif; ?>>
-                                <input type="hidden" name="searchLocation" <?php if(isset($_GET['filterSearch'])): ?> value="<?= $_GET['searchLocation']; ?>" <?php endif; ?>>
-                                <input type="hidden" name="minPrice" <?php if(isset($_GET['filterSearch'])): ?> value="<?= $_GET['minPrice']; ?>" <?php endif; ?>>
-                                <input type="hidden" name="maxPrice" <?php if(isset($_GET['filterSearch'])): ?> value="<?= $_GET['maxPrice']; ?>" <?php endif; ?>>
-                                <input type="hidden" name="searchFueltype" <?php if(isset($_GET['filterSearch'])): ?> value="<?= $_GET['searchFueltype']; ?>" <?php endif; ?>>
-                                <input type="hidden" name="minMileage" <?php if(isset($_GET['filterSearch'])): ?> value="<?= $_GET['minMileage']; ?>" <?php endif; ?>>
-                                <input type="hidden" name="maxMileage" <?php if(isset($_GET['filterSearch'])): ?> value="<?= $_GET['maxMileage']; ?>" <?php endif; ?>>
-                                <input type="hidden" name="searchTransmission" <?php if(isset($_GET['filterSearch'])): ?> value="<?= $_GET['searchTransmission']; ?>" <?php endif; ?>>
-                                <input type="hidden" name="searchColor" <?php if(isset($_GET['filterSearch'])): ?> value="<?= $_GET['searchColor']; ?>" <?php endif; ?>>
-                                <input type="hidden" name="searchBodytype" <?php if(isset($_GET['filterSearch'])): ?> value="<?= $_GET['searchBodytype']; ?>" <?php endif; ?>>
-                                <input type="hidden" name="searchSeats" <?php if(isset($_GET['filterSearch'])): ?> value="<?= $_GET['searchSeats']; ?>" <?php endif; ?>>
+                                <input type="hidden" name="searchMake" value="<?= isset($_GET['searchMake']) && $_GET['searchMake']; ?>">
+                                <input type="hidden" name="searchModel" value="<?= isset($_GET['searchModel']) && $_GET['searchModel']; ?>"> 
+                                <input type="hidden" name="searchLocation" value="<?= isset($_GET['searchLocation']) && $_GET['searchLocation']; ?>">
+                                <input type="hidden" name="minPrice" value="<?= isset($_GET['minPrice']) && $_GET['minPrice']; ?>">
+                                <input type="hidden" name="maxPrice" value="<?= isset($_GET['maxPrice']) && $_GET['maxPrice']; ?>">
+                                <input type="hidden" name="searchFueltype" value="<?= isset($_GET['searchFueltype']) && $_GET['searchFueltype']; ?>">
+                                <input type="hidden" name="minMileage" value="<?= isset($_GET['minMileage']) && $_GET['minMileage']; ?>">
+                                <input type="hidden" name="maxMileage" value="<?= isset($_GET['maxMileage']) && $_GET['maxMileage']; ?>">
+                                <input type="hidden" name="searchTransmission" value="<?= isset($_GET['searchTransmission']) && $_GET['searchTransmission']; ?>">
+                                <input type="hidden" name="searchColor" value="<?= isset($_GET['searchColor']) && $_GET['searchColor']; ?>">
+                                <input type="hidden" name="searchBodytype" value="<?= isset($_GET['searchBodytype']) && $_GET['searchBodytype']; ?>">
+                                <input type="hidden" name="searchSeats" value="<?= isset($_GET['searchSeats']) && $_GET['searchSeats']; ?>">
                                 <input type="hidden" name="filterSearch" <?php if(isset($_GET['filterSearch'])): ?> value=" " <?php endif; ?>>
                                 <!--to merge search filter with sorting box, not good, should use other way to do it-->
                                     <select name="orderBy" onchange='submitSelectpicker()' class="selectpicker" data-width="150px">
