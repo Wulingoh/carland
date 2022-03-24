@@ -4,8 +4,8 @@
     <!-- Footer -->
     <footer class="page-footer font-small">
         <!-- footer vector svg top -->
-        <div class="vector-images">
-            <img class="vector" src="/images/Vector.svg" />
+        <div class="vector-images mt-5">
+            <img class="vector mt-5" src="/images/Vector.svg" />
         </div>
         <div class="vecto-shade">
             <img class="shade" src="/images/shade.svg" />
