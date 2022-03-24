@@ -7,6 +7,7 @@ if (!isset($_GET['vehicleId'])) {
     header("Location: productsListing.php");
     exit;
 }
+
 $vehicleId = $_GET['vehicleId'];
 if (isset($_SESSION['user_id'])) {
     $userId = $_SESSION['user_id'];

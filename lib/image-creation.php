@@ -40,6 +40,10 @@ function copyImage($srcFile, $destFile, $w, $h, $quality = 75)
        //imageantialias($dest, TRUE);
     } elseif ($tmpDest['extension'] == "png") {
        $dest = imagecreatetruecolor($w, $h);
+       imagesavealpha($dest, true);
+
+        $trans_colour = imagecolorallocatealpha($dest, 0, 0, 0, 127);
+        imagefill($dest, 0, 0, $trans_colour);
        //imageantialias($dest, TRUE);
     } else {
       return false;

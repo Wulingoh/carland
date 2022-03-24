@@ -44,5 +44,33 @@ function fetchSimilarProductsList($userId, $bodytypeId, $vehicleId) {
     
 }
 
+function fetchVehicleBrandLogo() {
+    global $link;
+    
+    $stmt = $link->prepare('SELECT make_id, brand_logo FROM vehicle_make;');
+
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+    return $result->fetch_all(MYSQLI_ASSOC);
+    
+}
+
+function fetchRecentlyAddedGallery($userId) {
+    global $link;
+    
+    $stmt = $link->prepare('SELECT vehicles.*, location, favourite_id FROM vehicles
+                            INNER JOIN vehicle_location ON vehicles.location_id = vehicle_location.location_id 
+                            LEFT JOIN favourite ON favourite.vehicle_id = vehicles.vehicle_id AND favourite.user_id = ? 
+                            ORDER BY created_at DESC');
+
+    $stmt->bind_param('i', $userId);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+    return $result->fetch_all(MYSQLI_ASSOC);
+    
+}
+
 
 ?>
