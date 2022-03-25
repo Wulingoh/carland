@@ -3,6 +3,7 @@ include "config.php";
 include "returnPage.php";
 include "queryHelpers.php";
 
+
 if (!isset($_GET['vehicleId'])) {
     header("Location: productsListing.php");
     exit;
@@ -59,6 +60,9 @@ $bodytypeId = $row['bodytype_id'];
 
 $vehicleGallery = fetchVehicleImages($vehicleId);
 $vehicleSimilarProductsList = fetchSimilarProductsList($userId, $bodytypeId, $vehicleId);
+
+
+
 ?>
 
 
@@ -96,11 +100,35 @@ $vehicleSimilarProductsList = fetchSimilarProductsList($userId, $bodytypeId, $ve
                 <div class="row">
                     <div class="pull-left col">
                         <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item" aria-current="page">BMW</li>
-                                <li class="breadcrumb-item active" aria-current="page">3 Series</li>
-                            </ol>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                                <li class="breadcrumb-item"><a href="productsListing.php">Buy Car</a></li>
+                                <?php 
+
+                                $vehicleId = $_GET['vehicleId'];
+                                $query = "SELECT * FROM vehicles WHERE vehicle_id = '$vehicleId'";
+                                $result = mysqli_query($link, $query);
+                                $row = mysqli_fetch_array($result);
+                                $makeId = $row['make_id'];
+                                $modelId = $row['model_id'];
+                                $makeUrl = "searchMake=$makeId&searchModel=";
+
+                                $queryMake = "SELECT * FROM vehicle_make WHERE make_id = '$makeId'";
+                                $resultMake = mysqli_query($link, $queryMake);
+                                $rowMake = mysqli_fetch_array($resultMake);
+                                $make = $rowMake['make'];
+
+                                $queryModel = "SELECT * FROM vehicle_model WHERE model_id = '$modelId'";
+                                $resultModel = mysqli_query($link, $queryModel);
+                                $rowModel = mysqli_fetch_array($resultModel);
+                                $model = $rowModel['model'];
+
+                                ?>
+                                <li class="breadcrumb-item"><a href="productsListing.php?<?= $makeUrl; ?>"><?= $make; ?></a></li>
+                                <li class="breadcrumb-item active" aria-current="page"><?= $model; ?></li>
+
+                            </ul>
+                                
                         </nav>
                     </div>
                 </div>
