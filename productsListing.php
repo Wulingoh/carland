@@ -148,8 +148,9 @@ if (isset($_SESSION['user_id'])) {
                 <!-- end of sort style page row -->
                 <div class="row product-list no-gutters">
                     <?php
+                        $path =  "productsListing.php";
                         $rowsPerPage = 10;
-                        $pagingLink = getPagingLink($query, $rowsPerPage, $searchUrl);
+                        $pagingLink = getPagingLink($query, $path, $rowsPerPage, $searchUrl);
                         $resultP = mysqli_query($link, getPagingQuery($query, $rowsPerPage));
                         while($row = $resultP->fetch_assoc()) {
                             $vehicleId = $row['vehicle_id'];
@@ -200,11 +201,11 @@ if (isset($_SESSION['user_id'])) {
             <div class="container-fluid mt-5 mb-5">
                 <div class="row">
                     <div class="col-12">
-                    <div class="col">
-                       <h3 style="text-align:center">
-                           <?php echo $pagingLink; // display paging links ?>
-                       </h3>
-                    </div>
+                        <div class="col">
+                        <h3 style="text-align:center">
+                            <?php echo $pagingLink; // display paging links ?>
+                        </h3>
+                        </div>
 
                     </div>
                 </div>
