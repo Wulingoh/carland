@@ -86,7 +86,7 @@ function getPagingQuery($query, $itemPerPage = 10)
 	return $query . " LIMIT $offset, $itemPerPage";
 }
 
-function getPagingLink($query, $itemPerPage = 10, $strGet = '')
+function getPagingLink($query, $path, $itemPerPage = 10, $strGet = '')
 {
 	global $link;
 	$result        = mysqli_query($link, $query);
@@ -115,12 +115,12 @@ function getPagingLink($query, $itemPerPage = 10, $strGet = '')
 		if ($pageNumber > 1) {
 			$page = $pageNumber - 1;
 			if ($page > 1) {
-				$prev = " <a href=\"productsListing.php?page=$page&$strGet\">prev</a> ";
+				$prev = " <a href=\"$path?page=$page&$strGet\">prev</a> ";
 			} else {
-				$prev = " <a href=\"productsListing.php?$strGet\">prev</a> ";
+				$prev = " <a href=\"$path?$strGet\">prev</a> ";
 			}
 
-			$first = " <a href=\"productsListing.php?$strGet\"></a> ";
+			$first = " <a href=\"$path?$strGet\"></a> ";
 		} else {
 			$prev  = ''; // we're on page one, don't show 'previous' link
 			$first = ''; // nor 'first page' link
@@ -130,8 +130,8 @@ function getPagingLink($query, $itemPerPage = 10, $strGet = '')
 		// on the last page
 		if ($pageNumber < $totalPages) {
 			$page = $pageNumber + 1;
-			$next = " <a href=\"productsListing.php?page=$page$strGet\">next</a> ";
-			$last = " <a href=\"productsListing.php?page=$totalPages$strGet\"></a> ";
+			$next = " <a href=\"$path?page=$page$strGet\">next</a> ";
+			$last = " <a href=\"$path?page=$totalPages$strGet\"></a> ";
 		} else {
 			$next = ''; // we're on the last page, don't show 'next' link
 			$last = ''; // nor 'last page' link
@@ -148,9 +148,9 @@ function getPagingLink($query, $itemPerPage = 10, $strGet = '')
 				$pagingLink[] = " $page ";   // no need to create a link to current page
 			} else {
 				if ($page == 1) {
-					$pagingLink[] = " <a href=\"productsListing.php?$strGet\">$page</a> ";
+					$pagingLink[] = " <a href=\"$path?$strGet\">$page</a> ";
 				} else {
-					$pagingLink[] = " <a href=\"productsListing.php?page=$page$strGet\">$page</a> ";
+					$pagingLink[] = " <a href=\"$path?page=$page$strGet\">$page</a> ";
 				}
 			}
 

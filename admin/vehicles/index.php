@@ -2,6 +2,7 @@
 include "../../config.php";
 include "../../lib/image-creation.php";
 include "../../checkLoginAdminRole.php";
+include "../../queryHelpers.php";
 
 
 
@@ -169,7 +170,11 @@ include "../../checkLoginAdminRole.php";
                      </thead>
                      <?php
                      $query = "SELECT * FROM vehicles ";
-                     $result = mysqli_query($link, $query) or die(mysqli_error($link));
+                     $path =  "index.php";
+                     $rowsPerPage = 10;
+                     $pagingLink = getPagingLink($query, $path, $rowsPerPage);
+                     $result = mysqli_query($link, getPagingQuery($query, $rowsPerPage)) or die(mysqli_error($link));
+                     
                      while ($row = mysqli_fetch_array($result)) {
                         extract($row);
                         $id = $row['vehicle_id'];
@@ -210,6 +215,12 @@ include "../../checkLoginAdminRole.php";
                         </tbody>
                      <?php } ?>
                   </table>
+                  <div class="col-12">
+                        <div class="col">
+                           <h3 style="text-align:center">
+                              <?php echo $pagingLink; // display paging links ?>
+                           </h3>
+                     </div>
                </div>
 
             </div>
