@@ -1,5 +1,6 @@
 <?php 
 include "../../config.php";
+include "../../checkLoginAdminRole.php";
 $error_email = "";
 $error_password = "";
 

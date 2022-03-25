@@ -1,7 +1,7 @@
 <?php
 include "../../config.php";
 include "../../lib/image-creation.php";
-
+include "../../checkLoginAdminRole.php";
 
 
 

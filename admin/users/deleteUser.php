@@ -1,6 +1,6 @@
 <?php 
 include "../../config.php";
-
+include "../../checkLoginAdminRole.php";
 
 
 $user_id = $_GET['userId'];
