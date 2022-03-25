@@ -1,6 +1,6 @@
 <?php 
 include "../../config.php";
-include "../../image-creation.php";
+include "../../lib/image-creation.php";
 
 
 
