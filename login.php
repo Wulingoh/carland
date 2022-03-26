@@ -64,7 +64,7 @@ if (isset($_POST['btn_login'])) {
 <body>
     <!-- html for register form below -->
     <?php include "navigation.php" ?>
-    <div class="container-fluid">
+    <div class="container-fluid mb-5">
         <!-- breadcrumbs -->
         <div class="row">
             <div class="pull-left col">
@@ -77,7 +77,7 @@ if (isset($_POST['btn_login'])) {
             </div>
         </div>
         <!-- end of breadcrumbs -->
-        <div class="container">
+        <div class="container mb-5">
             <h1 class="text-center">Login</h1>
             <div class="container loginForm-wrapper mt-3 mb-5">
                 <div class="row loginRowBox">

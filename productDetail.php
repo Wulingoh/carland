@@ -330,7 +330,7 @@ $vehicleSimilarProductsList = fetchSimilarProductsList($userId, $bodytypeId, $ve
         <!-- end of divider block -->
         <div class="clearfix mt-5"></div>
         <!-- browsing similar vehicles -->
-        <div class="container-fluid mb-5">
+        <div class="container mb-5">
             <div class="browsing-title text-center">
                 <h4>Other vehicles you might like</h4>
             </div>
