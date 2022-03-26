@@ -16,13 +16,6 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link px-3 dropdown-toggle" href="/productsListing.php" data-bs-toggle="dropdown">Buy Vehicle</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Buy Used Vehicle</a></li>
-                            <li><a class="dropdown-item" href="#">Buy New Vehicle</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link px-3 disabled" href="#!" data-bs-toggle="dropdown">Sell Car</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link px-3 dropdown-toggle" href="aboutPage.php" data-bs-toggle="dropdown">Why Carland</a>
