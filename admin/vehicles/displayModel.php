@@ -1,7 +1,7 @@
 <?php 
 
 include "../../config.php";
-include "../../checkLoginAdminRole.php";
+
 
 
 

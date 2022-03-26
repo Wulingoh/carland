@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_id'])) {
 } else {
     $userId = $_SESSION['user_id'];
 
-    $query = "SELECT vehicles.vehicle_id, Year, Price, Detail, title, subtitle, Img, vehicle_make.make_ID, vehicle_model.model_ID, vehicle_color.color, vehicle_fuelType.fuelType, vehicle_safety.safety_ID, favourite_id FROM favourite INNER JOIN vehicles ON vehicles.vehicle_ID = favourite.vehicle_id INNER JOIN vehicle_make ON vehicles.make_ID = vehicle_make.make_ID INNER JOIN vehicle_model ON vehicles.model_ID = vehicle_model.model_ID INNER JOIN vehicle_color ON vehicles.color_ID = vehicle_color.color_ID INNER JOIN vehicle_fueltype ON vehicles.fuelType_ID = vehicle_fueltype.fuelType_ID INNER JOIN vehicle_safety ON vehicles.safety_ID = vehicle_safety.safety_ID WHERE favourite.user_id = $userId;";
+    $query = "SELECT vehicles.vehicle_id, year, price, detail, title, subtitle, img, vehicle_make.make_id, vehicle_model.model_id, vehicle_color.color, vehicle_fueltype.fueltype, vehicle_safety.safety_id, favourite_id FROM favourite INNER JOIN vehicles ON vehicles.vehicle_id = favourite.vehicle_id INNER JOIN vehicle_make ON vehicles.make_id = vehicle_make.make_id INNER JOIN vehicle_model ON vehicles.model_id = vehicle_model.model_id INNER JOIN vehicle_color ON vehicles.color_id = vehicle_color.color_id INNER JOIN vehicle_fueltype ON vehicles.fueltype_id = vehicle_fueltype.fueltype_id INNER JOIN vehicle_safety ON vehicles.safety_id = vehicle_safety.safety_id WHERE favourite.user_id = $userId;";
 
     $result = mysqli_query($link, $query) or die(mysqli_error($link));
 }
@@ -62,7 +62,7 @@ if (!isset($_SESSION['user_id'])) {
             ?>
             <div class="row container-favourite-row mt-5">
                 <div class="col mt-5 mb-3 ml-3">
-                    <img class="favourite-card-image" src="images/bmwImage.png" alt="" />
+                    <img class="favourite-card-image" src="/admin/vehicles/uploads/<?= $row['img']; ?>" alt="" />
                     <a href="javascript:" class="favourite-heart btn btn-default" name="addToFavourite" id="favouriteBtn" data-carid="<?php echo $row['vehicle_id'] ?>">
                         <i class="bi bi-balloon-heart-fill" att="0" style="color: #DF4E3C; font-size: 20px"></i>
                     </a>
