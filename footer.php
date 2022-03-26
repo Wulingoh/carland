@@ -4,11 +4,11 @@
     <!-- Footer -->
     <footer class="page-footer font-small">
         <!-- footer vector svg top -->
-        <div class="vector-images mt-5">
-            <img class="vector mt-5" src="/images/Vector.svg" />
-        </div>
         <div class="vecto-shade">
-            <img class="shade" src="/images/shade.svg" />
+            <img class="shade" src="/images/shade.png" />
+        </div>
+        <div class="vector-images mt-5">
+            <img class="vector mt-5" src="/images/Vector.png" />
         </div>
         <!-- end of footer vector svg top -->
         <!-- right side footer -->
@@ -25,17 +25,6 @@
                         <ul class="col-md-3 list-unstyled footer-nav">
                             <li class="font-weight-bolder">
                                 <a href="#">Buy</a>
-                            </li>
-                            <li>
-                                <a href="#">Buy Used Car</a>
-                            </li>
-                            <li>
-                                <a href="#">Buy New Car</a>
-                            </li>
-                        </ul>
-                        <ul class="col-md-2 list-unstyled footer-nav">
-                            <li class="font-weight-bolder">
-                                <a href="#">Sell</a>
                             </li>
                         </ul>
                         <ul class="col-md-2 list-unstyled footer-nav">
