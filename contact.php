@@ -10,6 +10,7 @@ if (isset($_POST['contactSubmit'])) {
     $contactPhone = $_POST['contactPhone'];
     $contactEnquiry = $_POST['contactEnquiry'];
     $contactMessage = $_POST['contactMessage'];
+    $vehicleId = $_POST['vehicleId'] ? intval($_POST['vehicleId']) : 'NULL';
 
     if (empty($contactFullname)) {
         $formSuccess = false;
@@ -31,8 +32,8 @@ if (isset($_POST['contactSubmit'])) {
     }
 
     if ($formSuccess) {
-        $query = "INSERT INTO `contact`(`fullname`, `email`, `phone`, `topic`, `message`) VALUES ('$contactFullname','$contactEmail','$contactPhone',' $contactEnquiry','$contactMessage')";
-        mysqli_query($link, $query);
+        $query = "INSERT INTO `contact`(`fullname`, `email`, `phone`, `topic`, `message`, `vehicle_id`) VALUES ('$contactFullname','$contactEmail','$contactPhone',' $contactEnquiry','$contactMessage', $vehicleId)";
+        mysqli_query($link, $query) or die(mysqli_error($link));
         if (isset($_SESSION['return_page'])) {
             header("Location: " . $_SESSION['return_page']);
         } // end of if
@@ -127,6 +128,7 @@ if (isset($_POST['contactSubmit'])) {
                                     <option value="4">Complaint</option>
                                     <option value="5">Other</option>
                                 </select>
+                                <input type="hidden" name="vehicleId" value="<?php if (isset($_GET['vehicleId'])) echo $_GET['vehicleId'] ?>"/>
                             </div>
                             <div class="form-group">
                                 <label for="message">Message <span class="required">*</span></label>
