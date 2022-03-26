@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 25, 2022 at 04:39 AM
+-- Generation Time: Mar 26, 2022 at 04:22 AM
 -- Server version: 8.0.26
 -- PHP Version: 8.1.3
 
@@ -33,15 +33,22 @@ CREATE TABLE `contact` (
   `email` varchar(255) NOT NULL,
   `phone` varchar(80) NOT NULL,
   `topic` varchar(300) NOT NULL,
-  `message` varchar(300) NOT NULL
+  `message` varchar(300) NOT NULL,
+  `vehicle_id` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- RELATIONSHIPS FOR TABLE `contact`:
+--   `vehicle_id`
+--       `vehicles` -> `vehicle_id`
+--
 
 --
 -- Dumping data for table `contact`
 --
 
-INSERT INTO `contact` (`id`, `fullname`, `email`, `phone`, `topic`, `message`) VALUES
-(27, 'Test Test', 'test@example.com', '', ' 0', 'helo tehresi  is fi this lnworlkongia onofgi pg');
+INSERT INTO `contact` (`id`, `fullname`, `email`, `phone`, `topic`, `message`, `vehicle_id`) VALUES
+(27, 'Test Test', 'test@example.com', '', ' 0', 'helo tehresi  is fi this lnworlkongia onofgi pg', NULL);
 
 -- --------------------------------------------------------
 
@@ -56,12 +63,19 @@ CREATE TABLE `favourite` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
+-- RELATIONSHIPS FOR TABLE `favourite`:
+--   `vehicle_id`
+--       `vehicles` -> `vehicle_id`
+--   `user_id`
+--       `users` -> `user_id`
+--
+
+--
 -- Dumping data for table `favourite`
 --
 
 INSERT INTO `favourite` (`favourite_id`, `user_id`, `vehicle_id`) VALUES
-(13, 11, 8),
-(14, 11, 10);
+(19, 3, 28);
 
 -- --------------------------------------------------------
 
@@ -76,6 +90,10 @@ CREATE TABLE `pma__bookmark` (
   `label` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
   `query` text COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin COMMENT='Bookmarks';
+
+--
+-- RELATIONSHIPS FOR TABLE `pma__bookmark`:
+--
 
 -- --------------------------------------------------------
 
@@ -93,6 +111,10 @@ CREATE TABLE `pma__central_columns` (
   `col_extra` varchar(255) COLLATE utf8_bin DEFAULT '',
   `col_default` text COLLATE utf8_bin
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin COMMENT='Central list of columns';
+
+--
+-- RELATIONSHIPS FOR TABLE `pma__central_columns`:
+--
 
 -- --------------------------------------------------------
 
@@ -113,6 +135,10 @@ CREATE TABLE `pma__column_info` (
   `input_transformation_options` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin COMMENT='Column information for phpMyAdmin';
 
+--
+-- RELATIONSHIPS FOR TABLE `pma__column_info`:
+--
+
 -- --------------------------------------------------------
 
 --
@@ -123,6 +149,10 @@ CREATE TABLE `pma__designer_settings` (
   `username` varchar(64) COLLATE utf8_bin NOT NULL,
   `settings_data` text COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin COMMENT='Settings related to Designer';
+
+--
+-- RELATIONSHIPS FOR TABLE `pma__designer_settings`:
+--
 
 -- --------------------------------------------------------
 
@@ -138,6 +168,10 @@ CREATE TABLE `pma__export_templates` (
   `template_data` text COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin COMMENT='Saved export templates';
 
+--
+-- RELATIONSHIPS FOR TABLE `pma__export_templates`:
+--
+
 -- --------------------------------------------------------
 
 --
@@ -148,6 +182,10 @@ CREATE TABLE `pma__favorite` (
   `username` varchar(64) COLLATE utf8_bin NOT NULL,
   `tables` text COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin COMMENT='Favorite tables';
+
+--
+-- RELATIONSHIPS FOR TABLE `pma__favorite`:
+--
 
 -- --------------------------------------------------------
 
@@ -164,6 +202,10 @@ CREATE TABLE `pma__history` (
   `sqlquery` text COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin COMMENT='SQL history for phpMyAdmin';
 
+--
+-- RELATIONSHIPS FOR TABLE `pma__history`:
+--
+
 -- --------------------------------------------------------
 
 --
@@ -178,6 +220,10 @@ CREATE TABLE `pma__navigationhiding` (
   `table_name` varchar(64) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin COMMENT='Hidden items of navigation tree';
 
+--
+-- RELATIONSHIPS FOR TABLE `pma__navigationhiding`:
+--
+
 -- --------------------------------------------------------
 
 --
@@ -189,6 +235,10 @@ CREATE TABLE `pma__pdf_pages` (
   `page_nr` int UNSIGNED NOT NULL,
   `page_descr` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin COMMENT='PDF relation pages for phpMyAdmin';
+
+--
+-- RELATIONSHIPS FOR TABLE `pma__pdf_pages`:
+--
 
 -- --------------------------------------------------------
 
@@ -202,11 +252,15 @@ CREATE TABLE `pma__recent` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin COMMENT='Recently accessed tables';
 
 --
+-- RELATIONSHIPS FOR TABLE `pma__recent`:
+--
+
+--
 -- Dumping data for table `pma__recent`
 --
 
 INSERT INTO `pma__recent` (`username`, `tables`) VALUES
-('root', '[{\"db\":\"carland_db\",\"table\":\"vehicles\"},{\"db\":\"mytest_db\",\"table\":\"vehicle_model\"},{\"db\":\"mytest_db\",\"table\":\"vehicle_make\"},{\"db\":\"mytest_db\",\"table\":\"tbl_member\"},{\"db\":\"carland_db\",\"table\":\"vehicle_model\"},{\"db\":\"carland_db\",\"table\":\"vehicle_make\"},{\"db\":\"carland_db\",\"table\":\"users\"},{\"db\":\"carland_db\",\"table\":\"vehicle_bodytype\"},{\"db\":\"carland_db\",\"table\":\"vehicle_category\"},{\"db\":\"carland_db\",\"table\":\"vehicle_location\"}]');
+('root', '[{\"db\":\"carland_db\",\"table\":\"contact\"},{\"db\":\"carland_db\",\"table\":\"vehicles\"},{\"db\":\"carland_db\",\"table\":\"vehicle_gallery\"},{\"db\":\"carland_db\",\"table\":\"users\"},{\"db\":\"carland_db\",\"table\":\"favourite\"},{\"db\":\"carland_db\",\"table\":\"vehicle_model\"},{\"db\":\"mytest_db\",\"table\":\"vehicle_model\"},{\"db\":\"mytest_db\",\"table\":\"vehicle_make\"},{\"db\":\"mytest_db\",\"table\":\"tbl_member\"},{\"db\":\"carland_db\",\"table\":\"vehicle_make\"}]');
 
 -- --------------------------------------------------------
 
@@ -223,6 +277,10 @@ CREATE TABLE `pma__relation` (
   `foreign_field` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin COMMENT='Relation table';
 
+--
+-- RELATIONSHIPS FOR TABLE `pma__relation`:
+--
+
 -- --------------------------------------------------------
 
 --
@@ -236,6 +294,10 @@ CREATE TABLE `pma__savedsearches` (
   `search_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
   `search_data` text COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin COMMENT='Saved searches';
+
+--
+-- RELATIONSHIPS FOR TABLE `pma__savedsearches`:
+--
 
 -- --------------------------------------------------------
 
@@ -251,6 +313,10 @@ CREATE TABLE `pma__table_coords` (
   `y` float UNSIGNED NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin COMMENT='Table coordinates for phpMyAdmin PDF output';
 
+--
+-- RELATIONSHIPS FOR TABLE `pma__table_coords`:
+--
+
 -- --------------------------------------------------------
 
 --
@@ -264,10 +330,15 @@ CREATE TABLE `pma__table_info` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin COMMENT='Table information for phpMyAdmin';
 
 --
+-- RELATIONSHIPS FOR TABLE `pma__table_info`:
+--
+
+--
 -- Dumping data for table `pma__table_info`
 --
 
 INSERT INTO `pma__table_info` (`db_name`, `table_name`, `display_field`) VALUES
+('carland_db', 'contact', 'email'),
 ('carland_db', 'vehicles', 'detail');
 
 -- --------------------------------------------------------
@@ -283,6 +354,10 @@ CREATE TABLE `pma__table_uiprefs` (
   `prefs` text COLLATE utf8_bin NOT NULL,
   `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin COMMENT='Tables'' UI preferences';
+
+--
+-- RELATIONSHIPS FOR TABLE `pma__table_uiprefs`:
+--
 
 -- --------------------------------------------------------
 
@@ -303,6 +378,10 @@ CREATE TABLE `pma__tracking` (
   `tracking_active` int UNSIGNED NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin COMMENT='Database changes tracking for phpMyAdmin';
 
+--
+-- RELATIONSHIPS FOR TABLE `pma__tracking`:
+--
+
 -- --------------------------------------------------------
 
 --
@@ -316,11 +395,15 @@ CREATE TABLE `pma__userconfig` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin COMMENT='User preferences storage for phpMyAdmin';
 
 --
+-- RELATIONSHIPS FOR TABLE `pma__userconfig`:
+--
+
+--
 -- Dumping data for table `pma__userconfig`
 --
 
 INSERT INTO `pma__userconfig` (`username`, `timevalue`, `config_data`) VALUES
-('root', '2022-03-24 08:59:18', '{\"Console\\/Mode\":\"collapse\"}');
+('root', '2022-03-26 04:20:53', '{\"Console\\/Mode\":\"collapse\"}');
 
 -- --------------------------------------------------------
 
@@ -334,6 +417,10 @@ CREATE TABLE `pma__usergroups` (
   `allowed` enum('Y','N') COLLATE utf8_bin NOT NULL DEFAULT 'N'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin COMMENT='User groups with configured menu items';
 
+--
+-- RELATIONSHIPS FOR TABLE `pma__usergroups`:
+--
+
 -- --------------------------------------------------------
 
 --
@@ -344,6 +431,10 @@ CREATE TABLE `pma__users` (
   `username` varchar(64) COLLATE utf8_bin NOT NULL,
   `usergroup` varchar(64) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin COMMENT='Users and their assignments to user groups';
+
+--
+-- RELATIONSHIPS FOR TABLE `pma__users`:
+--
 
 -- --------------------------------------------------------
 
@@ -359,6 +450,10 @@ CREATE TABLE `users` (
   `user_role` varchar(80) NOT NULL,
   `password_reset_token` varchar(32) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- RELATIONSHIPS FOR TABLE `users`:
+--
 
 --
 -- Dumping data for table `users`
@@ -404,12 +499,18 @@ CREATE TABLE `vehicles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
+-- RELATIONSHIPS FOR TABLE `vehicles`:
+--   `make_id`
+--       `vehicle_make` -> `make_id`
+--   `model_id`
+--       `vehicle_model` -> `model_id`
+--
+
+--
 -- Dumping data for table `vehicles`
 --
 
 INSERT INTO `vehicles` (`vehicle_id`, `img`, `price`, `year`, `mileage`, `engine_size`, `stock`, `detail`, `rego`, `category_id`, `bodytype_id`, `fueltype_id`, `make_id`, `model_id`, `transmission_id`, `color_id`, `seats_id`, `safety_id`, `location_id`, `title`, `subtitle`, `created_at`) VALUES
-(8, 'ad11c839410502421f27cc4a8faebb4f.jpg', 108900, 2021, 28650, '1.6', 1, 'Mercedes-Benz The New E-Class Sedan. A more dynamic character all round.', 'Apr 2017', 1, 2, 4, 29, 4, 1, 4, 2, 5, 1, 'Test Title', 'Test Subtitle', '2022-03-09 04:21:42'),
-(10, '993ada55b30867ae7951e94f070d9c9d.jpg', 30999, 2021, 25, '1.4', 1, 'Corolla hatch GX Hybrid，work errand and weekend sport!', 'NA', 1, 1, 4, 31, 1, 1, 1, 2, 5, 2, '', '', '2022-03-09 04:21:42'),
 (17, '36e61a4a8127479423af675999ec60d8.jpg', 55000, 2017, 28650, '2L', 1, '', 'Apr 2017', 1, 2, 2, 27, 15, 1, 2, 2, 4, 2, 'BMW 3 Series', '2L M Sport', '2022-03-21 23:53:32'),
 (18, 'a97bbaa287c9accc57dc7c1ce6d2cdc3.JPG', 76000, 2019, 15000, '75 kw', 1, '', 'Sept 2020', 1, 2, 3, 25, 16, 1, 2, 2, 5, 1, 'Tesla Model 3', 'Performance', '2022-03-21 23:58:04'),
 (19, '2c55b5777d6b8d1804d6cebec206faeb.png', 34000, 2016, 394111, '1.5L', 1, '', 'Mar 2016', 2, 2, 1, 27, 17, 2, 3, 2, 4, 1, 'BMW 2 Series', '1.5L SE 218i', '2022-03-22 00:36:03'),
@@ -425,7 +526,23 @@ INSERT INTO `vehicles` (`vehicle_id`, `img`, `price`, `year`, `mileage`, `engine
 (29, '0c987670db401ae44d071f34c31afd85.png', 23600, 2017, 20738, '1.6L', 1, '', 'Jun 2017', 1, 3, 2, 23, 27, 1, 5, 2, 4, 5, 'Honda CR-V', '1.6L SR i-DTEC', '2022-03-22 07:41:41'),
 (30, '8c2f525baacafdd06d28fe1687d0e447.png', 28500, 2020, 4690, '1L', 1, '', 'Mar 2020', 1, 2, 1, 23, 28, 2, 3, 2, 5, 1, 'Honda Civic', '1L SR VTEC Turbo', '2022-03-22 07:58:33'),
 (31, '9665ff79194f56f765808e782c1dee0c.jpg', 61910, 2018, 23459, '2L', 1, '', 'Oct 2018', 1, 3, 4, 22, 29, 1, 3, 2, 5, 7, 'Volvo XC60', '2L R-Design Twin Engine h T8', '2022-03-22 08:19:23'),
-(32, '1521cdbeaa3c4d69519f0e5f2260a0aa.png', 56890, 2019, 23462, '2L', 1, '', 'Apr 2019', 1, 2, 4, 22, 30, 1, 1, 2, 5, 6, 'Volvo S90', '2L Inscription Pro Twin Engine h T8', '2022-03-22 08:33:28');
+(32, '1521cdbeaa3c4d69519f0e5f2260a0aa.png', 56890, 2019, 23462, '2L', 1, '', 'Apr 2019', 1, 2, 4, 22, 30, 1, 1, 2, 5, 6, 'Volvo S90', '2L Inscription Pro Twin Engine h T8', '2022-03-22 08:33:28'),
+(65, 'fed56d5aa80cf8a9b84865b5f3cc2ba5.jpg', 27290, 2020, 366, '1.6', 1, '', 'NA', 1, 1, 4, 31, 43, 1, 4, 2, 5, 2, ' Toyota the New Gen Yaris Hatch', 'Compact. Agile. And incredibly capable.', '2022-03-23 21:00:58'),
+(66, '24153b218539bcfa57c45f0f2e24a455.jpg', 76199, 2021, 106, '2.2', 1, '', 'NA', 1, 3, 4, 29, 34, 1, 4, 2, 5, 2, 'Mercedes-Benz GLA 200', 'The perfect urban SUV.', '2022-03-23 19:56:36'),
+(67, '0649a7a1621a94a1142017762b428e29.jpg', 53999, 2020, 82, '1.6', 1, '', 'NA', 1, 1, 4, 29, 41, 1, 3, 2, 5, 2, 'Mercedes-Benz A180', 'A design that suits your lifestyle', '2022-03-23 20:02:07'),
+(68, 'ac429e38568202d14438bd4b9baa866e.jpg', 60990, 2021, 10, '3.0', 1, '', 'NA', 1, 3, 1, 31, 44, 1, 7, 3, 5, 2, 'Toyota Highlander GXL ', '7 seats and spacious cabin ensures travel comfort for any drives', '2022-03-23 20:44:11'),
+(69, '5fc715dd3ca50c884c6376146d3979bc.jpg', 51490, 2021, 30, '4.0', 1, '', 'NA', 1, 4, 2, 31, 42, 1, 2, 1, 5, 1, ' The Toyota Hiace van ZX', 'Redesigned top to bottom, this is the van of your dreams', '2022-03-23 20:54:21'),
+(78, '6b52283a25e9087b6621e40dcf88712e.jpg', 18999, 2018, 36980, '1.4', 1, '', 'ABC123', 2, 1, 4, 30, 32, 2, 5, 2, 4, 2, 'Volkswagen Polo TSI DSG', 'The little one with a big attitude', '2022-03-15 14:58:50'),
+(79, 'fe1d99736060da91e020cfeeb8987c7a.jpg', 16999, 2020, 107990, '3.8', 1, '', 'NA', 1, 3, 2, 28, 33, 1, 4, 3, 5, 1, 'Hyundai Palisade  V6 GDi Limited', 'The ultimate in luxury and practicality', '2022-03-15 15:03:53'),
+(80, 'ba3c15f05d7d79276ac515fdc8d753c5.jpg', 53990, 2021, 99, '1.6', 1, '', 'NA', 1, 1, 1, 30, 35, 2, 6, 2, 5, 2, 'All-new Hyundai i20 N', 'High-performance features for the thrill of driving', '2022-03-23 18:28:59'),
+(81, '75c53b371fce057cea93a4247c2737f9.jpg', 69990, 2021, 120, 'NA', 1, '', 'NA', 1, 1, 3, 30, 36, 1, 6, 2, 5, 1, 'Kona Electric Series II', 'New Energy. Zero Emissions. Electrifying Design..', '2022-03-23 18:40:18'),
+(82, '52159cda1df86a1cbfd81ee00ee2ba1b.jpg', 69990, 2021, 10, '2.2', 1, '', 'NA', 1, 4, 2, 30, 37, 1, 1, 4, 5, 1, 'All-new Hyundai Staria', 'Staria 2.2 Diesel Automatic 8-seater Family Van', '2022-03-23 18:58:01'),
+(83, '69da8c4a882eb06a422f65d100f7e21f.jpg', 65000, 2018, 66, '4.0', 1, '', 'NA', 1, 4, 2, 30, 38, 1, 2, 4, 5, 1, 'Volkswagen The Crafter Van', 'The best tool for your trade', '2022-03-23 19:24:10'),
+(84, '90eadad0879efc1e3be4bf407a7f3a0d.jpg', 47990, 2021, 200, '3.0', 1, '', 'NA', 1, 3, 1, 30, 39, 1, 1, 2, 5, 2, 'Volkswagen The new Tiguan', 'You\'ll never want to leave', '2022-03-23 19:36:54'),
+(85, 'b6b8848761753b331c4ae563315a2415.jpg', 89999, 2022, 0, 'NA', 1, '', 'NA', 1, 4, 3, 30, 40, 1, 5, 4, 5, 1, 'Meet the all-electric VW ID.Buzz.', 'Built on the unique DNA of the legendary T1 camper van', '2022-03-23 19:45:30'),
+(86, 'd85df46f0bb001369b33dcff8ee49a89.jpg', 88900, 2021, 28650, '1.6', 1, 'Mercedes-Benz The New E-Class Sedan. A more dynamic character all round.', 'LIN123', 2, 2, 4, 29, 4, 1, 4, 2, 5, 1, 'Mercedes-Benz The New E-Class Sedan', 'A more dynamic character all round.', '2022-03-08 15:21:42'),
+(87, 'd3d99ace7a1945b60ac24bba3bebfef1.jpg', 30999, 2021, 25, '1.4', 1, 'Corolla hatch GX Hybrid，work errand and weekend sport!', 'NA', 1, 1, 4, 31, 1, 1, 1, 2, 5, 2, 'Corolla hatch GX Hybrid', 'Work errand and weekend sport!', '2022-03-08 15:21:42'),
+(88, '885f26f48202b477bbdafeed573fa6b7.jpg', 311199, 2021, 120, '3.0', 1, '', 'NA', 1, 3, 1, 29, 31, 1, 2, 2, 5, 1, 'Mercedes-AMG G 63', 'The unique DNA of the G-Class ', '2022-03-15 14:53:37');
 
 -- --------------------------------------------------------
 
@@ -437,6 +554,10 @@ CREATE TABLE `vehicle_bodytype` (
   `bodytype_id` int NOT NULL,
   `bodytype` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- RELATIONSHIPS FOR TABLE `vehicle_bodytype`:
+--
 
 --
 -- Dumping data for table `vehicle_bodytype`
@@ -460,6 +581,10 @@ CREATE TABLE `vehicle_category` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
+-- RELATIONSHIPS FOR TABLE `vehicle_category`:
+--
+
+--
 -- Dumping data for table `vehicle_category`
 --
 
@@ -477,6 +602,10 @@ CREATE TABLE `vehicle_color` (
   `color_id` int NOT NULL,
   `color` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- RELATIONSHIPS FOR TABLE `vehicle_color`:
+--
 
 --
 -- Dumping data for table `vehicle_color`
@@ -502,6 +631,10 @@ CREATE TABLE `vehicle_fueltype` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
+-- RELATIONSHIPS FOR TABLE `vehicle_fueltype`:
+--
+
+--
 -- Dumping data for table `vehicle_fueltype`
 --
 
@@ -523,6 +656,10 @@ CREATE TABLE `vehicle_gallery` (
   `gallery_img` varchar(900) NOT NULL,
   `gallery_img_title` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- RELATIONSHIPS FOR TABLE `vehicle_gallery`:
+--
 
 --
 -- Dumping data for table `vehicle_gallery`
@@ -792,7 +929,89 @@ INSERT INTO `vehicle_gallery` (`img_id`, `vehicle_id`, `gallery_img`, `gallery_i
 (295, 32, '6c4eb651ffb8f33131e88409484602f5.png', ''),
 (296, 32, '197cc965b5aebc4f456f3a924ac28370.png', ''),
 (298, 32, '65377773fd54eee3d52653dc53711c84.png', ''),
-(299, 32, '2b53eadb9faed601df58c5258902f355.jpg', '');
+(299, 32, '2b53eadb9faed601df58c5258902f355.jpg', ''),
+(300, 10, 'be17cec8c22e3d8c49c9a4ed95b525ad.jpg', 'side'),
+(301, 10, '2d06b51b2744b14991b2ca4f55626e62.jpg', 'interior'),
+(302, 10, '5a614ac7381b3b39f5f117c5ddd3be35.jpg', 'interior'),
+(303, 10, 'cfb7a80ae56c85d71e5194dc1322aac2.jpg', 'interior'),
+(304, 80, 'be17cec8c22e3d8c49c9a4ed95b525ad.jpg', 'side'),
+(305, 80, '2d06b51b2744b14991b2ca4f55626e62.jpg', 'interior'),
+(306, 80, '5a614ac7381b3b39f5f117c5ddd3be35.jpg', 'interior'),
+(307, 80, 'cfb7a80ae56c85d71e5194dc1322aac2.jpg', 'interior'),
+(308, 88, '380c075bb39c6b764f5b122c61b958d0.jpg', 'side'),
+(309, 88, '3b096d73a3c69a997696805794ed878a.jpg', 'interior'),
+(310, 88, '90752e950ed95b4049c18929afd14c54.jpg', 'interior'),
+(311, 88, '35a36881583d1408d7c473f8b6ce183c.jpg', 'interior'),
+(312, 81, '69e4e4ede0954103639829535710626e.jpg', 'front'),
+(313, 81, '22956771d49f83d797c3eb677438dc59.jpg', 'side'),
+(314, 81, '150df797a9e6e765bb7d3e6aebd9e674.jpg', 'wheel'),
+(315, 81, '141fa540364ba847a32e50b3f267ef1c.jpg', 'interior'),
+(316, 82, 'ff727d8bc9b67ccb3f55e34fb9b5d29d.jpg', 'front'),
+(317, 82, '8a6b0d92b3df4b72d5503c282108e634.jpg', 'interior'),
+(318, 82, '14b3f4f16981a16b016627ade6b82240.jpg', 'interior'),
+(319, 79, 'be37238ed87e5f7fdfdeba682846f1ef.jpg', 'back'),
+(320, 79, '8d26b599e869aaf1510ec54fb9751708.jpg', 'interior'),
+(321, 79, '0d7fd00efbbdba07fcbca704172747f0.jpg', 'interior'),
+(322, 79, '8c52d1bf953a30a65415156313228b2c.jpg', 'interior'),
+(323, 83, '97dbcf702ca36d9bb01de044f241151c.jpg', 'side'),
+(324, 83, 'b6ef31264ccfe3853429da63fc10a18a.jpg', 'side'),
+(325, 83, 'c9e1777696130a68eed53a480409ba23.jpg', 'interior'),
+(326, 83, '230b13fd623a460273ae9c5bdbaaabdf.jpg', 'interior'),
+(327, 78, 'edb0983ee2ebbbb4ae3a0f72a14b14e5.jpg', 'interior'),
+(328, 78, '7c101688e4de3a188c5b78ffe16ba26c.jpg', 'interior'),
+(329, 78, '01d4e1ee7d040eb588d166b70dd8afed.jpg', 'interior'),
+(330, 84, 'fba9cdfad7e173c06463aac13da14b30.jpg', 'side'),
+(331, 84, 'a4470926590681d46c53606e2143ebaf.jpg', 'interior'),
+(332, 84, 'e2263e6585a96dfe91560a4bf9bb4fb0.jpg', 'interior'),
+(333, 85, '61611ca370019171cc0fbc12c6eced50.jpg', 'interior'),
+(334, 85, '824548637026131d214fbde6e8852003.jpg', 'interior'),
+(335, 85, 'fff77d0c9ff9d6972185a2b95bf38cb5.jpg', 'other color'),
+(336, 66, '2252d4d0c00e746b00a855f30b07f3ee.jpg', 'interior'),
+(337, 66, '15f9beb79980cb35cc0f9b7daacab7e3.jpg', 'interior'),
+(338, 66, 'ccec1d238d3b55df5dd691b5e7cf4c87.jpg', 'wheel'),
+(339, 67, 'f4c74e9bc2c0befb36a42cbd6f30833b.jpg', 'interior'),
+(340, 67, '339d67ebd9b368c2ed147fe7b1d6bbc8.jpg', 'interior'),
+(341, 67, 'c65d663915ace6f44f9cb4426edd4c01.jpg', 'interior'),
+(342, 86, '962deea105f33961f1e579d5a4c69421.jpg', 'back'),
+(343, 86, '3b5f697a99f0322d57e184231a46709c.jpg', 'interior'),
+(344, 86, '169734727c319455b1b90bcd5624097f.jpg', 'interior'),
+(345, 68, '4397b079f6185fdff3cf8a6a8807e5ae.jpg', 'side'),
+(346, 68, 'ec888c5bf7df235dfcd798c338bb9678.jpg', 'interior'),
+(347, 68, 'dece1a74f6f67e570727931f58fefcdc.jpg', 'interior'),
+(348, 69, '8a7b0adec407df7670e0cb81568e08d2.jpg', 'side'),
+(349, 69, 'c36fabfa0f39d0c0a95a955249df4062.jpg', 'back'),
+(350, 69, '8b41d2bf731400466ca4ca25e7b085a9.jpg', 'interior'),
+(351, 65, 'b76112aff00b01e277f495e37826d876.jpg', 'interior'),
+(352, 65, 'ea8327e71a3842358240a3cca02d5916.jpg', 'interior'),
+(353, 65, '6dd0c149fd6cce82ae06f157ab93e994.jpg', 'side'),
+(354, 65, '847bf4f99024e99bf2a2fbc32eb16a69.jpg', 'back'),
+(355, 27, 'd862eb298887e6bbd827155398fdda8b.png', ''),
+(356, 27, '38a86a74f2a469c794c306754e2f8ce6.png', ''),
+(357, 27, 'a0f60b540c064f7d4d4ffdf037126c54.png', ''),
+(358, 27, 'cc98c6a324eab4b7fbd8a8e7968e5208.png', ''),
+(359, 27, 'da7d8ffee81a0285cc6a24a7ddb20789.png', ''),
+(360, 27, '607ce6e50993699c36c3b512f83104b5.png', ''),
+(361, 27, '63c20a94b58d77aa1335a49f75243d0d.png', ''),
+(362, 27, '4f431f837f80211c9501d63a5e0c31a9.png', ''),
+(363, 27, '0032d2f42e0da1d224fc3fa8a0987b45.png', ''),
+(364, 27, '3d316c70061923c6187f9c1e66eeb877.png', ''),
+(365, 27, '7727f2351150158cd023fa80bfedaafc.png', ''),
+(366, 27, 'b3cb8327bf6e57aff2478998704ac79b.png', ''),
+(367, 27, '9f5606cb2d3da9699cca87741e112d76.png', ''),
+(368, 27, '0057f03c384d751e9e88729b74a3549c.png', ''),
+(369, 27, 'e7c1e5876b4a163a21cbfd127c5e9405.png', ''),
+(373, 24, '646143afcf8dcd2d9ae285a435613b20.png', ''),
+(374, 24, '3922acc4cbda399e5e15d30b25bb85d4.png', ''),
+(375, 24, '5cdf9cc0a33287e5c4490aa5bb2e0968.png', ''),
+(376, 24, 'b87002cb69d8462be8dfc3c9e1f2e447.png', ''),
+(377, 24, '79ed0771ecbf3345fc876c99172bd1ca.png', ''),
+(378, 24, 'cf0229f0fd30be831ac5b34c79328234.png', ''),
+(379, 24, '7b8fb0d0fb72680cbf46d0d1e4cdbe47.png', ''),
+(380, 24, 'e592c118fd12a0ab25696e51fb89ab98.png', ''),
+(381, 24, '63f0caf6e55bea5ceb60158951cbcf0d.png', ''),
+(382, 24, 'eb791b8b925815973b45dba4198df637.png', ''),
+(385, 24, '4ddd7dff156e3be6f75ca2d2ce8f7699.png', ''),
+(387, 24, 'c05856a02d0fa4aff2619434a8d3c4d3.png', '');
 
 -- --------------------------------------------------------
 
@@ -804,6 +1023,10 @@ CREATE TABLE `vehicle_location` (
   `location_id` int NOT NULL,
   `location` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- RELATIONSHIPS FOR TABLE `vehicle_location`:
+--
 
 --
 -- Dumping data for table `vehicle_location`
@@ -834,6 +1057,10 @@ CREATE TABLE `vehicle_make` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
+-- RELATIONSHIPS FOR TABLE `vehicle_make`:
+--
+
+--
 -- Dumping data for table `vehicle_make`
 --
 
@@ -861,6 +1088,10 @@ CREATE TABLE `vehicle_model` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
+-- RELATIONSHIPS FOR TABLE `vehicle_model`:
+--
+
+--
 -- Dumping data for table `vehicle_model`
 --
 
@@ -883,7 +1114,21 @@ INSERT INTO `vehicle_model` (`model_id`, `make_id`, `model`) VALUES
 (27, 23, 'CRV'),
 (28, 23, 'Civic'),
 (29, 22, 'Xc60'),
-(30, 22, 'S90');
+(30, 22, 'S90'),
+(31, 29, 'G'),
+(32, 30, 'Polo'),
+(33, 28, 'Palisade'),
+(34, 29, 'GLA'),
+(35, 28, 'i20N'),
+(36, 28, 'Kona EV'),
+(37, 28, 'Staria'),
+(38, 30, 'Crafter'),
+(39, 30, 'Tiguan'),
+(40, 30, 'ID.Buzz.'),
+(41, 29, 'A180'),
+(42, 31, 'Hiace'),
+(43, 31, 'Yaris'),
+(44, 31, 'Highlander');
 
 -- --------------------------------------------------------
 
@@ -895,6 +1140,10 @@ CREATE TABLE `vehicle_safety` (
   `safety_id` int NOT NULL,
   `safety` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- RELATIONSHIPS FOR TABLE `vehicle_safety`:
+--
 
 --
 -- Dumping data for table `vehicle_safety`
@@ -919,6 +1168,10 @@ CREATE TABLE `vehicle_seats` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
+-- RELATIONSHIPS FOR TABLE `vehicle_seats`:
+--
+
+--
 -- Dumping data for table `vehicle_seats`
 --
 
@@ -939,6 +1192,10 @@ CREATE TABLE `vehicle_transmission` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
+-- RELATIONSHIPS FOR TABLE `vehicle_transmission`:
+--
+
+--
 -- Dumping data for table `vehicle_transmission`
 --
 
@@ -954,15 +1211,16 @@ INSERT INTO `vehicle_transmission` (`transmission_id`, `transmission`) VALUES
 -- Indexes for table `contact`
 --
 ALTER TABLE `contact`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `contact_vehicle_id_fk` (`vehicle_id`);
 
 --
 -- Indexes for table `favourite`
 --
 ALTER TABLE `favourite`
   ADD PRIMARY KEY (`favourite_id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `vehicle_id` (`vehicle_id`);
+  ADD KEY `vehicle_id` (`vehicle_id`),
+  ADD KEY `favourite_user_id_fk` (`user_id`);
 
 --
 -- Indexes for table `pma__bookmark`
@@ -1095,7 +1353,8 @@ ALTER TABLE `users`
 --
 ALTER TABLE `vehicles`
   ADD PRIMARY KEY (`vehicle_id`),
-  ADD KEY `vehicle_make_id_fk` (`make_id`);
+  ADD KEY `vehicle_make_id_fk` (`make_id`),
+  ADD KEY `vehicle_model_id_fk` (`model_id`);
 
 --
 -- Indexes for table `vehicle_bodytype`
@@ -1168,10 +1427,16 @@ ALTER TABLE `vehicle_transmission`
 --
 
 --
+-- AUTO_INCREMENT for table `contact`
+--
+ALTER TABLE `contact`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
+--
 -- AUTO_INCREMENT for table `favourite`
 --
 ALTER TABLE `favourite`
-  MODIFY `favourite_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `favourite_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `pma__bookmark`
@@ -1210,10 +1475,16 @@ ALTER TABLE `pma__savedsearches`
   MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
 -- AUTO_INCREMENT for table `vehicles`
 --
 ALTER TABLE `vehicles`
-  MODIFY `vehicle_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `vehicle_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 
 --
 -- AUTO_INCREMENT for table `vehicle_bodytype`
@@ -1243,7 +1514,7 @@ ALTER TABLE `vehicle_fueltype`
 -- AUTO_INCREMENT for table `vehicle_gallery`
 --
 ALTER TABLE `vehicle_gallery`
-  MODIFY `img_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=300;
+  MODIFY `img_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=389;
 
 --
 -- AUTO_INCREMENT for table `vehicle_location`
@@ -1261,7 +1532,7 @@ ALTER TABLE `vehicle_make`
 -- AUTO_INCREMENT for table `vehicle_model`
 --
 ALTER TABLE `vehicle_model`
-  MODIFY `model_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `model_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `vehicle_safety`
@@ -1286,17 +1557,24 @@ ALTER TABLE `vehicle_transmission`
 --
 
 --
+-- Constraints for table `contact`
+--
+ALTER TABLE `contact`
+  ADD CONSTRAINT `contact_vehicle_id_fk` FOREIGN KEY (`vehicle_id`) REFERENCES `vehicles` (`vehicle_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
 -- Constraints for table `favourite`
 --
 ALTER TABLE `favourite`
-  ADD CONSTRAINT `favourite_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `favourite_ibfk_2` FOREIGN KEY (`vehicle_id`) REFERENCES `vehicles` (`vehicle_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `favourite_ibfk_2` FOREIGN KEY (`vehicle_id`) REFERENCES `vehicles` (`vehicle_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `favourite_user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Constraints for table `vehicles`
 --
 ALTER TABLE `vehicles`
-  ADD CONSTRAINT `vehicle_make_id_fk` FOREIGN KEY (`make_id`) REFERENCES `vehicle_make` (`make_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `vehicle_make_id_fk` FOREIGN KEY (`make_id`) REFERENCES `vehicle_make` (`make_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `vehicle_model_id_fk` FOREIGN KEY (`model_id`) REFERENCES `vehicle_model` (`model_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

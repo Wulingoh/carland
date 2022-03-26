@@ -162,7 +162,7 @@ $vehicleRecentlyAddedGallery = fetchRecentlyAddedGallery($userId);
             </div>
             <div class="swiffy-slider slider-item-show2 slider-nav-sm slider-nav-page slider-item-snapstart slider-item-nogap slider-nav-round slider-nav-dark slider-indicators-sm slider-indicators-outside slider-indicators-round slider-indicators-dark slider-nav-animation slider-nav-animation-slideup slider-item-first-visible col">
                 <div class="slider-container">
-                    <div class="p-3 p-xl-5 text-light slide-visible" style="background-color: #354f52;">
+                    <div class="p-3 p-xl-5 text-light slide-visible" style="background-color: #52796f;">
                         <span class="col stars mb-5">
                             <img class="" src="images/fiveStars.svg" alt="" />
                         </span>
@@ -175,7 +175,59 @@ $vehicleRecentlyAddedGallery = fetchRecentlyAddedGallery($userId);
                             <img src="images/buyerScore.svg" alt="" />
                         </span>
                     </div>
-                    <div class="p-3 p-xl-5 text-light slide-visible" style="background-color: #2f3e46;">
+                    <div class="p-3 p-xl-5 text-light slide-visible" style="background-color: #80A59D;">
+                        <span class="col stars mb-5">
+                            <img class="" src="images//fourStars.svg" alt="" />
+                        </span>
+                        <h3 class="text-uppercase h5 mt-3">Straight forward</h3>
+                        <p>
+                            Straight forward
+                        </p>
+                        <p>Kim Merrill</p>
+                        <span class="col buyerScore d-flex justify-content-end">
+                            <img src="images/buyerScore.svg" alt="" />
+                        </span>
+                    </div>
+                    <div class="p-3 p-xl-5 text-light" style="background-color: #52796f;">
+                        <span class="col stars mb-5">
+                            <img class="" src="images/fiveStars.svg" alt="" />
+                        </span>
+                        <h3 class="text-uppercase h5 mt-3">Simply the Best!</h3>
+                        <p>
+                            Such a seamless experience from sourcing the car, to ordering to delivery. Canno...
+                        </p>
+                        <p>Manu</p>
+                        <span class="col buyerScore d-flex justify-content-end">
+                            <img src="images/buyerScore.svg" alt="" />
+                        </span>
+                    </div>
+                    <div class="p-3 p-xl-5 text-light" style="background-color: #75A69B;">
+                        <span class="col stars mb-5">
+                            <img class="" src="images/fiveStars.svg" alt="" />
+                        </span>
+                        <h3 class="text-uppercase h5 mt-3">Awesome</h3>
+                        <p>
+                            Unforgetable experiences and the whole process are smooth....
+                        </p>
+                        <p>Jeffrey Hong</p>
+                        <span class="col buyerScore d-flex justify-content-end">
+                            <img src="images/buyerScore.svg" alt="" />
+                        </span>
+                    </div>
+                    <div class="p-3 p-xl-5 text-light" style="background-color: #4BC7AC;">
+                        <span class="col stars mb-5">
+                            <img class="" src="images/fourStars.svg" alt="" />
+                        </span>
+                        <h3 class="text-uppercase h5 mt-3">The process of buying my car and…</h3>
+                        <p>
+                            The process of selling my car and handing it over could not have gone smoother...
+                        </p>
+                        <p>Ahmed Zaidi</p>
+                        <span class="col buyerScore d-flex justify-content-end">
+                            <img src="images/buyerScore.svg" alt="" />
+                        </span>
+                    </div>
+                    <div class="p-3 p-xl-5 text-light" style="background-color: #52796f;">
                         <span class="col stars mb-5">
                             <img class="" src="images/fiveStars.svg" alt="" />
                         </span>
@@ -187,48 +239,11 @@ $vehicleRecentlyAddedGallery = fetchRecentlyAddedGallery($userId);
                         <span class="col buyerScore d-flex justify-content-end">
                             <img src="images/buyerScore.svg" alt="" />
                         </span>
-                    </div>
-                    <div class="p-3 p-xl-5 text-light" style="background-color: #52796f;">
-                        <h3 class="text-uppercase h5">Understand what sliders can do for your business</h3>
-                        <p>
-                            Gochujang edison bulb church-key gentrify you probably haven't heard of them, artisan selfies. Live-edge tousled wolf cronut shaman.
-                        </p>
-                        <button class="btn btn-outline-light">Sign up</button>
-                    </div>
-                    <div class="p-3 p-xl-5 text-light" style="background-color: #354f52;">
-                        <h3 class="text-uppercase h5">Benefits from using our products</h3>
-                        <p>
-                            I'm baby edison bulb etsy franzen fixie messenger bag ugh hell of farm-to-table brunch. Tumeric hashtag meh pabst organic next level meggings whatever hella listicle.
-                        </p>
-                        <button class="btn btn-outline-light">Read more</button>
-                    </div>
-                    <div class="p-3 p-xl-5 text-light" style="background-color: #2f3e46;">
-                        <h3 class="text-uppercase h5">Join the webinar this week</h3>
-                        <p>
-                            I'm baby edison bulb etsy franzen fixie messenger bag ugh hell of farm-to-table brunch. Tumeric hashtag meh pabst organic next level meggings whatever hella listicle.
-                        </p>
-                        <button class="btn btn-outline-light">Sign up</button>
-                    </div>
-                    <div class="p-3 p-xl-5 text-light" style="background-color: #52796f;">
-                        <h3 class="text-uppercase h5">Understand what sliders can do for your business</h3>
-                        <p>
-                            I'm baby edison bulb etsy franzen fixie messenger bag ugh hell of farm-to-table brunch. Tumeric hashtag meh pabst organic next level meggings whatever hella listicle.
-                        </p>
-                        <button class="btn btn-outline-light">Sign up</button>
                     </div>
                 </div>
 
                 <button type="button" class="slider-nav" aria-label="Go left"></button>
                 <button type="button" class="slider-nav slider-nav-next" aria-label="Go left"></button>
-
-                <div class="slider-indicators d-md-none">
-                    <button class="active" aria-label="Go to slide"></button>
-                    <button aria-label="Go to slide"></button>
-                    <button aria-label="Go to slide"></button>
-                    <button aria-label="Go to slide"></button>
-                    <button aria-label="Go to slide"></button>
-                    <button aria-label="Go to slide"></button>
-                </div>
             </div>
         </div>
     </section>
