@@ -39,6 +39,8 @@ body {
     height: 16px;
     width: 16px;
 }
+.nav-item::after{content:'';display:block;width:0px;height:2px;background:#75A69B;transition: 0.2s;}
+.nav-item:hover::after{width:100%;}
 .navbar .nav-item .dropdown-menu{ display: none; }
 .navbar .nav-item:hover .nav-link {
 
