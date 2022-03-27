@@ -248,10 +248,10 @@ $vehicleRecentlyAddedGallery = fetchRecentlyAddedGallery($userId);
         </div>
     </section>
     <section class="mt-5 mb-5">
-        <div class="mt-3">
+        <div class="mt-3 ml-5">
             <h4 class="ml-5">Search by Popular Brands</h4>
         </div>
-        <div class="container mt-5 swiffy-slider slider-item-show4 slider-nav-outside slider-nav-dark slider-nav-sm slider-nav-visible slider-nav-page slider-item-snapstart slider-nav-autoplay slider-nav-autopause slider-item-ratio slider-item-ratio-contain slider-item-ratio-32x9 bg-white shadow-lg py-3 py-lg-4" data-slider-nav-autoplay-interval="2000">
+        <div class="container mt-3 swiffy-slider slider-item-show4 slider-nav-outside slider-nav-dark slider-nav-sm slider-nav-visible slider-nav-page slider-item-snapstart slider-nav-autoplay slider-nav-autopause slider-item-ratio slider-item-ratio-contain slider-item-ratio-32x9 bg-white shadow-lg py-3 py-lg-4" data-slider-nav-autoplay-interval="2000">
             <div class="slider-container">
                 <?php foreach ($vehicleBrandLogoGallery as $key => $vehicleBrandLogoImage) {
                 ?>
@@ -313,6 +313,9 @@ $vehicleRecentlyAddedGallery = fetchRecentlyAddedGallery($userId);
     <!-- end of divider block -->
     <!-- products carousel -->
     <section class="container-xl mt-5">
+        <div class="mt-3">
+            <h4 class="ml-3">Latest Vehicles</h4>
+        </div>
         <div class="row">
             <div class="swiffy-slider slider-item-show3 slider-nav-round slider-nav-page">
                 <ul class="slider-container">
