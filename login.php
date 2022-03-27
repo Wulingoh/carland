@@ -97,7 +97,9 @@ if (isset($_POST['btn_login'])) {
                             <small id="emailHelp" class="form-text text-muted text-center">
                                 Don't have an account? <a href="register.php">Register</a>
                             </small>
-
+                            <small id="passwordHelp" class="form-text text-muted text-center">
+                                Forgotten your password? <a href="forgotPassword.php">Password Reset</a>
+                            </small
                         </form>
                     </div>
                     <div class="col-6 register-right-frame">
