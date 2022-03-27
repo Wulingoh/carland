@@ -333,9 +333,9 @@ $vehicleRecentlyAddedGallery = fetchRecentlyAddedGallery($userId);
                                         </div>
                                         <div class="mask">
                                             <div class="d-flex justify-content-end">
-                                                <a href="#">
+                                                <div class="">
                                                     <span class="product-location"><?php echo $vehicleRecentlyAddedCard['location'] ?></span>
-                                                </a>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="hover-overlay">
@@ -344,14 +344,14 @@ $vehicleRecentlyAddedGallery = fetchRecentlyAddedGallery($userId);
                                         </div>
                                     </div>
                                     <div class="card-body">
-                                        <a href="" class="text-reset">
+                                        <div class="text-reset">
                                             <h5 class="card-title mb-3"><?php echo htmlentities($vehicleRecentlyAddedCard['title']); ?></h5>
-                                        </a>
-                                        <a href="" class="text-reset">
+                                        </div>
+                                        <div class="text-reset">
                                             <p class="product-description"><?php echo htmlentities($vehicleRecentlyAddedCard['subtitle']); ?></p>
                                             <span class="product-text-mileage"><?php echo htmlentities($vehicleRecentlyAddedCard['mileage']) ?>km</span>
                                             <span class="product-text-reg"><?php echo htmlentities($vehicleRecentlyAddedCard['rego']) ?> </span>
-                                        </a>
+                                        </div>
                                         <h6 class="mt-3 mb-3"><b>$<?php echo number_format($vehicleRecentlyAddedCard['price']) ?></b></h6>
                                     </div>
                                     <a class="btn btn-outline-success mb-3 w-90 ml-3 mr-3" href='productDetail.php?vehicleId=<?php echo htmlentities($vehicleRecentlyAddedCard['vehicle_id']); ?>'><i class="bi bi-eye pr-2"></i> View This Car</a>

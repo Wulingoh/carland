@@ -167,9 +167,9 @@ if (isset($_SESSION['user_id'])) {
                                     </div>
                                     <div class="mask">
                                         <div class="d-flex justify-content-end">
-                                            <a href="#">
+                                            <div href="#">
                                                 <span class="product-location"><?php echo $row['location'] ?></span>
-                                            </a>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="hover-overlay">
@@ -178,14 +178,14 @@ if (isset($_SESSION['user_id'])) {
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <a href="" class="text-reset">
+                                    <div href="" class="text-reset">
                                         <h5 class="card-title mb-3"><?php echo htmlentities($row['title']); ?></h5>
-                                    </a>
-                                    <a href="" class="text-reset">
+                                    </div>
+                                    <div href="" class="text-reset">
                                         <p class="product-description"><?php echo htmlentities($row['subtitle']); ?></p>
                                         <span class="product-text-mileage"><?php echo htmlentities($row['mileage']) ?>km</span>
                                         <span class="product-text-reg"><?php echo htmlentities($row['rego']) ?> </span>
-                                    </a>
+                                    </div>
                                     <h6 class="mt-3 mb-3"><b>$<?php echo number_format($row['price']) ?></b></h6>
                                 </div>
                                 <a href="#" class="btn btn-outline-success mb-3 w-90 ml-3 mr-3" onclick="window.location.href='productDetail.php?vehicleId=<?php echo htmlentities($row['vehicle_id']); ?>'"><i class="bi bi-eye pr-2"></i> View This Car</a>

@@ -261,6 +261,10 @@ li.borderless {
     height: auto !important;
 }
 
+.text-reset:hover {
+    text-decoration: none !important;
+}
+
 
   /* product-detail accordion */
   .icon-wrapper {
