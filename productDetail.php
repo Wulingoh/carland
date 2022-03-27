@@ -414,7 +414,7 @@ $vehicleSimilarProductsList = fetchSimilarProductsList($userId, $bodytypeId, $ve
                         </div>
                     </div>
                 </div>
-                <button type="button" class="btn btn-outline-success info-btn"  href="https://motorvehiclefinance.co.nz/?utm_source=google&utm_medium=cpc&utm_campaign=Search+-+Competitors&utm_content=Mtf+Car+Finance&utm_term=mtf%20car%20finance&utm_campaign=&utm_source=adwords&utm_medium=ppc&hsa_acc=4530153230&hsa_cam=10091857667&hsa_grp=128445689234&hsa_ad=537068815657&hsa_src=g&hsa_tgt=kwd-311279703747&hsa_kw=mtf%20car%20finance&hsa_mt=e&hsa_net=adwords&hsa_ver=3&gclid=Cj0KCQjw8_qRBhCXARIsAE2AtRYhOXSkeiCaQy9hIu5-EMobYUcSZUnjx1KBi0o8LBQS9pKmJ700o0QaAnWVEALw_wcB" target="_blank">More info <i class="bi bi-plus-square"></i></button>
+                <a type="button" class="btn btn-outline-success info-btn"  href="https://motorvehiclefinance.co.nz/?utm_source=google&utm_medium=cpc&utm_campaign=Search+-+Competitors&utm_content=Mtf+Car+Finance&utm_term=mtf%20car%20finance&utm_campaign=&utm_source=adwords&utm_medium=ppc&hsa_acc=4530153230&hsa_cam=10091857667&hsa_grp=128445689234&hsa_ad=537068815657&hsa_src=g&hsa_tgt=kwd-311279703747&hsa_kw=mtf%20car%20finance&hsa_mt=e&hsa_net=adwords&hsa_ver=3&gclid=Cj0KCQjw8_qRBhCXARIsAE2AtRYhOXSkeiCaQy9hIu5-EMobYUcSZUnjx1KBi0o8LBQS9pKmJ700o0QaAnWVEALw_wcB" target="_blank">More info <i class="bi bi-plus-square"></i></a>
             </div>
         </div>
         <!-- end of car financing block -->
