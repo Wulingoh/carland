@@ -204,7 +204,7 @@ $vehicleSimilarProductsList = fetchSimilarProductsList($userId, $bodytypeId, $ve
                     <li class="list-unstyled w-25">
                         <div class="icon-style">
                             <svg width="50" height="50" viewBox="0 0 24 24" class="sc-1tndrw2-0 hGYlvQ">
-                                <path d="M19.77 7.23l.01-.01-3.72-3.72L15 4.56l2.11 2.11c-.94.36-1.61 1.26-1.61 2.33a2.5 2.5 0 002.5 2.5c.36 0 .69-.08 1-.21v7.21c0 .55-.45 1-1 1s-1-.45-1-1V14c0-1.1-.9-2-2-2h-1V5c0-1.1-.9-2-2-2H6c-1.1 0-2 .9-2 2v16h10v-7.5h1.5v5a2.5 2.5 0 005 0V9c0-.69-.28-1.32-.73-1.77zM12 10H6V5h6v5zm6 0c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z" fill="#FFF" fill-rule="evenodd">
+                                <path d="M19.77 7.23l.01-.01-3.72-3.72L15 4.56l2.11 2.11c-.94.36-1.61 1.26-1.61 2.33a2.5 2.5 0 002.5 2.5c.36 0 .69-.08 1-.21v7.21c0 .55-.45 1-1 1s-1-.45-1-1V14c0-1.1-.9-2-2-2h-1V5c0-1.1-.9-2-2-2H6c-1.1 0-2 .9-2 2v16h10v-7.5h1.5v5a2.5 2.5 0 005 0V9c0-.69-.28-1.32-.73-1.77zM12 10H6V5h6v5zm6 0c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z" fill="#000" fill-rule="evenodd">
                                 </path>
                             </svg>
                             <span class="icon-text-bi">Fuel type</span>
@@ -249,7 +249,7 @@ $vehicleSimilarProductsList = fetchSimilarProductsList($userId, $bodytypeId, $ve
                     <li class="list-unstyled w-25">
                         <div class="icon-style">
                             <svg width="50" height="50" viewBox="0 0 25 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M25 14.625V16.9688C25 17.833 24.4414 18.5312 23.75 18.5312H22.4492C22.1523 20.748 20.6094 22.4375 18.75 22.4375C16.8906 22.4375 15.3477 20.748 15.0508 18.5312H9.94922C9.65234 20.748 8.10938 22.4375 6.25 22.4375C4.39062 22.4375 2.84922 20.748 2.55195 18.5312H1.25C0.559766 18.5312 0 17.833 0 16.9688V11.5C0 10.1768 0.656641 9.04883 1.58438 8.58984L3.21094 3.50928C3.78047 1.72949 5.16016 0.5625 6.69141 0.5625H13.7969C14.9375 0.5625 15.9805 1.20996 16.7266 2.32178L20.6328 8.42383C23.0938 8.77051 25 11.4414 25 14.5811V14.625ZM6.69141 3.6875C6.17969 3.6875 5.72266 4.03418 5.53125 4.66895L4.34766 8.375H8.75V3.6875H6.69141ZM10.625 8.375H17.3984L14.7734 4.27344C14.5391 3.90234 14.1445 3.6875 13.7969 3.6875H10.625V8.375ZM20.5195 18.5312C20.5859 18.2432 20.625 18.0234 20.625 17.75C20.625 16.4561 19.7852 15.4062 18.75 15.4062C17.7148 15.4062 16.875 16.4561 16.875 17.75C16.875 18.0234 16.8789 18.2432 16.9805 18.5312C17.2383 19.4395 17.9336 20.0938 18.75 20.0938C19.5664 20.0938 20.2617 19.4395 20.5195 18.5312ZM8.01953 18.5312C8.08594 18.2432 8.125 18.0234 8.125 17.75C8.125 16.4561 7.28516 15.4062 6.25 15.4062C5.21484 15.4062 4.375 16.4561 4.375 17.75C4.375 18.0234 4.37891 18.2432 4.48047 18.5312C4.73828 19.4395 5.43359 20.0938 6.25 20.0938C7.06641 20.0938 7.76172 19.4395 8.01953 18.5312Z" fill="#D64F3F" />
+                                <path d="M25 14.625V16.9688C25 17.833 24.4414 18.5312 23.75 18.5312H22.4492C22.1523 20.748 20.6094 22.4375 18.75 22.4375C16.8906 22.4375 15.3477 20.748 15.0508 18.5312H9.94922C9.65234 20.748 8.10938 22.4375 6.25 22.4375C4.39062 22.4375 2.84922 20.748 2.55195 18.5312H1.25C0.559766 18.5312 0 17.833 0 16.9688V11.5C0 10.1768 0.656641 9.04883 1.58438 8.58984L3.21094 3.50928C3.78047 1.72949 5.16016 0.5625 6.69141 0.5625H13.7969C14.9375 0.5625 15.9805 1.20996 16.7266 2.32178L20.6328 8.42383C23.0938 8.77051 25 11.4414 25 14.5811V14.625ZM6.69141 3.6875C6.17969 3.6875 5.72266 4.03418 5.53125 4.66895L4.34766 8.375H8.75V3.6875H6.69141ZM10.625 8.375H17.3984L14.7734 4.27344C14.5391 3.90234 14.1445 3.6875 13.7969 3.6875H10.625V8.375ZM20.5195 18.5312C20.5859 18.2432 20.625 18.0234 20.625 17.75C20.625 16.4561 19.7852 15.4062 18.75 15.4062C17.7148 15.4062 16.875 16.4561 16.875 17.75C16.875 18.0234 16.8789 18.2432 16.9805 18.5312C17.2383 19.4395 17.9336 20.0938 18.75 20.0938C19.5664 20.0938 20.2617 19.4395 20.5195 18.5312ZM8.01953 18.5312C8.08594 18.2432 8.125 18.0234 8.125 17.75C8.125 16.4561 7.28516 15.4062 6.25 15.4062C5.21484 15.4062 4.375 16.4561 4.375 17.75C4.375 18.0234 4.37891 18.2432 4.48047 18.5312C4.73828 19.4395 5.43359 20.0938 6.25 20.0938C7.06641 20.0938 7.76172 19.4395 8.01953 18.5312Z" fill="#000" />
                             </svg>
                             <span class="icon-text-bi">Body Type</span>
                         </div>
@@ -348,9 +348,9 @@ $vehicleSimilarProductsList = fetchSimilarProductsList($userId, $bodytypeId, $ve
                                 </div>
                                 <div class="mask">
                                     <div class="d-flex justify-content-end">
-                                        <a href="#">
+                                        <div>
                                             <span class="product-location" ><?php echo $vehicleSimilarProduct['location'] ?></span>
-                                        </a>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="hover-overlay">
@@ -359,14 +359,14 @@ $vehicleSimilarProductsList = fetchSimilarProductsList($userId, $bodytypeId, $ve
                                 </div>
                             </div>
                             <div class="card-body">
-                                <a href="" class="text-reset">
+                                <div class="text-reset">
                                     <h5 class="card-title mb-3"><?php echo htmlentities($vehicleSimilarProduct['title']); ?></h5>
-                                </a>
-                                <a href="" class="text-reset">
+                                </div>
+                                <div class="text-reset">
                                     <p class="product-description"><?php echo htmlentities($vehicleSimilarProduct['subtitle']); ?></p>
                                     <span class="product-text-mileage"><?php echo htmlentities($vehicleSimilarProduct['mileage']) ?>km</span>
                                     <span class="product-text-reg"><?php echo htmlentities($vehicleSimilarProduct['rego']) ?> </span>
-                                </a>
+                                </div>
                                 <h6 class="mt-3 mb-3"><b>$<?php echo number_format($vehicleSimilarProduct['price']) ?></b></h6>
                             </div>
                             <a class="btn btn-outline-success mb-3 w-90 ml-3 mr-3" href='productDetail.php?vehicleId=<?php echo htmlentities($vehicleSimilarProduct['vehicle_id']); ?>'><i class="bi bi-eye pr-2"></i> View This Car</a>
@@ -414,7 +414,7 @@ $vehicleSimilarProductsList = fetchSimilarProductsList($userId, $bodytypeId, $ve
                         </div>
                     </div>
                 </div>
-                <button type="button" class="btn btn-outline-success info-btn disabled" href="#">More info <i class="bi bi-plus-square"></i></button>
+                <button type="button" class="btn btn-outline-success info-btn"  href="https://motorvehiclefinance.co.nz/?utm_source=google&utm_medium=cpc&utm_campaign=Search+-+Competitors&utm_content=Mtf+Car+Finance&utm_term=mtf%20car%20finance&utm_campaign=&utm_source=adwords&utm_medium=ppc&hsa_acc=4530153230&hsa_cam=10091857667&hsa_grp=128445689234&hsa_ad=537068815657&hsa_src=g&hsa_tgt=kwd-311279703747&hsa_kw=mtf%20car%20finance&hsa_mt=e&hsa_net=adwords&hsa_ver=3&gclid=Cj0KCQjw8_qRBhCXARIsAE2AtRYhOXSkeiCaQy9hIu5-EMobYUcSZUnjx1KBi0o8LBQS9pKmJ700o0QaAnWVEALw_wcB" target="_blank">More info <i class="bi bi-plus-square"></i></button>
             </div>
         </div>
         <!-- end of car financing block -->
