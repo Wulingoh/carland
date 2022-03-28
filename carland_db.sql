@@ -35,7 +35,7 @@ CREATE TABLE `contact` (
   `topic` varchar(300) NOT NULL,
   `message` varchar(300) NOT NULL,
   `vehicle_id` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE= utf8mb4_unicode_ci;
 
 --
 -- RELATIONSHIPS FOR TABLE `contact`:
@@ -60,7 +60,7 @@ CREATE TABLE `favourite` (
   `favourite_id` int NOT NULL,
   `user_id` int NOT NULL,
   `vehicle_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE= utf8mb4_unicode_ci;
 
 --
 -- RELATIONSHIPS FOR TABLE `favourite`:
@@ -442,7 +442,7 @@ CREATE TABLE `users` (
   `user_fullname` varchar(80) NOT NULL,
   `user_role` varchar(80) NOT NULL,
   `password_reset_token` varchar(32) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE= utf8mb4_unicode_ci;
 
 --
 -- RELATIONSHIPS FOR TABLE `users`:
@@ -484,10 +484,10 @@ CREATE TABLE `vehicles` (
   `seats_id` int NOT NULL,
   `safety_id` int NOT NULL,
   `location_id` int NOT NULL,
-  `title` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `subtitle` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `title` varchar(80) CHARACTER SET utf8mb4 COLLATE  utf8mb4_unicode_ci NOT NULL,
+  `subtitle` varchar(300) CHARACTER SET utf8mb4 COLLATE  utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE= utf8mb4_unicode_ci;
 
 --
 -- RELATIONSHIPS FOR TABLE `vehicles`:
@@ -544,7 +544,7 @@ INSERT INTO `vehicles` (`vehicle_id`, `img`, `price`, `year`, `mileage`, `engine
 CREATE TABLE `vehicle_bodytype` (
   `bodytype_id` int NOT NULL,
   `bodytype` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE= utf8mb4_unicode_ci;
 
 --
 -- RELATIONSHIPS FOR TABLE `vehicle_bodytype`:
@@ -569,7 +569,7 @@ INSERT INTO `vehicle_bodytype` (`bodytype_id`, `bodytype`) VALUES
 CREATE TABLE `vehicle_category` (
   `category_id` int NOT NULL,
   `category` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE= utf8mb4_unicode_ci;
 
 --
 -- RELATIONSHIPS FOR TABLE `vehicle_category`:
@@ -592,7 +592,7 @@ INSERT INTO `vehicle_category` (`category_id`, `category`) VALUES
 CREATE TABLE `vehicle_color` (
   `color_id` int NOT NULL,
   `color` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE= utf8mb4_unicode_ci;
 
 --
 -- RELATIONSHIPS FOR TABLE `vehicle_color`:
@@ -620,7 +620,7 @@ INSERT INTO `vehicle_color` (`color_id`, `color`) VALUES
 CREATE TABLE `vehicle_fueltype` (
   `fueltype_id` int NOT NULL,
   `fueltype` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE= utf8mb4_unicode_ci;
 
 --
 -- RELATIONSHIPS FOR TABLE `vehicle_fueltype`:
@@ -647,7 +647,7 @@ CREATE TABLE `vehicle_gallery` (
   `vehicle_id` int NOT NULL,
   `gallery_img` varchar(900) NOT NULL,
   `gallery_img_title` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE= utf8mb4_unicode_ci;
 
 --
 -- RELATIONSHIPS FOR TABLE `vehicle_gallery`:
@@ -1014,7 +1014,7 @@ INSERT INTO `vehicle_gallery` (`img_id`, `vehicle_id`, `gallery_img`, `gallery_i
 CREATE TABLE `vehicle_location` (
   `location_id` int NOT NULL,
   `location` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE= utf8mb4_unicode_ci;
 
 --
 -- RELATIONSHIPS FOR TABLE `vehicle_location`:
@@ -1045,8 +1045,8 @@ INSERT INTO `vehicle_location` (`location_id`, `location`) VALUES
 CREATE TABLE `vehicle_make` (
   `make_id` int NOT NULL,
   `make` varchar(100) NOT NULL,
-  `brand_logo` varchar(900) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `brand_logo` varchar(900) CHARACTER SET utf8mb4 COLLATE  utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE= utf8mb4_unicode_ci;
 
 --
 -- RELATIONSHIPS FOR TABLE `vehicle_make`:
@@ -1077,7 +1077,7 @@ CREATE TABLE `vehicle_model` (
   `model_id` int NOT NULL,
   `make_id` int NOT NULL,
   `model` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE= utf8mb4_unicode_ci;
 
 --
 -- RELATIONSHIPS FOR TABLE `vehicle_model`:
@@ -1131,7 +1131,7 @@ INSERT INTO `vehicle_model` (`model_id`, `make_id`, `model`) VALUES
 CREATE TABLE `vehicle_safety` (
   `safety_id` int NOT NULL,
   `safety` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE= utf8mb4_unicode_ci;
 
 --
 -- RELATIONSHIPS FOR TABLE `vehicle_safety`:
@@ -1157,7 +1157,7 @@ INSERT INTO `vehicle_safety` (`safety_id`, `safety`) VALUES
 CREATE TABLE `vehicle_seats` (
   `seats_id` int NOT NULL,
   `seats` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE= utf8mb4_unicode_ci;
 
 --
 -- RELATIONSHIPS FOR TABLE `vehicle_seats`:
@@ -1183,7 +1183,7 @@ INSERT INTO `vehicle_seats` (`seats_id`, `seats`) VALUES
 CREATE TABLE `vehicle_transmission` (
   `transmission_id` int NOT NULL,
   `transmission` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE= utf8mb4_unicode_ci;
 
 --
 -- RELATIONSHIPS FOR TABLE `vehicle_transmission`:
