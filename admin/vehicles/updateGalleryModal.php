@@ -3,10 +3,6 @@ include "../../config.php";
 include "../../lib/image-creation.php";
 include "../../checkLoginAdminRole.php";
 
-
-
-
-   
       
     if (isset($_POST['modalUpdate'])) {
         $id = $_POST['car_id'];

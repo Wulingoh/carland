@@ -20,52 +20,6 @@ include "../../queryHelpers.php";
    <script src="../../js/bootstrap.bundle.min.js"></script>
    <link href="../../css/style.css" rel="stylesheet">
    <link href="../../icon/bootstrap-icons.css" rel="stylesheet">
-
-
-   <script>
-      function arrowChange1() {
-         if (document.getElementById("arrowDown1").className == "bi bi-caret-down-fill") {
-            document.getElementById("arrowDown1").className = "bi bi-caret-up-fill";
-
-
-         } else {
-            document.getElementById("arrowDown1").className = "bi bi-caret-down-fill";
-
-
-         }
-
-      }
-
-      function arrowChange2() {
-         if (document.getElementById("arrowDown2").className == "bi bi-caret-down-fill") {
-            document.getElementById("arrowDown2").className = "bi bi-caret-up-fill";
-
-
-         } else {
-            document.getElementById("arrowDown2").className = "bi bi-caret-down-fill";
-
-
-         }
-
-      }
-
-      function deleteVehicle(vehicleId) {
-         if (confirm("Are you sure you want to delete this Vehicle?")) {
-            window.location.href = "../vehicles/deleteVehicle.php?vehicleId=" + vehicleId;
-         }
-
-      }
-
-      $(document).ready(function() {
-         $("#carSearch").on("keyup", function() {
-            var value = $(this).val().toLowerCase();
-            $("#carTable tr").filter(function() {
-               $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-         });
-      });
-   </script>
-
 </head>
 
 <body>
@@ -91,57 +45,8 @@ include "../../queryHelpers.php";
             </nav>
          </div>
 
-         <div class="row">
-            <div class="col-lg-3">
-               <div class="row">
-                  <img src="../../images/admin-dashboardBar.png" class="img-fluid" />
-               </div>
-               <br>
-
-               <div class="row justify-content-center  ">
-                  <div class="col">
-                     <a href="../users/index.php" style="text-decoration: none;color:black">
-                        <h5>User Management</h5>
-                     </a>
-                  </div>
-                  <div class="col-2">
-                     <a data-toggle="collapse" href="#collapseUser" role="button" onclick="arrowChange1()" aria-expanded="false" aria-controls="collapseUser">
-                        <span style="font-size: 20px;color:#2B6777;"><i id="arrowDown1" class="bi bi-caret-down-fill"></i></span>
-                     </a>
-                  </div>
-               </div>
-               <div class="collapse" id="collapseUser">
-                  <h6 style="text-align: right;">
-                     <a href="../users/addUser.php" style="text-decoration: none;color:black;"> Add new user</a>
-                  </h6>
-               </div>
-               <hr>
-
-               <div class="row">
-
-                  <div class="col">
-                     <a href="index.php" style="text-decoration: none;color:black">
-                        <h5><b>Vehicle Management</b></h5>
-                     </a>
-                  </div>
-                  <div class="col-2">
-                     <a data-toggle="collapse" href="#collapseVehicle" href="addVehicle.php" role="button" onclick="arrowChange2()" aria-expanded="false" aria-controls="collapseVehicle">
-                        <span style="font-size: 20px;color:#2B6777;"><i id="arrowDown2" class="bi bi-caret-down-fill"></i></span>
-                     </a>
-
-                  </div>
-               </div>
-               <div class="collapse" id="collapseVehicle">
-                  <h6 class="mb-3" style="text-align: right;">
-                     <a href="addVehicle.php" style="text-decoration: none;color:black;">Add New Vehicle </a>
-                  </h6>
-                  <h6 style="text-align: right;">
-                     <a href="makeAndModel/index.php" style="text-decoration: none;color:black;">Make And Model</a>
-                  </h6>
-               </div>
-               <hr>
-
-            </div>
+         <div class="row">    
+            <?php include "sideBarNavVehicle.php" ?>
             <div class="col" style="padding-left: 50px;border-left:2px solid #E2E8F0;">
                <div class="row">
                   <div class="col">
@@ -174,7 +79,7 @@ include "../../queryHelpers.php";
                      $rowsPerPage = 10;
                      $pagingLink = getPagingLink($query, $path, $rowsPerPage);
                      $result = mysqli_query($link, getPagingQuery($query, $rowsPerPage)) or die(mysqli_error($link));
-                     
+
                      while ($row = mysqli_fetch_array($result)) {
                         extract($row);
                         $id = $row['vehicle_id'];
@@ -216,23 +121,24 @@ include "../../queryHelpers.php";
                      <?php } ?>
                   </table>
                   <div class="col-12">
-                        <div class="col">
-                           <h3 style="text-align:center">
-                              <?php echo $pagingLink; // display paging links ?>
-                           </h3>
+                     <div class="col">
+                        <h3 style="text-align:center">
+                           <?php echo $pagingLink; // display paging links 
+                           ?>
+                        </h3>
                      </div>
+                  </div>
+
                </div>
+
+
 
             </div>
 
 
-
          </div>
-
-
-      </div>
    </section>
-
+   <script src="../../admin/adminJs/adminJs.js" type="text/javascript"></script>
 
 </body>
 
