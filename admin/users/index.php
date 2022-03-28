@@ -2,11 +2,6 @@
 include "../../config.php";
 include "../../checkLoginAdminRole.php";
 
-
-
-
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,51 +17,6 @@ include "../../checkLoginAdminRole.php";
   <link href="../../css/style.css" rel="stylesheet">
   <link href="../../icon/bootstrap-icons.css" rel="stylesheet">
 
-
-  <script>
-    function arrowChange1() {
-      if (document.getElementById("arrowDown1").className == "bi bi-caret-down-fill") {
-        document.getElementById("arrowDown1").className = "bi bi-caret-up-fill";
-
-
-      } else {
-        document.getElementById("arrowDown1").className = "bi bi-caret-down-fill";
-
-
-      }
-
-    }
-
-    function arrowChange2() {
-      if (document.getElementById("arrowDown2").className == "bi bi-caret-down-fill") {
-        document.getElementById("arrowDown2").className = "bi bi-caret-up-fill";
-
-
-      } else {
-        document.getElementById("arrowDown2").className = "bi bi-caret-down-fill";
-
-
-      }
-
-    }
-
-    $(document).ready(function() {
-      $("#userSearch").on("keyup", function() {
-        var value = $(this).val().toLowerCase();
-        $("#userTable tr").filter(function() {
-          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-        });
-      });
-    });
-
-    function deleteUser(user_id) {
-      if (confirm("Are you sure you want to delete this User?")) {
-        window.location.href = "../users/deleteUser.php?userId=" + user_id;
-      }
-
-    }
-  </script>
-
 </head>
 
 <body>
@@ -80,7 +30,7 @@ include "../../checkLoginAdminRole.php";
 
         <div class="col" style="text-align: right;">
           <br><br>
-          <p>Hi&nbsp;,<b><?php echo  $_SESSION['fullname']; ?></b>,&nbsp;welcom to the admin system!&nbsp;&nbsp;<a href="../../logout.php">[Log Out]</a></p>
+          <p>Hi&nbsp;,<b><?php echo  $_SESSION['fullname']; ?></b>,&nbsp;Welcome to the Admin system!&nbsp;&nbsp;<a href="../../logout.php">[Log Out]</a></p>
         </div>
       </div>
       <br>
@@ -94,63 +44,11 @@ include "../../checkLoginAdminRole.php";
       </div>
 
       <div class="row">
-        <div class="col-lg-3">
-          <div class="row">
-            <img src="../../images/admin-dashboardBar.png" class="img-fluid" />
-          </div>
-          <br>
-
-          <div class="row justify-content-center  ">
-            <div class="col">
-              <a href="index.php" style="text-decoration: none;color:black">
-                <h5><b>User Management</b></h5>
-              </a>
-            </div>
-            <div class="col-2">
-              <a data-toggle="collapse" href="#collapseUser" role="button" onclick="arrowChange1()" aria-expanded="false" aria-controls="collapseUser">
-                <span style="font-size: 20px;color:#2B6777;"><i id="arrowDown1" class="bi bi-caret-down-fill"></i></span>
-              </a>
-            </div>
-          </div>
-          <div class="collapse" id="collapseUser">
-            <h6 style="text-align: right;">
-              <a href="addUser.php" style="text-decoration: none;color:black;"> Add new user</a>
-            </h6>
-          </div>
-          <hr>
-
-          <div class="row">
-
-            <div class="col">
-              <a href="../vehicles/index.php" style="text-decoration: none;color:black">
-                <h5>Vehicle Management</h5>
-              </a>
-            </div>
-            <div class="col-2">
-              <a data-toggle="collapse" href="#collapseVehicle" role="button" onclick="arrowChange2()" aria-expanded="false" aria-controls="collapseVehicle">
-                <span style="font-size: 20px;color:#2B6777;"><i id="arrowDown2" class="bi bi-caret-down-fill"></i></span>
-              </a>
-
-            </div>
-          </div>
-          <div class="collapse" id="collapseVehicle">
-            <h6 class="mb-3" style="text-align: right;">
-              <a href="../vehicles/addVehicle.php" style="text-decoration: none;color:black;">Add New Vehicle </a>
-            </h6>
-            <h6 style="text-align: right;">
-              <a href="../vehicles/vehicleMake/addVehicleMake.php" style="text-decoration: none;color:black;">Add Vehicle Make</a>
-            </h6>
-          </div>
-          <hr>
-
-        </div>
+        <?php include "sideBarNavUser.php" ?>
         <div class="col" style="padding-left: 50px;border-left:2px solid #E2E8F0;">
           <div class="row">
             <div class="col">
               <h4>User Overview</h4>
-            </div>
-            <div class="col-4">
-              <input class="form-control" type="text" id="userSearch" placeholder="Type to search...">
             </div>
             <div class="col-3">
               <button type="button" style="color:white;background-color: #2B6777;" class="btn" onclick="document.location='addUser.php'">Add new user</button>
@@ -245,8 +143,7 @@ include "../../checkLoginAdminRole.php";
 
     </div>
   </section>
-
-
+  <script src="../../admin/adminJs/adminJs.js" type="text/javascript"></script>
 </body>
 
 </html>
