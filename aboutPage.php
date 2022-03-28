@@ -13,13 +13,13 @@ include "queryHelpers.php";
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carland</title>
-    <link href="/css/bootstrap.css" rel="stylesheet">
-    <script src="/js/jquery-3.5.1.js"></script>
-    <script src="/js/bootstrap.bundle.min.js"></script>
-    <script src="/https://cdn.jsdelivr.net/npm/swiffy-slider@1.5.0/dist/js/swiffy-slider.min.js" crossorigin="anonymous" defer></script>
-    <link href="/https://cdn.jsdelivr.net/npm/swiffy-slider@1.5.0/dist/css/swiffy-slider.min.css" rel="stylesheet" crossorigin="anonymous">
-    <link href="/css/style.css" rel="stylesheet">
-    <link href="/icon/bootstrap-icons.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <script src="js/jquery-3.5.1.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.5.0/dist/js/swiffy-slider.min.js" crossorigin="anonymous" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.5.0/dist/css/swiffy-slider.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="icon/bootstrap-icons.css" rel="stylesheet">
     <script>
         $(document).ready(function() {
             $('[data-toggle="popover-hover"]').popover({
@@ -50,7 +50,7 @@ include "queryHelpers.php";
                 <h3 class="pl-4">WHY CARLAND</h3>
             </div>
             <div class="col-md-6 jumbotron-img-about-wrapper">
-                <img class="jumbotron-img" src="/images/about.svg" alt="" />
+                <img class="jumbotron-img" src="images/about.svg" alt="" />
             </div>
         </div>
     </div>
@@ -60,7 +60,7 @@ include "queryHelpers.php";
             <div class="pull-left col">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/index.php">Home</a></li>
+                        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page">About Us</li>
                     </ol>
                 </nav>
@@ -74,7 +74,7 @@ include "queryHelpers.php";
         <div class="container mt-5 mb-5">
             <div class="row">
                 <div class="col mt-5">
-                    <img class="about-mission-img" src="/images/aboutMission.svg" alt="" />
+                    <img class="about-mission-img" src="images/aboutMission.svg" alt="" />
                 </div>
                 <div class="col about-texts-right-wrapper" id="ourMission">
                     <h5 class="text-right font-weight-bolder">Our Mission</h5>
@@ -95,7 +95,7 @@ include "queryHelpers.php";
                     </ul>
                 </div>
                 <div class="col mt-5">
-                    <img class="about-mission-img" src="/images/aboutValue.svg" alt="" />
+                    <img class="about-mission-img" src="images/aboutValue.svg" alt="" />
                 </div>
             </div>
         </div>
@@ -107,13 +107,13 @@ include "queryHelpers.php";
             </div>
             <div class="row mr-0 ml-0 mb-5">
                 <div class="col">
-                    <img class="" src="/images/salesTeam.svg" alt="" />
+                    <img class="" src="images/salesTeam.svg" alt="" />
                 </div>
                 <div class="col-8 mb-5">
                     <p class="text-center text-justify m-auto sales-texts">We have a great sales team of over 250 people across the New Zealand who are passionate about delivering great customer experiences and whose mission is to ensure that you love both the Carland car buying experience and the car.</p>
                 </div>
                 <div class="col">
-                    <img class="" src="/images/salesTeam1.svg" alt="" />
+                    <img class="" src="images/salesTeam1.svg" alt="" />
                 </div>
             </div>
         </div>
