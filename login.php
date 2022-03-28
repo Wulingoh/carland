@@ -1,6 +1,6 @@
 <?php
 include "config.php";
-$errorMessage = "";
+$errorMessages = array();
 
 if (isset($_POST['btn_login'])) {
 
@@ -37,11 +37,11 @@ if (isset($_POST['btn_login'])) {
                 }
             } else {
                 // Incorrect password
-                $errorMessage = 'Incorrect email and/or password!';
+                $errorMessages[] = 'Incorrect email and/or password!';
             }
         } else {
             // Incorrect username
-            $errorMessage = 'Incorrect email and/or password!';
+            $errorMessages[] = 'Incorrect email and/or password!';
         }
         $stmt->close();
     }
@@ -78,6 +78,19 @@ if (isset($_POST['btn_login'])) {
         </div>
         <!-- end of breadcrumbs -->
         <div class="container mb-5">
+            <?php if (count($errorMessages) > 0): ?>
+                <ul id="errors" class="visible">
+                    <?php
+                    foreach ($errorMessages as $errorMessage) :
+                    ?>
+                <li><?php echo $errorMessage ?></li>
+                    <?php
+                        endforeach;
+                    ?>
+                </ul>
+            <?php 
+            endif;
+            ?>
             <h1 class="text-center">Login</h1>
             <div class="container loginForm-wrapper mt-3 mb-5">
                 <div class="row loginRowBox">
@@ -99,7 +112,7 @@ if (isset($_POST['btn_login'])) {
                             </small>
                             <small id="passwordHelp" class="form-text text-muted text-center">
                                 Forgotten your password? <a href="forgotPassword.php">Password Reset</a>
-                            </small
+                            </small>
                         </form>
                     </div>
                     <div class="col-6 register-right-frame">
