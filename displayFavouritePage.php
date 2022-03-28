@@ -62,7 +62,7 @@ if (!isset($_SESSION['user_id'])) {
             ?>
             <div class="row container-favourite-row mt-5">
                 <div class="col mt-5 mb-3 ml-3">
-                    <img class="favourite-card-image" src="/admin/vehicles/uploads/<?= $row['img']; ?>" alt="" />
+                    <img class="favourite-card-image" src="admin/vehicles/uploads/<?= $row['img']; ?>" alt="" />
                     <a href="javascript:" class="favourite-heart btn btn-default" name="addToFavourite" id="favouriteBtn" data-carid="<?php echo $row['vehicle_id'] ?>">
                         <i class="bi bi-balloon-heart-fill" att="0" style="color: #DF4E3C; font-size: 20px"></i>
                     </a>
