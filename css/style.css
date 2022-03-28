@@ -707,9 +707,8 @@ li.borderless {
 
 /* favourite page */
 .favourite-line-vector {
-    position: absolute;
-    top: 305px;
-    right: 0;
+    position: relative;
+    top: -50px;
 }
 .favourite-image {
     position: relative;
