@@ -52,9 +52,6 @@ include "../../queryHelpers.php";
                   <div class="col">
                      <h4>Vehicle Overview</h4>
                   </div>
-                  <div class="col-4">
-                     <input class="form-control" type="text" id="carSearch" placeholder="Type to search...">
-                  </div>
                   <div class="col-3">
                      <button type="button" style="color:white;background-color: #2B6777;" class="btn" onclick="document.location='addVehicle.php'">Add new vehicle</button>
                   </div>

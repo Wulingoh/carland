@@ -74,16 +74,16 @@ $location_id = $rowID['location_id'];
 
 $query = "SELECT vehicles.img, vehicles.price, vehicles.year, vehicles.mileage, vehicles.engine_size, vehicles.stock, vehicles.detail, vehicles.title, vehicles.subtitle, vehicles.rego, vehicle_category.category, vehicle_bodytype.bodytype, vehicle_fueltype.fueltype, vehicle_make.make, vehicle_model.model, vehicle_transmission.transmission, vehicle_color.color, vehicle_seats.seats, vehicle_safety.safety, vehicle_location.location 
 FROM (((((((((( vehicles 
-INNER JOIN vehicle_category ON vehicles.category_id = vehicle_category.category_id ) 
-INNER JOIN vehicle_bodytype ON vehicles.bodytype_id = vehicle_bodytype.bodytype_id ) 
-INNER JOIN vehicle_fueltype ON vehicles.fueltype_id = vehicle_fueltype.fueltype_id ) 
-INNER JOIN vehicle_make ON vehicles.make_id = vehicle_make.make_id ) 
-INNER JOIN vehicle_model ON vehicles.model_id = vehicle_model.model_id ) 
-INNER JOIN vehicle_transmission ON vehicles.transmission_id = vehicle_transmission.transmission_id ) 
-INNER JOIN vehicle_color ON vehicles.color_id = vehicle_color.color_id ) 
-INNER JOIN vehicle_seats ON vehicles.seats_id = vehicle_seats.seats_id ) 
-INNER JOIN vehicle_safety ON vehicles.safety_id = vehicle_safety.safety_id ) 
-INNER JOIN vehicle_location ON vehicles.location_id = vehicle_location.location_id ) 
+LEFT JOIN vehicle_category ON vehicles.category_id = vehicle_category.category_id ) 
+LEFT JOIN vehicle_bodytype ON vehicles.bodytype_id = vehicle_bodytype.bodytype_id ) 
+LEFT JOIN vehicle_fueltype ON vehicles.fueltype_id = vehicle_fueltype.fueltype_id ) 
+LEFT JOIN vehicle_make ON vehicles.make_id = vehicle_make.make_id ) 
+LEFT JOIN vehicle_model ON vehicles.model_id = vehicle_model.model_id ) 
+LEFT JOIN vehicle_transmission ON vehicles.transmission_id = vehicle_transmission.transmission_id ) 
+LEFT JOIN vehicle_color ON vehicles.color_id = vehicle_color.color_id ) 
+LEFT JOIN vehicle_seats ON vehicles.seats_id = vehicle_seats.seats_id ) 
+LEFT JOIN vehicle_safety ON vehicles.safety_id = vehicle_safety.safety_id ) 
+LEFT JOIN vehicle_location ON vehicles.location_id = vehicle_location.location_id ) 
 WHERE vehicle_id = '$id' ";
 $result = mysqli_query($link, $query);
 $row = mysqli_fetch_array($result);
