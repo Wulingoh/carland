@@ -20,10 +20,10 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link px-3 dropdown-toggle" href="aboutPage.php" data-bs-toggle="dropdown">Why Carland</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="aboutPage.php/#ourStory" target="_blank">Our Story</a></li>
-                            <li><a class="dropdown-item" href="aboutPage.php/#ourMission" target="_blank">Our Mission</a></li>
-                            <li><a class="dropdown-item" href="aboutPage.php/#ourValues" target="_blank">Our Values</a></li>
-                            <li><a class="dropdown-item" href="aboutPage.php/#ourTeam" target="_blank">Our Team</a></li>
+                            <li><a class="dropdown-item" href="aboutPage.php#ourStory" target="_blank">Our Story</a></li>
+                            <li><a class="dropdown-item" href="aboutPage.php#ourMission" target="_blank">Our Mission</a></li>
+                            <li><a class="dropdown-item" href="aboutPage.php#ourValues" target="_blank">Our Values</a></li>
+                            <li><a class="dropdown-item" href="aboutPage.php#ourTeam" target="_blank">Our Team</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">

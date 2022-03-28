@@ -32,16 +32,16 @@
                                 <a href="aboutPage.php">About Us</a>
                             </li>
                             <li>
-                                <a href="aboutPage.php/#ourStory" target="_blank">Our Story</a>
+                                <a href="aboutPage.php#ourStory" target="_blank">Our Story</a>
                             </li>
                             <li>
-                                <a href="aboutPage.php/#ourMission" target="_blank">Our Mission</a>
+                                <a href="aboutPage.php#ourMission" target="_blank">Our Mission</a>
                             </li>
                             <li>
-                                <a href="aboutPage.php/#ourValues" target="_blank">Our Values</a>
+                                <a href="aboutPage.php#ourValues" target="_blank">Our Values</a>
                             </li>
                             <li>
-                                <a href="aboutPage.php/#ourTeam" target="_blank">Our Team</a>
+                                <a href="aboutPage.php#ourTeam" target="_blank">Our Team</a>
                             </li>
                         </ul>
                         <ul class="col-md-4 list-unstyled footer-nav">
