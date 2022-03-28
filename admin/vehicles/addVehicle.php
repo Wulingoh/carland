@@ -19,7 +19,7 @@ if (isset($_POST['addMake'])) {
   }
   $make = mysqli_real_escape_string($link, $_POST['newMake']);
   $query = "INSERT INTO vehicle_make (make, brand_logo) VALUES ('$make' , '$newName') ";
-  mysqli_query($link, $query) or die (mysqli_error($link));
+  mysqli_query($link, $query) or die(mysqli_error($link));
 }
 
 //add model
@@ -96,74 +96,6 @@ if (isset($_POST['addCar'])) {
   <script src="../../js/bootstrap.bundle.min.js"></script>
   <link href="../../css/style.css" rel="stylesheet">
   <link href="../../icon/bootstrap-icons.css" rel="stylesheet">
-
-
-  <script>
-    function arrowChange1() {
-      if (document.getElementById("arrowDown1").className == "bi bi-caret-down-fill") {
-        document.getElementById("arrowDown1").className = "bi bi-caret-up-fill";
-
-
-      } else {
-        document.getElementById("arrowDown1").className = "bi bi-caret-down-fill";
-
-
-      }
-
-    }
-
-    function arrowChange2() {
-      if (document.getElementById("arrowDown2").className == "bi bi-caret-down-fill") {
-        document.getElementById("arrowDown2").className = "bi bi-caret-up-fill";
-
-
-      } else {
-        document.getElementById("arrowDown2").className = "bi bi-caret-down-fill";
-
-
-      }
-
-    }
-
-
-
-    $(document).ready(function() {
-      $('#make').on('change', function() {
-        var makeID = $(this).val();
-        if (makeID) {
-          $.ajax({
-            type: 'POST',
-            url: 'displayModel.php',
-            data: 'make_id=' + makeID,
-            success: function(html) {
-              $('#model').html(html);
-
-            }
-
-          });
-        } else {
-          $('#model').html('<option value="">Select make first</option>');
-        }
-
-      });
-
-      $('#openModel').on('click', function(e) {
-        var make = $('#make').val();
-        if(make != '') {
-          $('#makeModel').val(make)
-        } else {
-          e.stopImmediatePropagation();
-          $('.openModelWrapper').append("<p>Please Select Make First!</p>");
-        }
-      })
-    });
-
-    if ( window.history.replaceState ) {
-        window.history.replaceState( null, null, window.location.href );
-    }
-
-  </script>
-
 </head>
 
 <body>
@@ -191,56 +123,7 @@ if (isset($_POST['addCar'])) {
       </div>
 
       <div class="row">
-        <div class="col-lg-3">
-          <div class="row">
-            <img src="../../images/admin-dashboardBar.png" class="img-fluid" />
-          </div>
-          <br>
-
-          <div class="row justify-content-center  ">
-            <div class="col">
-              <a href="../users/index.php" style="text-decoration: none;color:black">
-                <h5>User Management</h5>
-              </a>
-            </div>
-            <div class="col-2">
-              <a data-toggle="collapse" href="#collapseUser" role="button" onclick="arrowChange1()" aria-expanded="false" aria-controls="collapseUser">
-                <span style="font-size: 20px;color:#2B6777;"><i id="arrowDown1" class="bi bi-caret-down-fill"></i></span>
-              </a>
-            </div>
-          </div>
-          <div class="collapse" id="collapseUser">
-            <h6 style="text-align: right;">
-              <a href="../users/addUser.php" style="text-decoration: none;color:black;"> Add new user</a>
-            </h6>
-          </div>
-          <hr>
-
-          <div class="row">
-
-            <div class="col">
-              <a href="index.php" style="text-decoration: none;color:black">
-                <h5><b>Vehicle Management</b></h5>
-              </a>
-            </div>
-            <div class="col-2">
-              <a data-toggle="collapse" href="#collapseVehicle" href="addCar.php" role="button" onclick="arrowChange2()" aria-expanded="false" aria-controls="collapseVehicle">
-                <span style="font-size: 20px;color:#2B6777;"><i id="arrowDown2" class="bi bi-caret-down-fill"></i></span>
-              </a>
-
-            </div>
-          </div>
-          <div class="collapse" id="collapseVehicle">
-            <h6 class="mb-3" style="text-align: right;">
-              <a href="addVehicle.php" style="text-decoration: none;color:black;">Add New Vehicle </a>
-            </h6>
-            <h6 style="text-align: right;">
-              <a href="makeAndModel/index.php" style="text-decoration: none;color:black;">Make And Model</a>
-            </h6>
-          </div>
-          <hr>
-
-        </div>
+        <?php include "sideBarNavVehicle.php" ?>
         <div class="col" style="padding-left: 50px;border-left:1.5px solid #E2E8F0;">
           <div class="row">
             <div class="col">
@@ -303,10 +186,9 @@ if (isset($_POST['addCar'])) {
                 </select>
               </div>
               <div class="form-group col-5">
-                <input type="text" class="form-control" id="newColor" name="newColor" placeholder="Add a new color">
-              </div>
-              <div class="col-lg-2">
-                <button type="submit" class="btn" name="addColor" style="background-color: #2B6777;color:white;">Add</button>
+                <span class="openModelWrapper">
+                  <button type="button" class="btn" id="openColor" name="addNewColorModal" data-toggle="modal" data-target="#addNewColor" data-whatever="@addNewModel" style="background-color: #2B6777;color:white;">Add New Color</button>
+                </span>
               </div>
             </div>
             <br>
@@ -572,7 +454,34 @@ if (isset($_POST['addCar'])) {
         </div>
       </div>
     </div>
+
+    <!-- modal for add new color -->
+    <div class="modal fade" id="addNewColor" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">New Color</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form action="addVehicle.php" method="POST" enctype="multipart/form-data">
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="newColor" class="col-form-label">New Color</label>
+                <input type="text" class="form-control" id="newColor" name="newColor" required>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-primary" name="addColor">Add New Color</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   </section>
+  <script src="../../admin/adminJs/adminJs.js" type="text/javascript"></script>
 </body>
 
 </html>
