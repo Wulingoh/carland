@@ -202,7 +202,7 @@ if (isset($_SESSION['user_id'])) {
                 <div class="row">
                     <div class="col-12">
                         <div class="col">
-                        <h3 style="text-align:center">
+                        <h3 style="text-align:center; color: white;">
                             <?php echo $pagingLink; // display paging links ?>
                         </h3>
                         </div>
