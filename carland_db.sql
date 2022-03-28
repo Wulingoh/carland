@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 26, 2022 at 04:22 AM
+-- Generation Time: Mar 28, 2022 at 07:33 AM
 -- Server version: 8.0.26
 -- PHP Version: 8.1.3
 
@@ -69,13 +69,6 @@ CREATE TABLE `favourite` (
 --   `user_id`
 --       `users` -> `user_id`
 --
-
---
--- Dumping data for table `favourite`
---
-
-INSERT INTO `favourite` (`favourite_id`, `user_id`, `vehicle_id`) VALUES
-(19, 3, 28);
 
 -- --------------------------------------------------------
 
@@ -260,7 +253,7 @@ CREATE TABLE `pma__recent` (
 --
 
 INSERT INTO `pma__recent` (`username`, `tables`) VALUES
-('root', '[{\"db\":\"carland_db\",\"table\":\"contact\"},{\"db\":\"carland_db\",\"table\":\"vehicles\"},{\"db\":\"carland_db\",\"table\":\"vehicle_gallery\"},{\"db\":\"carland_db\",\"table\":\"users\"},{\"db\":\"carland_db\",\"table\":\"favourite\"},{\"db\":\"carland_db\",\"table\":\"vehicle_model\"},{\"db\":\"mytest_db\",\"table\":\"vehicle_model\"},{\"db\":\"mytest_db\",\"table\":\"vehicle_make\"},{\"db\":\"mytest_db\",\"table\":\"tbl_member\"},{\"db\":\"carland_db\",\"table\":\"vehicle_make\"}]');
+('root', '[{\"db\":\"carland_db\",\"table\":\"vehicles\"},{\"db\":\"carland_db\",\"table\":\"vehicle_seats\"},{\"db\":\"carland_db\",\"table\":\"vehicle_safety\"},{\"db\":\"carland_db\",\"table\":\"vehicle_model\"},{\"db\":\"carland_db\",\"table\":\"vehicle_make\"},{\"db\":\"carland_db\",\"table\":\"vehicle_color\"},{\"db\":\"carland_db\",\"table\":\"contact\"},{\"db\":\"carland_db\",\"table\":\"users\"},{\"db\":\"carland_db\",\"table\":\"favourite\"},{\"db\":\"carland_db\",\"table\":\"vehicle_gallery\"}]');
 
 -- --------------------------------------------------------
 
@@ -403,7 +396,7 @@ CREATE TABLE `pma__userconfig` (
 --
 
 INSERT INTO `pma__userconfig` (`username`, `timevalue`, `config_data`) VALUES
-('root', '2022-03-26 04:20:53', '{\"Console\\/Mode\":\"collapse\"}');
+('root', '2022-03-28 06:35:03', '{\"Console\\/Mode\":\"collapse\"}');
 
 -- --------------------------------------------------------
 
@@ -462,10 +455,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`user_id`, `user_email`, `password_hash`, `user_fullname`, `user_role`, `password_reset_token`) VALUES
 (1, 'taifen_g@yahoo.com', '$2y$10$4XlZH2P0SL9akf8yKsmMxuPnr6WHGK46eScqi/Y1041Hj9DIn4vW2', 'Lin Tillman', 'admin', NULL),
 (2, 'jeff@gmail.com', '$2y$10$6yS4hhWEX37IxKVhaLpg3OAOdM9AoAKLaultpd3m9.tV7WO3lRzbe', 'Jeff Clyde', 'customer', NULL),
-(3, 'test@example.com', '$2y$10$thyLDjriaYwjYsBaM2f9sO8Mmh7mgL9MYXPMDPcBBJ6kQGLSrV7UW', 'test', 'customer', '1930833c5cac7fe2d0561713dc9079da'),
 (5, 'tim@test', '$2y$10$Oa5Z2E5C.69I6RYFHPlLduHnewdX2V2lsPAwTeE.T12Bq9Zqw5yPi', 'Tim Test', 'customer', NULL),
-(6, 'ban@example.com', '$2y$10$OhC1zJwpcXpeProhfQTy..SUYaUsIsIurS/UOdxV3EqOmhSy.iaeO', 'Ban Test', 'customer', NULL),
-(11, 'test7@example.com', '$2y$10$YSEEKcZin.dRkei1ClWCN.InoptmUIq4nljJjLRqL2lET4hhNuHP.', 'Test Fullname', 'customer', NULL);
+(13, 'ben.tillman@gmail.com', '$2y$10$iHdv88aIRAia3hA7uKiwGelyn/g83zr0yG3AiyEj0TvEe/YXf0nym', 'Ben Tillman', 'customer', NULL);
 
 -- --------------------------------------------------------
 
@@ -527,22 +518,22 @@ INSERT INTO `vehicles` (`vehicle_id`, `img`, `price`, `year`, `mileage`, `engine
 (30, '8c2f525baacafdd06d28fe1687d0e447.png', 28500, 2020, 4690, '1L', 1, '', 'Mar 2020', 1, 2, 1, 23, 28, 2, 3, 2, 5, 1, 'Honda Civic', '1L SR VTEC Turbo', '2022-03-22 07:58:33'),
 (31, '9665ff79194f56f765808e782c1dee0c.jpg', 61910, 2018, 23459, '2L', 1, '', 'Oct 2018', 1, 3, 4, 22, 29, 1, 3, 2, 5, 7, 'Volvo XC60', '2L R-Design Twin Engine h T8', '2022-03-22 08:19:23'),
 (32, '1521cdbeaa3c4d69519f0e5f2260a0aa.png', 56890, 2019, 23462, '2L', 1, '', 'Apr 2019', 1, 2, 4, 22, 30, 1, 1, 2, 5, 6, 'Volvo S90', '2L Inscription Pro Twin Engine h T8', '2022-03-22 08:33:28'),
-(65, 'fed56d5aa80cf8a9b84865b5f3cc2ba5.jpg', 27290, 2020, 366, '1.6', 1, '', 'NA', 1, 1, 4, 31, 43, 1, 4, 2, 5, 2, ' Toyota the New Gen Yaris Hatch', 'Compact. Agile. And incredibly capable.', '2022-03-23 21:00:58'),
-(66, '24153b218539bcfa57c45f0f2e24a455.jpg', 76199, 2021, 106, '2.2', 1, '', 'NA', 1, 3, 4, 29, 34, 1, 4, 2, 5, 2, 'Mercedes-Benz GLA 200', 'The perfect urban SUV.', '2022-03-23 19:56:36'),
-(67, '0649a7a1621a94a1142017762b428e29.jpg', 53999, 2020, 82, '1.6', 1, '', 'NA', 1, 1, 4, 29, 41, 1, 3, 2, 5, 2, 'Mercedes-Benz A180', 'A design that suits your lifestyle', '2022-03-23 20:02:07'),
-(68, 'ac429e38568202d14438bd4b9baa866e.jpg', 60990, 2021, 10, '3.0', 1, '', 'NA', 1, 3, 1, 31, 44, 1, 7, 3, 5, 2, 'Toyota Highlander GXL ', '7 seats and spacious cabin ensures travel comfort for any drives', '2022-03-23 20:44:11'),
-(69, '5fc715dd3ca50c884c6376146d3979bc.jpg', 51490, 2021, 30, '4.0', 1, '', 'NA', 1, 4, 2, 31, 42, 1, 2, 1, 5, 1, ' The Toyota Hiace van ZX', 'Redesigned top to bottom, this is the van of your dreams', '2022-03-23 20:54:21'),
-(78, '6b52283a25e9087b6621e40dcf88712e.jpg', 18999, 2018, 36980, '1.4', 1, '', 'ABC123', 2, 1, 4, 30, 32, 2, 5, 2, 4, 2, 'Volkswagen Polo TSI DSG', 'The little one with a big attitude', '2022-03-15 14:58:50'),
-(79, 'fe1d99736060da91e020cfeeb8987c7a.jpg', 16999, 2020, 107990, '3.8', 1, '', 'NA', 1, 3, 2, 28, 33, 1, 4, 3, 5, 1, 'Hyundai Palisade  V6 GDi Limited', 'The ultimate in luxury and practicality', '2022-03-15 15:03:53'),
-(80, 'ba3c15f05d7d79276ac515fdc8d753c5.jpg', 53990, 2021, 99, '1.6', 1, '', 'NA', 1, 1, 1, 30, 35, 2, 6, 2, 5, 2, 'All-new Hyundai i20 N', 'High-performance features for the thrill of driving', '2022-03-23 18:28:59'),
-(81, '75c53b371fce057cea93a4247c2737f9.jpg', 69990, 2021, 120, 'NA', 1, '', 'NA', 1, 1, 3, 30, 36, 1, 6, 2, 5, 1, 'Kona Electric Series II', 'New Energy. Zero Emissions. Electrifying Design..', '2022-03-23 18:40:18'),
-(82, '52159cda1df86a1cbfd81ee00ee2ba1b.jpg', 69990, 2021, 10, '2.2', 1, '', 'NA', 1, 4, 2, 30, 37, 1, 1, 4, 5, 1, 'All-new Hyundai Staria', 'Staria 2.2 Diesel Automatic 8-seater Family Van', '2022-03-23 18:58:01'),
-(83, '69da8c4a882eb06a422f65d100f7e21f.jpg', 65000, 2018, 66, '4.0', 1, '', 'NA', 1, 4, 2, 30, 38, 1, 2, 4, 5, 1, 'Volkswagen The Crafter Van', 'The best tool for your trade', '2022-03-23 19:24:10'),
-(84, '90eadad0879efc1e3be4bf407a7f3a0d.jpg', 47990, 2021, 200, '3.0', 1, '', 'NA', 1, 3, 1, 30, 39, 1, 1, 2, 5, 2, 'Volkswagen The new Tiguan', 'You\'ll never want to leave', '2022-03-23 19:36:54'),
-(85, 'b6b8848761753b331c4ae563315a2415.jpg', 89999, 2022, 0, 'NA', 1, '', 'NA', 1, 4, 3, 30, 40, 1, 5, 4, 5, 1, 'Meet the all-electric VW ID.Buzz.', 'Built on the unique DNA of the legendary T1 camper van', '2022-03-23 19:45:30'),
-(86, 'd85df46f0bb001369b33dcff8ee49a89.jpg', 88900, 2021, 28650, '1.6', 1, 'Mercedes-Benz The New E-Class Sedan. A more dynamic character all round.', 'LIN123', 2, 2, 4, 29, 4, 1, 4, 2, 5, 1, 'Mercedes-Benz The New E-Class Sedan', 'A more dynamic character all round.', '2022-03-08 15:21:42'),
-(87, 'd3d99ace7a1945b60ac24bba3bebfef1.jpg', 30999, 2021, 25, '1.4', 1, 'Corolla hatch GX Hybrid，work errand and weekend sport!', 'NA', 1, 1, 4, 31, 1, 1, 1, 2, 5, 2, 'Corolla hatch GX Hybrid', 'Work errand and weekend sport!', '2022-03-08 15:21:42'),
-(88, '885f26f48202b477bbdafeed573fa6b7.jpg', 311199, 2021, 120, '3.0', 1, '', 'NA', 1, 3, 1, 29, 31, 1, 2, 2, 5, 1, 'Mercedes-AMG G 63', 'The unique DNA of the G-Class ', '2022-03-15 14:53:37');
+(65, 'fed56d5aa80cf8a9b84865b5f3cc2ba5.jpg', 27290, 2020, 366, '1.6', 1, '', 'NA', 1, 1, 4, 31, 43, 1, 4, 2, 5, 2, ' Toyota Yaris', 'ZR 1.5P/10Cvt', '2022-03-23 21:00:58'),
+(66, '24153b218539bcfa57c45f0f2e24a455.jpg', 76199, 2021, 106, '2.2', 1, '', 'NA', 1, 3, 4, 29, 34, 1, 4, 2, 5, 2, 'Mercedes-Benz GLA 200', '1.3L Turbocharged', '2022-03-23 19:56:36'),
+(67, '0649a7a1621a94a1142017762b428e29.jpg', 53999, 2020, 82, '1.6', 1, '', 'NA', 1, 1, 4, 29, 41, 1, 3, 2, 5, 2, 'Mercedes-Benz A180', 'A180', '2022-03-23 20:02:07'),
+(68, 'ac429e38568202d14438bd4b9baa866e.jpg', 60990, 2021, 10, '3.0', 1, '', 'NA', 1, 3, 1, 31, 44, 1, 5, 3, 5, 2, 'Toyota Highlander ', 'GXL ', '2022-03-23 20:44:11'),
+(69, '5fc715dd3ca50c884c6376146d3979bc.jpg', 51490, 2021, 30, '4.0', 1, '', 'NA', 1, 4, 2, 31, 42, 1, 2, 6, 5, 1, ' The Toyota Hiace ', 'Van ZX', '2022-03-23 20:54:21'),
+(78, '6b52283a25e9087b6621e40dcf88712e.jpg', 18999, 2018, 36980, '1.4', 1, '', 'ABC123', 2, 1, 4, 30, 32, 2, 7, 2, 4, 2, 'Volkswagen Polo ', 'TSI DSG', '2022-03-15 14:58:50'),
+(79, 'fe1d99736060da91e020cfeeb8987c7a.jpg', 16999, 2020, 107990, '3.8', 1, '', 'NA', 1, 3, 2, 28, 33, 1, 1, 3, 5, 1, 'Hyundai Palisade ', ' V6 GDi Limited', '2022-03-15 15:03:53'),
+(80, 'ba3c15f05d7d79276ac515fdc8d753c5.jpg', 53990, 2021, 99, '1.6', 1, '', 'NA', 1, 1, 1, 28, 35, 2, 5, 2, 5, 2, 'Hyundai i20 ', 'N 1.6T 6MT', '2022-03-23 18:28:59'),
+(81, '75c53b371fce057cea93a4247c2737f9.jpg', 69990, 2021, 120, 'NA', 1, '', 'NA', 1, 1, 3, 28, 36, 1, 6, 2, 5, 1, 'Kona Series II', 'EV Elite PE', '2022-03-23 18:40:18'),
+(82, '52159cda1df86a1cbfd81ee00ee2ba1b.jpg', 69990, 2021, 10, '2.2', 1, '', 'NA', 1, 4, 2, 28, 37, 1, 1, 5, 5, 1, 'Hyundai Staria', 'Staria 2.2 Diesel 8-seater', '2022-03-23 18:58:01'),
+(83, '69da8c4a882eb06a422f65d100f7e21f.jpg', 65000, 2018, 66, '4.0', 1, '', 'NA', 1, 4, 2, 30, 38, 1, 2, 3, 5, 1, 'Volkswagen Crafter Van', '30 Mwb 103', '2022-03-23 19:24:10'),
+(84, '90eadad0879efc1e3be4bf407a7f3a0d.jpg', 47990, 2021, 200, '3.0', 1, '', 'NA', 1, 3, 1, 30, 39, 1, 1, 2, 5, 2, 'Volkswagen Tiguan', 'Allspace 2.0L 4WD 7', '2022-03-23 19:36:54'),
+(85, 'b6b8848761753b331c4ae563315a2415.jpg', 89999, 2022, 0, 'NA', 1, '', 'NA', 1, 4, 3, 30, 40, 1, 5, 3, 5, 1, 'VW ID.Buzz.', ' 77-kWh Camper Van', '2022-03-23 19:45:30'),
+(86, 'd85df46f0bb001369b33dcff8ee49a89.jpg', 88900, 2021, 28650, '1.6', 1, 'Mercedes-Benz The New E-Class Sedan. A more dynamic character all round.', 'LIN123', 2, 2, 4, 29, 4, 1, 4, 2, 5, 1, 'Mercedes-Benz E-Class', 'Hybrid', '2022-03-08 15:21:42'),
+(87, 'd3d99ace7a1945b60ac24bba3bebfef1.jpg', 30999, 2021, 25, '1.4', 1, 'Corolla hatch GX Hybrid，work errand and weekend sport!', 'NA', 1, 1, 4, 31, 1, 1, 1, 2, 5, 2, 'Corolla Hatch ', 'GX Hybrid', '2022-03-08 15:21:42'),
+(88, '885f26f48202b477bbdafeed573fa6b7.jpg', 311199, 2021, 120, '3.0', 1, '', 'NA', 1, 3, 1, 29, 31, 1, 2, 2, 5, 1, 'Mercedes-AMG ', 'G 63', '2022-03-15 14:53:37');
 
 -- --------------------------------------------------------
 
@@ -617,7 +608,8 @@ INSERT INTO `vehicle_color` (`color_id`, `color`) VALUES
 (3, 'Red'),
 (4, 'Sliver'),
 (5, 'Blue'),
-(6, 'Yellow');
+(6, 'Yellow'),
+(7, 'Orange');
 
 -- --------------------------------------------------------
 
@@ -1178,7 +1170,9 @@ CREATE TABLE `vehicle_seats` (
 INSERT INTO `vehicle_seats` (`seats_id`, `seats`) VALUES
 (1, 2),
 (2, 5),
-(3, 7);
+(3, 7),
+(5, 4),
+(6, 8);
 
 -- --------------------------------------------------------
 
@@ -1478,7 +1472,7 @@ ALTER TABLE `pma__savedsearches`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `vehicles`
@@ -1502,7 +1496,7 @@ ALTER TABLE `vehicle_category`
 -- AUTO_INCREMENT for table `vehicle_color`
 --
 ALTER TABLE `vehicle_color`
-  MODIFY `color_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `color_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `vehicle_fueltype`
@@ -1544,7 +1538,7 @@ ALTER TABLE `vehicle_safety`
 -- AUTO_INCREMENT for table `vehicle_seats`
 --
 ALTER TABLE `vehicle_seats`
-  MODIFY `seats_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `seats_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `vehicle_transmission`
