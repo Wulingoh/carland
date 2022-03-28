@@ -60,7 +60,7 @@ $(document).ready(function() {
         if (makeId) {
             $.ajax({
                 type: 'POST',
-                url: '/admin/vehicles/displayModel.php',
+                url: 'admin/vehicles/displayModel.php',
                 data: 'make_id=' + makeId,
                 success: function(html) {
                     $('#searchModel').html(html);
