@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 28, 2022 at 07:33 AM
+-- Generation Time: Mar 29, 2022 at 07:53 PM
 -- Server version: 8.0.26
 -- PHP Version: 8.1.3
 
@@ -35,7 +35,7 @@ CREATE TABLE `contact` (
   `topic` varchar(300) NOT NULL,
   `message` varchar(300) NOT NULL,
   `vehicle_id` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE= utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- RELATIONSHIPS FOR TABLE `contact`:
@@ -60,7 +60,7 @@ CREATE TABLE `favourite` (
   `favourite_id` int NOT NULL,
   `user_id` int NOT NULL,
   `vehicle_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE= utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- RELATIONSHIPS FOR TABLE `favourite`:
@@ -253,7 +253,7 @@ CREATE TABLE `pma__recent` (
 --
 
 INSERT INTO `pma__recent` (`username`, `tables`) VALUES
-('root', '[{\"db\":\"carland_db\",\"table\":\"vehicles\"},{\"db\":\"carland_db\",\"table\":\"vehicle_seats\"},{\"db\":\"carland_db\",\"table\":\"vehicle_safety\"},{\"db\":\"carland_db\",\"table\":\"vehicle_model\"},{\"db\":\"carland_db\",\"table\":\"vehicle_make\"},{\"db\":\"carland_db\",\"table\":\"vehicle_color\"},{\"db\":\"carland_db\",\"table\":\"contact\"},{\"db\":\"carland_db\",\"table\":\"users\"},{\"db\":\"carland_db\",\"table\":\"favourite\"},{\"db\":\"carland_db\",\"table\":\"vehicle_gallery\"}]');
+('root', '[{\"db\":\"carland_db\",\"table\":\"users\"},{\"db\":\"carland_db\",\"table\":\"vehicles\"},{\"db\":\"carland_db\",\"table\":\"vehicle_seats\"},{\"db\":\"carland_db\",\"table\":\"vehicle_safety\"},{\"db\":\"carland_db\",\"table\":\"vehicle_model\"},{\"db\":\"carland_db\",\"table\":\"vehicle_make\"},{\"db\":\"carland_db\",\"table\":\"vehicle_color\"},{\"db\":\"carland_db\",\"table\":\"contact\"},{\"db\":\"carland_db\",\"table\":\"favourite\"},{\"db\":\"carland_db\",\"table\":\"vehicle_gallery\"}]');
 
 -- --------------------------------------------------------
 
@@ -396,7 +396,7 @@ CREATE TABLE `pma__userconfig` (
 --
 
 INSERT INTO `pma__userconfig` (`username`, `timevalue`, `config_data`) VALUES
-('root', '2022-03-28 06:35:03', '{\"Console\\/Mode\":\"collapse\"}');
+('root', '2022-03-29 19:52:54', '{\"Console\\/Mode\":\"collapse\"}');
 
 -- --------------------------------------------------------
 
@@ -442,7 +442,7 @@ CREATE TABLE `users` (
   `user_fullname` varchar(80) NOT NULL,
   `user_role` varchar(80) NOT NULL,
   `password_reset_token` varchar(32) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE= utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- RELATIONSHIPS FOR TABLE `users`:
@@ -454,9 +454,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`user_id`, `user_email`, `password_hash`, `user_fullname`, `user_role`, `password_reset_token`) VALUES
 (1, 'taifen_g@yahoo.com', '$2y$10$4XlZH2P0SL9akf8yKsmMxuPnr6WHGK46eScqi/Y1041Hj9DIn4vW2', 'Lin Tillman', 'admin', NULL),
-(2, 'jeff@gmail.com', '$2y$10$6yS4hhWEX37IxKVhaLpg3OAOdM9AoAKLaultpd3m9.tV7WO3lRzbe', 'Jeff Clyde', 'customer', NULL),
-(5, 'tim@test', '$2y$10$Oa5Z2E5C.69I6RYFHPlLduHnewdX2V2lsPAwTeE.T12Bq9Zqw5yPi', 'Tim Test', 'customer', NULL),
-(13, 'ben.tillman@gmail.com', '$2y$10$iHdv88aIRAia3hA7uKiwGelyn/g83zr0yG3AiyEj0TvEe/YXf0nym', 'Ben Tillman', 'customer', NULL);
+(14, 'testLocalhost@gmail.com', '$2y$10$NVg6noAeZV.SCl31uRzT0.fpuUQkY6l1lBrymLx3o/CGTFAgqTX0i', 'Test Localhost', 'customer', NULL),
+(15, 'jeffrey@gmail.com', '$2y$10$N9oa1Y0YPkZ/kuvpfX7gY.CvCm.do.qv0dzz43iBT16eVYEI0QuBm', 'Jeffrey Hong', 'admin', NULL);
 
 -- --------------------------------------------------------
 
@@ -484,17 +483,33 @@ CREATE TABLE `vehicles` (
   `seats_id` int NOT NULL,
   `safety_id` int NOT NULL,
   `location_id` int NOT NULL,
-  `title` varchar(80) CHARACTER SET utf8mb4 COLLATE  utf8mb4_unicode_ci NOT NULL,
-  `subtitle` varchar(300) CHARACTER SET utf8mb4 COLLATE  utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `subtitle` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE= utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- RELATIONSHIPS FOR TABLE `vehicles`:
+--   `bodytype_id`
+--       `vehicle_bodytype` -> `bodytype_id`
+--   `category_id`
+--       `vehicle_category` -> `category_id`
+--   `color_id`
+--       `vehicle_color` -> `color_id`
+--   `fueltype_id`
+--       `vehicle_fueltype` -> `fueltype_id`
+--   `location_id`
+--       `vehicle_location` -> `location_id`
 --   `make_id`
 --       `vehicle_make` -> `make_id`
 --   `model_id`
 --       `vehicle_model` -> `model_id`
+--   `safety_id`
+--       `vehicle_safety` -> `safety_id`
+--   `seats_id`
+--       `vehicle_seats` -> `seats_id`
+--   `transmission_id`
+--       `vehicle_transmission` -> `transmission_id`
 --
 
 --
@@ -544,7 +559,7 @@ INSERT INTO `vehicles` (`vehicle_id`, `img`, `price`, `year`, `mileage`, `engine
 CREATE TABLE `vehicle_bodytype` (
   `bodytype_id` int NOT NULL,
   `bodytype` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE= utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- RELATIONSHIPS FOR TABLE `vehicle_bodytype`:
@@ -569,7 +584,7 @@ INSERT INTO `vehicle_bodytype` (`bodytype_id`, `bodytype`) VALUES
 CREATE TABLE `vehicle_category` (
   `category_id` int NOT NULL,
   `category` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE= utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- RELATIONSHIPS FOR TABLE `vehicle_category`:
@@ -592,7 +607,7 @@ INSERT INTO `vehicle_category` (`category_id`, `category`) VALUES
 CREATE TABLE `vehicle_color` (
   `color_id` int NOT NULL,
   `color` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE= utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- RELATIONSHIPS FOR TABLE `vehicle_color`:
@@ -620,7 +635,7 @@ INSERT INTO `vehicle_color` (`color_id`, `color`) VALUES
 CREATE TABLE `vehicle_fueltype` (
   `fueltype_id` int NOT NULL,
   `fueltype` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE= utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- RELATIONSHIPS FOR TABLE `vehicle_fueltype`:
@@ -647,7 +662,7 @@ CREATE TABLE `vehicle_gallery` (
   `vehicle_id` int NOT NULL,
   `gallery_img` varchar(900) NOT NULL,
   `gallery_img_title` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE= utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- RELATIONSHIPS FOR TABLE `vehicle_gallery`:
@@ -1014,7 +1029,7 @@ INSERT INTO `vehicle_gallery` (`img_id`, `vehicle_id`, `gallery_img`, `gallery_i
 CREATE TABLE `vehicle_location` (
   `location_id` int NOT NULL,
   `location` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE= utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- RELATIONSHIPS FOR TABLE `vehicle_location`:
@@ -1045,8 +1060,8 @@ INSERT INTO `vehicle_location` (`location_id`, `location`) VALUES
 CREATE TABLE `vehicle_make` (
   `make_id` int NOT NULL,
   `make` varchar(100) NOT NULL,
-  `brand_logo` varchar(900) CHARACTER SET utf8mb4 COLLATE  utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE= utf8mb4_unicode_ci;
+  `brand_logo` varchar(900) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- RELATIONSHIPS FOR TABLE `vehicle_make`:
@@ -1077,7 +1092,7 @@ CREATE TABLE `vehicle_model` (
   `model_id` int NOT NULL,
   `make_id` int NOT NULL,
   `model` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE= utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- RELATIONSHIPS FOR TABLE `vehicle_model`:
@@ -1131,7 +1146,7 @@ INSERT INTO `vehicle_model` (`model_id`, `make_id`, `model`) VALUES
 CREATE TABLE `vehicle_safety` (
   `safety_id` int NOT NULL,
   `safety` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE= utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- RELATIONSHIPS FOR TABLE `vehicle_safety`:
@@ -1157,7 +1172,7 @@ INSERT INTO `vehicle_safety` (`safety_id`, `safety`) VALUES
 CREATE TABLE `vehicle_seats` (
   `seats_id` int NOT NULL,
   `seats` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE= utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- RELATIONSHIPS FOR TABLE `vehicle_seats`:
@@ -1183,7 +1198,7 @@ INSERT INTO `vehicle_seats` (`seats_id`, `seats`) VALUES
 CREATE TABLE `vehicle_transmission` (
   `transmission_id` int NOT NULL,
   `transmission` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE= utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- RELATIONSHIPS FOR TABLE `vehicle_transmission`:
@@ -1348,7 +1363,15 @@ ALTER TABLE `users`
 ALTER TABLE `vehicles`
   ADD PRIMARY KEY (`vehicle_id`),
   ADD KEY `vehicle_make_id_fk` (`make_id`),
-  ADD KEY `vehicle_model_id_fk` (`model_id`);
+  ADD KEY `vehicle_model_id_fk` (`model_id`),
+  ADD KEY `vehicle_bodytype_id_fk` (`bodytype_id`),
+  ADD KEY `vehicle_category_id_fk` (`category_id`),
+  ADD KEY `vehicle_color_id_fk` (`color_id`),
+  ADD KEY `vehicle_fueltype_id_fk` (`fueltype_id`),
+  ADD KEY `vehicle_location_id_fk` (`location_id`),
+  ADD KEY `vehicle_safety_id_fk` (`safety_id`),
+  ADD KEY `vehicle_seat_id_fk` (`seats_id`),
+  ADD KEY `vehicle_transmission_id_fk` (`transmission_id`);
 
 --
 -- Indexes for table `vehicle_bodytype`
@@ -1430,7 +1453,7 @@ ALTER TABLE `contact`
 -- AUTO_INCREMENT for table `favourite`
 --
 ALTER TABLE `favourite`
-  MODIFY `favourite_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `favourite_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `pma__bookmark`
@@ -1472,7 +1495,7 @@ ALTER TABLE `pma__savedsearches`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `vehicles`
@@ -1567,8 +1590,16 @@ ALTER TABLE `favourite`
 -- Constraints for table `vehicles`
 --
 ALTER TABLE `vehicles`
+  ADD CONSTRAINT `vehicle_bodytype_id_fk` FOREIGN KEY (`bodytype_id`) REFERENCES `vehicle_bodytype` (`bodytype_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `vehicle_category_id_fk` FOREIGN KEY (`category_id`) REFERENCES `vehicle_category` (`category_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `vehicle_color_id_fk` FOREIGN KEY (`color_id`) REFERENCES `vehicle_color` (`color_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `vehicle_fueltype_id_fk` FOREIGN KEY (`fueltype_id`) REFERENCES `vehicle_fueltype` (`fueltype_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `vehicle_location_id_fk` FOREIGN KEY (`location_id`) REFERENCES `vehicle_location` (`location_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `vehicle_make_id_fk` FOREIGN KEY (`make_id`) REFERENCES `vehicle_make` (`make_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `vehicle_model_id_fk` FOREIGN KEY (`model_id`) REFERENCES `vehicle_model` (`model_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `vehicle_model_id_fk` FOREIGN KEY (`model_id`) REFERENCES `vehicle_model` (`model_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `vehicle_safety_id_fk` FOREIGN KEY (`safety_id`) REFERENCES `vehicle_safety` (`safety_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `vehicle_seat_id_fk` FOREIGN KEY (`seats_id`) REFERENCES `vehicle_seats` (`seats_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `vehicle_transmission_id_fk` FOREIGN KEY (`transmission_id`) REFERENCES `vehicle_transmission` (`transmission_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
